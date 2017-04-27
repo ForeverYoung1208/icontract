@@ -1,25 +1,64 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  socket: /var/lib/mysql/mysql.sock
   pool: 5
-  timeout: 5000
+  username: root_icontract
+  password: '120880'
+
+#  database: tm2t_production
+#  host: 192.168.20.33
+#  port: 3306
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: icontract_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: icontract_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: icontract_production
+
+
+
+users:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: tm2t_development
+  socket: /var/lib/mysql/mysql.sock
+  pool: 5
+  username: root_tm2
+  password: '120880'
+
+
+
+# # SQLite version 3.x
+# #   gem install sqlite3
+# #
+# #   Ensure the SQLite 3 gem is defined in your Gemfile
+# #   gem 'sqlite3'
+# #
+# default: &default
+#   adapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
+
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   <<: *default
+#   database: db/test.sqlite3
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
