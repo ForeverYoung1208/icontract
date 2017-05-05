@@ -1,0 +1,107 @@
+<%= form_with(model: contract, local: true) do |form| %>
+  <% if contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
+
+      <ul>
+      <% contract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type_id %>
+    <%= form.text_field :type_id, id: :contract_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :contract_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number, id: :contract_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sum %>
+    <%= form.text_field :sum, id: :contract_sum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from_date %>
+    <%= form.date_select :from_date, id: :contract_from_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_date %>
+    <%= form.date_select :to_date, id: :contract_to_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :till %>
+    <%= form.text_field :till, id: :contract_till %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payer_id %>
+    <%= form.text_field :payer_id, id: :contract_payer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipient_id %>
+    <%= form.text_field :recipient_id, id: :contract_recipient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_signed %>
+    <%= form.check_box :is_signed, id: :contract_is_signed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :contract_is_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_deleted %>
+    <%= form.check_box :is_deleted, id: :contract_is_deleted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsible_user_id %>
+    <%= form.text_field :responsible_user_id, id: :contract_responsible_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator_user_id %>
+    <%= form.text_field :creator_user_id, id: :contract_creator_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :acts_schedule %>
+    <%= form.text_field :acts_schedule, id: :contract_acts_schedule %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payments_schedule %>
+    <%= form.text_field :payments_schedule, id: :contract_payments_schedule %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scan_path %>
+    <%= form.text_field :scan_path, id: :contract_scan_path %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text_path %>
+    <%= form.text_field :text_path, id: :contract_text_path %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

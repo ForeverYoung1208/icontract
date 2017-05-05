@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @contract.type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @contract.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @contract.number %>
+</p>
+
+<p>
+  <strong>Sum:</strong>
+  <%= @contract.sum %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @contract.from_date %>
+</p>
+
+<p>
+  <strong>To date:</strong>
+  <%= @contract.to_date %>
+</p>
+
+<p>
+  <strong>Till:</strong>
+  <%= @contract.till %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @contract.payer %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @contract.recipient %>
+</p>
+
+<p>
+  <strong>Is signed:</strong>
+  <%= @contract.is_signed %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @contract.is_active %>
+</p>
+
+<p>
+  <strong>Is deleted:</strong>
+  <%= @contract.is_deleted %>
+</p>
+
+<p>
+  <strong>Responsible user:</strong>
+  <%= @contract.responsible_user %>
+</p>
+
+<p>
+  <strong>Creator user:</strong>
+  <%= @contract.creator_user %>
+</p>
+
+<p>
+  <strong>Acts schedule:</strong>
+  <%= @contract.acts_schedule %>
+</p>
+
+<p>
+  <strong>Payments schedule:</strong>
+  <%= @contract.payments_schedule %>
+</p>
+
+<p>
+  <strong>Scan path:</strong>
+  <%= @contract.scan_path %>
+</p>
+
+<p>
+  <strong>Text path:</strong>
+  <%= @contract.text_path %>
+</p>
+
+<%= link_to 'Edit', edit_contract_path(@contract) %> |
+<%= link_to 'Back', contracts_path %>

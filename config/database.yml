@@ -25,16 +25,27 @@ production:
 
 
 
-users:
+users_default: &users_default
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm2t_development
   socket: /var/lib/mysql/mysql.sock
   pool: 5
   username: root_tm2
   password: '120880'
 
+
+users_development: 
+  <<: *users_default
+  database: tm2t_development
+
+users_test:
+  <<: *users_default  
+  database: tm2t_test
+
+users_production:
+  <<: *users_default  
+  database: tm2t_production
 
 
 # # SQLite version 3.x

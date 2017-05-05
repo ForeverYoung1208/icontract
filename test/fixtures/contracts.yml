@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: one
+  name: MyString
+  number: MyString
+  sum: 9.99
+  from_date: 2017-05-05
+  to_date: 2017-05-05
+  till: 
+  payer: one
+  recipient: one
+  is_signed: false
+  is_active: false
+  is_deleted: false
+  responsible_user: one
+  creator_user: one
+  acts_schedule: MyString
+  payments_schedule: MyString
+  scan_path: MyString
+  text_path: MyString
+
+two:
+  type: two
+  name: MyString
+  number: MyString
+  sum: 9.99
+  from_date: 2017-05-05
+  to_date: 2017-05-05
+  till: 
+  payer: two
+  recipient: two
+  is_signed: false
+  is_active: false
+  is_deleted: false
+  responsible_user: two
+  creator_user: two
+  acts_schedule: MyString
+  payments_schedule: MyString
+  scan_path: MyString
+  text_path: MyString
