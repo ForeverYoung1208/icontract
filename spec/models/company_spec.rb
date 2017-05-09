@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Contract, type: :model do
+RSpec.describe Company, type: :model do
 	before :each do
 
 		@types = []
@@ -28,13 +28,14 @@ RSpec.describe Contract, type: :model do
 
 	end
 
+	it "company must have ...  " do
+		expect( @companies[0].contracts_payer[0].name).to eq('contract1')
+		expect( @companies[0].contracts_payer.size).to eq(0)
 
-	it "contract must have type, payer, recipient, creator, responsible_user names" do
-		expect( @contract.type.name ).to eq('type_name0')
-		expect( @contract.payer.name ).to eq('company_name0')
-		expect( @contract.recipient.name ).to eq('company_name1')
-		expect( @contract.creator_user.name ).to eq('user1')
-		expect( @contract.responsible_user.name ).to eq('user2')
+		expect( @companies[1].contracts_creator[0].name.size ).to eq(0)
+		expect( @companies[1].contracts_creator[0].name).to eq('contract1')
+
 	end
+
 
 end
