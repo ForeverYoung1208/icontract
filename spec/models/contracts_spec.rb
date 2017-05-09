@@ -47,43 +47,16 @@ RSpec.describe Contract, type: :model do
 	    creator_user: @creator_user,
 	    creator_user_name: @creator_user.name,
 	    preferences: 'none'
-
 		) 
 
-		# @section1=Section.find_by_name("service_section1")
-		# @section2=Section.find_by_name("service_section2")
-		# @user.sections<<@section1
-		# @user.save
-
-		# @admin=FactoryGirl.create(:user) 
-		# @admin.sections=Section.all
 	end
 
 	it "contract must have type, payer, recipient, creator, responsible_user names" do
-		@contract.type.name.should == 'type_name0'
-		@contract.payer.name.should == 'company_name0'
-		@contract.recipient.name.should == 'company_name1'
-		@contract.creator_user.name.should == 'user1'
-		@contract.responsible_user.name.should == 'user2'
+		expect( @contract.type.name ).to eq('type_name0')
+		expect( @contract.payer.name ).to eq('company_name0')
+		expect( @contract.recipient.name ).to eq('company_name1')
+		expect( @contract.creator_user.name ).to eq('user1')
+		expect( @contract.responsible_user.name ).to eq('user2')
 	end
-
-
-	# it "user should be redactor for section1" do
-	# 	@user.redactor?( @section1 ).should be_true
-	# end
-
-	# it "user should NOT be redactor for section2" do
-	# 	@user.redactor?( @section2 ).should_not be_true
-	# end
-
-	# it "should raise an exception when the 'nil' given for redactor check" do
-	# 	expect { @user.redactor?(nil) }.to raise_error('no section given')
-	# end
-
-
-	# it "admin should respond true on admin?" do
-	# 	@admin.admin?.should be_true
-	# end
-
 
 end

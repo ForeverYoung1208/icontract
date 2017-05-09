@@ -4,8 +4,12 @@ class User < ApplicationRecord
 
   before_destroy { |record| raise "ReadOnlyRecord" }
 
-  has_many :contracts
-  
+#  has_many :contracts, foreign_key:
+
+  has_many :contracts_creator, class_name: :Contract, foreign_key: :creator_user_id
+  has_many :contracts_responsible, class_name: :Contract, foreign_key: :responsible_user_id
+
+
   def readonly?
     true
   end
