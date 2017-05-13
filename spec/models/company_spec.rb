@@ -30,10 +30,10 @@ RSpec.describe Company, type: :model do
 
 	it "company must have ...  " do
 		expect( @companies[0].contracts_payer[0].name).to eq('contract1')
-		expect( @companies[0].contracts_payer.size).to eq(0)
+		expect( @companies[0].contracts_recipient.size).to eq(0)
 
-		expect( @companies[1].contracts_creator[0].name.size ).to eq(0)
-		expect( @companies[1].contracts_creator[0].name).to eq('contract1')
+		expect( @companies[1].contracts_payer.size ).to eq(0)
+		expect( @companies[1].contracts_recipient[0].name).to eq('contract1')
 
 	end
 
