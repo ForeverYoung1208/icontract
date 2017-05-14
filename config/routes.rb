@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resources :types
   resources :contracts
 
-  get 'session/new'
-  get 'session/create'
-  get 'session/destroy'
+  resources :sessions
+
+  # get 'sessions/new'
+  # get 'sessions/create'
+  # get 'sessions/destroy'
 
   root :to => "sessions#new"
 
