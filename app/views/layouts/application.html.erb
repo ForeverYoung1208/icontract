@@ -9,6 +9,39 @@
   </head>
 
   <body>
+
+
+	  <nav class="navbar navbar-default navbar-fixed-top">
+	      <!-- http://v4-alpha.getbootstrap.com/components/navbar/#how-it-works  -->
+
+	    <div class="container-fluid">
+	      <!-- Brand and toggle get grouped for better mobile display -->
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+	          <span class="sr-only">Toggle navigation</span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <%= fa_link_to('-arrow-circle-left', sessions_path, class: 'navbar-brand') {'Назад'} %>
+	      </div>
+
+	      <!-- Collect the nav links, forms, and other content for toggling -->
+	      <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
+	        <ul class="nav navbar-nav">
+	          <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Визирование</a></li>
+	          <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Создание и Редактирование</a></li>
+	        </ul>
+
+	        <%= 'home/user_zone' %>
+
+	      </div><!-- /.navbar-collapse -->
+
+	    </div><!-- /.container-fluid -->
+	  </nav>
+
+
+
 		<% flash.each do |name, msg| %>
 			<%= content_tag :pre, msg, id: "flash#{name}" %>
 		<% end %>  
