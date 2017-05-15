@@ -1,0 +1,26 @@
+
+.navbar-brand{
+	padding-right: 10px;
+	border-right:2px solid #ddd;
+}
+
+@media (min-width:768px){
+
+  .navbar-default .navbar-nav > li:not(:last-child) {
+    border-right:1px solid #ddd;
+   }
+
+  .navbar-default .navbar-nav > li:not(:first-child) {
+    border-left:1px solid #fff;
+   }
+
+  .navbar-inverse .navbar-nav > li:not(:last-child) {
+    border-right:1px solid #000;
+   }
+
+  .navbar-inverse .navbar-nav > li:not(:first-child) {
+    border-left:1px solid #444;
+   }  
+
+
+}

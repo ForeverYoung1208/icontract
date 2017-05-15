@@ -11,41 +11,36 @@
   <body>
 
 
-	  <nav class="navbar navbar-default navbar-fixed-top">
+	  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 	      <!-- http://v4-alpha.getbootstrap.com/components/navbar/#how-it-works  -->
+		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+	    <%= fa_link_to('-university', main_path, class: 'navbar-brand') {'Icontract - Менеджмент договорів'} %>
 
-	    <div class="container-fluid">
-	      <!-- Brand and toggle get grouped for better mobile display -->
-	      <div class="navbar-header">
-	        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
-	          <span class="sr-only">Toggle navigation</span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	        </button>
-	        <%= fa_link_to('-arrow-circle-left', sessions_path, class: 'navbar-brand') {'Назад'} %>
-	      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link href="#">Меню1</a></li>
+          <li class="nav-item"><a class="nav-link href="#">Меню2</a></li>
+          <li class="nav-item"><a class="nav-link href="#">Меню3</a></li>
+        </ul>
 
-	      <!-- Collect the nav links, forms, and other content for toggling -->
-	      <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
-	        <ul class="nav navbar-nav">
-	          <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Визирование</a></li>
-	          <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Создание и Редактирование</a></li>
-	        </ul>
+        <%= 'render home/user_zone' %>
 
-	        <%= 'home/user_zone' %>
+      </div><!-- /.navbar-collapse -->
 
-	      </div><!-- /.navbar-collapse -->
-
-	    </div><!-- /.container-fluid -->
+	    
 	  </nav>
 
 
-
+	  
 		<% flash.each do |name, msg| %>
 			<%= content_tag :pre, msg, id: "flash#{name}" %>
 		<% end %>  
 
+    
     <%= yield %>
+
+
   </body>
 </html>

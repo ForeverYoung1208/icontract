@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  # get 'sessions/new'
+  get 'main', to: "main#show", as: 'main'
   # get 'sessions/create'
   # get 'sessions/destroy'
 
