@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :reminder_types
+  resources :reminders
   resources :companies
   resources :types
   resources :contracts

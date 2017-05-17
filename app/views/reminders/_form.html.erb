@@ -1,0 +1,62 @@
+<%= form_with(model: reminder, local: true) do |form| %>
+  <% if reminder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
+
+      <ul>
+      <% reminder.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type_id %>
+    <%= form.text_field :type_id, id: :reminder_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dd %>
+    <%= form.text_field :dd, id: :reminder_dd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mm %>
+    <%= form.text_field :mm, id: :reminder_mm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yyyy %>
+    <%= form.text_field :yyyy, id: :reminder_yyyy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dofw %>
+    <%= form.text_field :dofw, id: :reminder_dofw %>
+  </div>
+
+  <div class="field">
+    <%= form.label :moq %>
+    <%= form.text_field :moq, id: :reminder_moq %>
+  </div>
+
+  <div class="field">
+    <%= form.label :begins %>
+    <%= form.date_select :begins, id: :reminder_begins %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ends %>
+    <%= form.date_select :ends, id: :reminder_ends %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :reminder_is_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

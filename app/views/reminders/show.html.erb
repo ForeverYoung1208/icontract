@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @reminder.type %>
+</p>
+
+<p>
+  <strong>Dd:</strong>
+  <%= @reminder.dd %>
+</p>
+
+<p>
+  <strong>Mm:</strong>
+  <%= @reminder.mm %>
+</p>
+
+<p>
+  <strong>Yyyy:</strong>
+  <%= @reminder.yyyy %>
+</p>
+
+<p>
+  <strong>Dofw:</strong>
+  <%= @reminder.dofw %>
+</p>
+
+<p>
+  <strong>Moq:</strong>
+  <%= @reminder.moq %>
+</p>
+
+<p>
+  <strong>Begins:</strong>
+  <%= @reminder.begins %>
+</p>
+
+<p>
+  <strong>Ends:</strong>
+  <%= @reminder.ends %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @reminder.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
+<%= link_to 'Back', reminders_path %>

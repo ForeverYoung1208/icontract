@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reminder Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reminder_types.each do |reminder_type| %>
+      <tr>
+        <td><%= reminder_type.name %></td>
+        <td><%= reminder_type.description %></td>
+        <td><%= link_to 'Show', reminder_type %></td>
+        <td><%= link_to 'Edit', edit_reminder_type_path(reminder_type) %></td>
+        <td><%= link_to 'Destroy', reminder_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reminder Type', new_reminder_type_path %>
