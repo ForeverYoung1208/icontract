@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "reminders/new", type: :view do
   before(:each) do
+    @reminder_type = ReminderType.create!( attributes_for(:reminder_type) )    
     assign(:reminder, Reminder.new(
-      :type => nil,
+      :reminder_type => @reminder_type,
       :dd => "9.99",
       :mm => "9.99",
       :yyyy => "9.99",
