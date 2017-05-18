@@ -2,15 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "reminders/edit", type: :view do
   before(:each) do
-    @reminder = assign(:reminder, Reminder.create!(
-      :type => nil,
-      :dd => "9.99",
-      :mm => "9.99",
-      :yyyy => "9.99",
-      :dofw => "9.99",
-      :moq => "9.99",
-      :is_active => false
-    ))
+
+    @reminder_type = ReminderType.create!( attributes_for(:reminder_type) )
+    
+    @reminder = assign(:reminder, Reminder.create!( attributes_for(:reminder, reminder_type: @reminder_type) ))
+
   end
 
   it "renders the edit reminder form" do

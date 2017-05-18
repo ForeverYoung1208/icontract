@@ -1,3 +1,3 @@
 class ReminderType < ApplicationRecord
-	has_many: reminders
+	has_many :reminder
 end

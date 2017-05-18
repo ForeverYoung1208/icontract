@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :reminder_type do
-    name "MyString"
-    description "MyText"
+    name 'Daily'
+    description 'Evokes event every given day'  	
   end
 end
