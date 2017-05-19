@@ -9,21 +9,20 @@ module ApplicationHelper
   end
 
   def mainmenu_li( p, *args, &block)
-
   	args[0][:class] += " active" if p[:current] == p[:menuitem]
-
 		content_tag("li", *args) do
 			capture &block
   	end
   end
 
-  def mainmenu_tag( p, *args, &block)
+  def mainmenu_item( p, *args, &block)
 
-  	args[0][:class] += " active" if p[:current] == p[:menuitem]
-
-		content_tag("li", *args) do
-			capture &block
+  	mainmenu_li(p, class: "nav-item") do
+  		link_to( p[:menuitem], class: 'nav-link' ) do
+  			capture &block
+  		end
   	end
+
   end
 
 

@@ -28,7 +28,7 @@
             <%= link_to 'Договори', contracts_path, {class: 'nav-link'} %>
           <% end %>
 
-          <%= mainmenu_tag( {current: request.path, menuitem: contracts_path, text:'Договори'} %>
+          <%= mainmenu_item( {current: request.path, menuitem: contracts_path}) {'Договори'} %>
 
 
           <li class="nav-item"><%= link_to 'Акти', '#', {class: 'nav-link'} %></li>
