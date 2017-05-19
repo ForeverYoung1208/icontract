@@ -1,21 +1,36 @@
 class SessionsController < ApplicationController
+  include Auth
+
+  # before_action :get_current_user, except: [:new, :create]
+
+  skip_before_action :get_current_user, only: [:new, :create]
+
+
   def new
   end
 
   def create
-     user = User.authenticate(params[:name], params[:password])
-     if user && user.ip_check( request.remote_ip )
-       session[:user] = user.id
-       # redirect_to contracts_path
-     else
-       flash.now.alert = user ? "неправильный IP. Должен быть #{ user.ip_address }, полуен #{ request.remote_ip }" :  "неправильные имя или пароль"
-       render "new"
-     end
+    @current_user = User.authenticate(params[:name], params[:password])
+
+    if @current_user && @current_user.ip_check( request.remote_ip )
+      session[:current_user_id] = @current_user.id
+
+    else
+      msg = @current_user ? "Невірний IP. Має бути #{ user.ip_address }, отримано #{ request.remote_ip }" :  "невірне ім’я або пароль"
+      destroy msg
+    end
   end
 
-  def destroy
-    session[:user] = nil
+  def destroy(msg)
+    session[:current_user] = nil
     reset_session
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:notice] = "#{msg}, Сеанс завершено."
+    redirect_to root_url
   end
+
+  def index
+
+  end
+
+
 end

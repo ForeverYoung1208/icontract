@@ -16,13 +16,37 @@
 		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
-	    <%= fa_link_to('-university', main_path, class: 'navbar-brand') {'Icontract - Менеджмент договорів'} %>
+	    <%= fa_link_to('-university', sessions_path, class: 'navbar-brand') {'Icontract - Менеджмент договорів'} %>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"><a class="nav-link href="#">Меню1</a></li>
-          <li class="nav-item"><a class="nav-link href="#">Меню2</a></li>
-          <li class="nav-item"><a class="nav-link href="#">Меню3</a></li>
+          <li class="nav-item active">
+            <%= link_to 'Договори', contracts_path, {class: 'nav-link'} %>
+          </li>
+
+          <%= mainmenu_li( {current: request.path, menuitem: contracts_path}, class: "nav-item") do %>
+            <%= link_to 'Договори', contracts_path, {class: 'nav-link'} %>
+          <% end %>
+
+          <%= mainmenu_tag( {current: request.path, menuitem: contracts_path, text:'Договори'} %>
+
+
+          <li class="nav-item"><%= link_to 'Акти', '#', {class: 'nav-link'} %></li>
+          <li class="nav-item"><%= link_to 'Події', '#', {class: 'nav-link'} %></li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Налаштування
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to 'Компанії', companies_path, {class: 'dropdown-item'} %>
+              <%= link_to 'Типи договорів', types_path, {class: 'dropdown-item'} %>
+              <%= link_to 'Типи подій-нагадувань', reminder_types_path, {class: 'dropdown-item'} %>
+            </div>
+          </li>
+
+
+
         </ul>
 
         <%= 'render home/user_zone' %>
@@ -35,7 +59,7 @@
 
 	  
 		<% flash.each do |name, msg| %>
-			<%= content_tag :pre, msg, id: "flash#{name}" %>
+			<%= content_tag :pre, msg, id: "flash#{name}", class: "notice" %>
 		<% end %>  
 
     
