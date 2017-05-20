@@ -14,6 +14,7 @@ FactoryGirl.define do
     scan_path 'scan_path1'
     text_path 'text_path1'
     preferences 'none'   
+
   end
 
   factory :company do

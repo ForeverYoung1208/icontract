@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Akts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contract</th>
+      <th>From date</th>
+      <th>Sum</th>
+      <th>Scan path</th>
+      <th>Doc path</th>
+      <th>Is signed</th>
+      <th>Is deleted</th>
+      <th>Is taken as original</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @akts.each do |akt| %>
+      <tr>
+        <td><%= akt.contract %></td>
+        <td><%= akt.from_date %></td>
+        <td><%= akt.sum %></td>
+        <td><%= akt.scan_path %></td>
+        <td><%= akt.doc_path %></td>
+        <td><%= akt.is_signed %></td>
+        <td><%= akt.is_deleted %></td>
+        <td><%= akt.is_taken_as_original %></td>
+        <td><%= link_to 'Show', akt %></td>
+        <td><%= link_to 'Edit', edit_akt_path(akt) %></td>
+        <td><%= link_to 'Destroy', akt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Akt', new_akt_path %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @akt.contract %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @akt.from_date %>
+</p>
+
+<p>
+  <strong>Sum:</strong>
+  <%= @akt.sum %>
+</p>
+
+<p>
+  <strong>Scan path:</strong>
+  <%= @akt.scan_path %>
+</p>
+
+<p>
+  <strong>Doc path:</strong>
+  <%= @akt.doc_path %>
+</p>
+
+<p>
+  <strong>Is signed:</strong>
+  <%= @akt.is_signed %>
+</p>
+
+<p>
+  <strong>Is deleted:</strong>
+  <%= @akt.is_deleted %>
+</p>
+
+<p>
+  <strong>Is taken as original:</strong>
+  <%= @akt.is_taken_as_original %>
+</p>
+
+<%= link_to 'Edit', edit_akt_path(@akt) %> |
+<%= link_to 'Back', akts_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :akts
   resources :reminder_types
   resources :reminders
   resources :companies

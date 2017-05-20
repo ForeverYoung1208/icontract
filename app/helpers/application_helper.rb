@@ -9,7 +9,8 @@ module ApplicationHelper
   end
 
   def mainmenu_li( p, *args, &block)
-  	args[0][:class] += " active" if p[:current] == p[:menuitem]
+    p[:synonyms]||=[]
+  	args[0][:class] += " active" if ( p[:current].match( p[:menuitem] ) or p[:synonyms].include?( p[:current] ) )
 		content_tag("li", *args) do
 			capture &block
   	end

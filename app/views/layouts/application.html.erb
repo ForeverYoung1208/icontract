@@ -21,10 +21,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
         <ul class="navbar-nav mr-auto">
 
-          <%= mainmenu_item( {current: request.path, menuitem: contracts_path}) {'Договори'} %>
+          <%= mainmenu_item( {current: request.path, menuitem: contracts_path, synonyms: [contract_path(1)]}) {'Договори'} %>
 
-          <%= mainmenu_item( {current: request.path, menuitem: 'acts_path'}) {'Акти'} %>
-          <%= mainmenu_item( {current: request.path, menuitem: 'events_path'}) {'Події'} %>
+          <%= mainmenu_item( {current: request.path, menuitem: acts_path}) {'Акти'} %>
+          <%= mainmenu_item( {current: request.path, menuitem: reminders_path}) {'Події'} %>
 
           <%= mainmenu_dropdown( {
             current: request.path, 
