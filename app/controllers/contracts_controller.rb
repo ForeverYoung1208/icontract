@@ -5,6 +5,7 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
     @contracts = Contract.all
+    #.includes(:type)
   end
 
   # GET /contracts/1

@@ -30,20 +30,20 @@
   <tbody>
     <% @contracts.each do |contract| %>
       <tr>
-        <td><%= contract.type %></td>
+        <td><%= contract.type.name %></td>
         <td><%= contract.name %></td>
         <td><%= contract.number %></td>
         <td><%= contract.sum %></td>
         <td><%= contract.from_date %></td>
         <td><%= contract.to_date %></td>
         <td><%= contract.till %></td>
-        <td><%= contract.payer %></td>
-        <td><%= contract.recipient %></td>
+        <td><%= contract.payer.name %></td>
+        <td><%= contract.recipient.name %></td>
         <td><%= contract.is_signed %></td>
         <td><%= contract.is_active %></td>
         <td><%= contract.is_deleted %></td>
-        <td><%= contract.responsible_user %></td>
-        <td><%= contract.creator_user %></td>
+        <td><%= contract.responsible_user.name %></td>
+        <td><%= contract.creator_user.name %></td>
         <td><%= contract.acts_schedule %></td>
         <td><%= contract.payments_schedule %></td>
         <td><%= contract.scan_path %></td>
