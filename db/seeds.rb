@@ -34,8 +34,10 @@ reminder_types = ReminderType.create([{
 	  description: "reminder_description1"
 }])
 
+
+
 reminders = Reminder.create([{
-		reminder_type_id: reminder_types[0],
+		reminder_type: reminder_types[0],
 		dd: "21",
 		mm: "11",
 		yyyy: "2017",
@@ -45,7 +47,7 @@ reminders = Reminder.create([{
 		ends: "21.12.2017",
 		is_active: true
 	} ,{
-		reminder_type_id: reminder_types[1],
+		reminder_type: reminder_types[1],
 		dd: "22",
 		mm: "12",
 		yyyy: "2017",
