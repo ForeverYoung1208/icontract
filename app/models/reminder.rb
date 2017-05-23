@@ -6,6 +6,10 @@ class Reminder < ApplicationRecord
   def check
   end
 
+  def generate_event
+    
+  end
+
   def get_next_event(given_date)
   	case reminder_type_id
   	when 0
