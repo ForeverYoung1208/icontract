@@ -5,7 +5,7 @@ RSpec.describe "reminders/edit", type: :view do
 
     @reminder_type = ReminderType.create!( attributes_for(:reminder_type) )
     
-    @reminder = assign(:reminder, Reminder.create!( attributes_for(:reminder, reminder_type: @reminder_type) ))
+    @reminder = assign(:reminder, Reminder.create!( attributes_for(:reminder, reminder_type: @reminder_type,  reminderable: nil) ))
 
   end
 

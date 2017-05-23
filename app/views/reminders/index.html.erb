@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Type</th>
       <th>Dd</th>
       <th>Mm</th>
@@ -21,7 +22,8 @@
   <tbody>
     <% @reminders.each do |reminder| %>
       <tr>
-        <td><%= reminder.reminder_type %></td>
+        <td><%= reminder.id %></td>
+        <td><%= reminder.reminder_type.name %></td>
         <td><%= reminder.dd %></td>
         <td><%= reminder.mm %></td>
         <td><%= reminder.yyyy %></td>

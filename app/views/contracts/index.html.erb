@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Type</th>
       <th>Name</th>
       <th>Number</th>
@@ -30,6 +31,7 @@
   <tbody>
     <% @contracts.each do |contract| %>
       <tr>
+        <td><%= contract.id %></td>
         <td><%= contract.type.name %></td>
         <td><%= contract.name %></td>
         <td><%= contract.number %></td>

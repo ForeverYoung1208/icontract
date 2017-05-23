@@ -82,9 +82,10 @@ ActiveRecord::Schema.define(version: 20170522153209) do
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reminderable_type"
     t.bigint "reminderable_id"
     t.index ["reminder_type_id"], name: "index_reminders_on_reminder_type_id"
-    t.index ["reminderable_id"], name: "index_reminders_on_reminderable_id"
+    t.index ["reminderable_type", "reminderable_id"], name: "index_reminders_on_reminderable_type_and_reminderable_id"
   end
 
   create_table "types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

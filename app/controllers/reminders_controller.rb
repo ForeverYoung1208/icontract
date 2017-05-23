@@ -14,11 +14,13 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
+    @reminder_types = ReminderType.all
     @reminder = Reminder.new
   end
 
   # GET /reminders/1/edit
   def edit
+    @reminder_types = ReminderType.all
   end
 
   # POST /reminders

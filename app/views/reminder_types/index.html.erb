@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Description</th>
       <th colspan="3"></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @reminder_types.each do |reminder_type| %>
       <tr>
+        <td><%= reminder_type.id %></td>
         <td><%= reminder_type.name %></td>
         <td><%= reminder_type.description %></td>
         <td><%= link_to 'Show', reminder_type %></td>

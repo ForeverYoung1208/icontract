@@ -26,13 +26,33 @@ types = Type.create([{
 	  typical_contract_name: "typical_contract_name1"
 }])
 
-reminder_types = ReminderType.create([{
-	  name: "reminder_type_name1",
-	  description: "reminder_description1"
-  }, {
-	  name: "reminder_type_name1",
-	  description: "reminder_description1"
-}])
+# reminder_types = ReminderType.create([{
+# 	  name: "reminder_type_name1",
+# 	  description: "reminder_description1"
+#   }, {
+# 	  name: "reminder_type_name1",
+# 	  description: "reminder_description1"
+# }])
+
+
+reminder_types=[]
+reminder_types << ReminderType.where(id:1).first_or_create(
+    name: "Щотижнево",
+    description: "reminder_description1"
+) 
+reminder_types << ReminderType.where(id:2).first_or_create(
+    name: "Щомісячно",
+    description: "reminder_description2"
+) 
+reminder_types << ReminderType.where(id:3).first_or_create(
+    name: "Щоквартально",
+    description: "reminder_description3"
+) 
+reminder_types << ReminderType.where(id:4).first_or_create(
+    name: "Щорічно",
+    description: "reminder_description4"
+) 
+
 
 
 
