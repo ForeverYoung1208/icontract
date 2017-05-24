@@ -6,23 +6,56 @@ class Reminder < ApplicationRecord
   def check
   end
 
-  def generate_event
+  def generate_next_event(given_date_string)
+    given_date = given_date_string.to_date
+
+    case reminder_type_id
+    when 0 # never
+      print 'never'
+
+
+    when 1 # weekly
+      needed_date = given_date
+      needed_date += 1.day until needed_date.wday == dofw
+
+      return Event.create!(
+          reminder: self,
+          user: reminderable.responsible_user,
+          is_sent: false,
+          to_send: true,
+          email_address: reminderable.responsible_user.email,
+          email_text: "Нагадування події: __???___ ",
+          on_date: needed_date
+        )      
+
+      
+    when 2 # monthly
+
+      needed_date = ("#{dd}.01.2017").to_date
+      needed_date += 1.month while needed_date < given_date
+
+      return Event.create!(
+          reminder: self,
+          user: reminderable.responsible_user,
+          is_sent: false,
+          to_send: true,
+          email_address: reminderable.responsible_user.email,
+          email_text: "Нагадування події: __???___ ",
+          on_date: needed_date
+        )      
+
+
+    when 3 #quarterly
+      print 'quarterly'
+    when 4 #yearly
+      print 'yearly'
+
+    else
+      raise "Помилка: Невідомий тип події"
+    end
+
+
     
-  end
-
-  def get_next_event(given_date)
-  	case reminder_type_id
-  	when 0
-  		print 'daily'
-  	when 1
-  		print 'weekly'
-
-  	else
-  		raise "Помилка: Невідомий тип події"
-  	end
-  		
-  		
-
   end
 
 

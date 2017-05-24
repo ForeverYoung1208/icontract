@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522153209) do
+ActiveRecord::Schema.define(version: 20170523151050) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -63,6 +63,20 @@ ActiveRecord::Schema.define(version: 20170522153209) do
     t.index ["type_id"], name: "index_contracts_on_type_id"
   end
 
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "reminder_id"
+    t.bigint "user_id"
+    t.boolean "is_sent"
+    t.boolean "to_send"
+    t.string "email_address"
+    t.text "email_text"
+    t.date "on_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reminder_id"], name: "index_events_on_reminder_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "reminder_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
@@ -99,5 +113,6 @@ ActiveRecord::Schema.define(version: 20170522153209) do
   add_foreign_key "contracts", "companies", column: "payer_id"
   add_foreign_key "contracts", "companies", column: "recipient_id"
   add_foreign_key "contracts", "types"
+  add_foreign_key "events", "reminders"
   add_foreign_key "reminders", "reminder_types"
 end

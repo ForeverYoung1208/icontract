@@ -35,23 +35,24 @@ types = Type.create([{
 # }])
 
 
-reminder_types=[]
-reminder_types << ReminderType.where(id:1).first_or_create(
-    name: "Щотижнево",
-    description: "reminder_description1"
-) 
-reminder_types << ReminderType.where(id:2).first_or_create(
-    name: "Щомісячно",
-    description: "reminder_description2"
-) 
-reminder_types << ReminderType.where(id:3).first_or_create(
-    name: "Щоквартально",
-    description: "reminder_description3"
-) 
-reminder_types << ReminderType.where(id:4).first_or_create(
-    name: "Щорічно",
-    description: "reminder_description4"
-) 
+reminder_types=[
+    ReminderType.where(id:1).first_or_create(
+        name: "Щотижнево",
+        description: "reminder_description1"
+    ), 
+    ReminderType.where(id:2).first_or_create(
+        name: "Щомісячно",
+        description: "reminder_description2"
+    ),
+    ReminderType.where(id:3).first_or_create(
+        name: "Щоквартально",
+        description: "reminder_description3"
+    ),
+    ReminderType.where(id:4).first_or_create(
+        name: "Щорічно",
+        description: "reminder_description4"
+    )
+]
 
 
 

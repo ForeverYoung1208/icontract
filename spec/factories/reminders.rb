@@ -2,13 +2,13 @@ FactoryGirl.define do
   factory :reminder do
     reminder_type nil    
     reminderable nil
-    dd "99"
-    mm "99"
-    yyyy "9999"
-    dofw "9"
-    moq "9"
+    dd "01"
+    mm "01"
+    yyyy "2017"
+    dofw "1"
+    moq "1"
     begins "2017-05-17"
     ends "2017-05-17"
-    is_active false
+    is_active true
   end
 end
