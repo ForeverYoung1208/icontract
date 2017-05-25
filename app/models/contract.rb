@@ -10,5 +10,9 @@ class Contract < ApplicationRecord
 
   has_many :akts
 
+  def doctype 
+  	'Договір'
+  end
+
 
 end

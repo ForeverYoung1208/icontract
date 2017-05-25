@@ -61,7 +61,13 @@ RSpec.describe Reminder, type: :model do
 
   it "first reminder -weekly, with given date '24.05.2017' must create event on 29.05.2017" do
   	event = @reminders[0].generate_next_event('24.05.2017')
+
+		print "\n----------\n"
+  	print event.inspect
+		print "\n----------\n"  	
+
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '29.05.2017' )
+
   end
 
   it "first reminder -weekly, with given date  must create event on " do
@@ -88,14 +94,14 @@ RSpec.describe Reminder, type: :model do
 
 
 
-  xit "third reminder -quoterly, with given date '24.05.2017' must create event on 24.08.2017" do
+  it "third reminder -quoterly, with given date '24.05.2017' must create event on 02.08.2017" do
   	event = @reminders[2].generate_next_event('24.05.2017')
-  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '24.08.2017' )
+  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.08.2017' )
   end
 
-  xit "fourth reminder -yearly, with given date '24.05.2017' must create event on 24.05.2018" do
+  it "fourth reminder -yearly, with given date '24.05.2017' must create event on 02.02.2018" do
   	event = @reminders[3].generate_next_event('24.05.2017')
-  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '24.05.2018' )
+  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.02.2018' )
   end
 
 

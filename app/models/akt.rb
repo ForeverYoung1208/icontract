@@ -3,4 +3,8 @@ class Akt < ApplicationRecord
   
   has_many :reminders, as: :reminderable
 
+  def doctype 
+  	'Акт'
+  end
+
 end
