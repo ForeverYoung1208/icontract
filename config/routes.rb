@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :types
   resources :contracts
+  resources :events
 
   resources :sessions
 

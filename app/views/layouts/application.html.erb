@@ -24,13 +24,15 @@
           <%= mainmenu_item( {current: request.path, menuitem: contracts_path, synonyms: [contract_path(1)]}) {'Договори'} %>
 
           <%= mainmenu_item( {current: request.path, menuitem: akts_path}) {'Акти'} %>
-          <%= mainmenu_item( {current: request.path, menuitem: reminders_path}) {'Події'} %>
+          <%= mainmenu_item( {current: request.path, menuitem: events_path}) {'Події'} %>
 
           <%= mainmenu_dropdown( {
             current: request.path, 
             menuitems: {'Компанії' => companies_path, 
                           'Типи договорів' => types_path, 
-                          'Типи подій-нагадувань' => reminder_types_path}
+                          'Типи нагадувань' => reminder_types_path,
+                          'Нагадування' => reminders_path
+                        }
           }) {"Налаштування"}  %>
 
         </ul>

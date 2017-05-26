@@ -2,8 +2,8 @@
 
 <h1>Akts</h1>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-default">
     <tr>
       <th>Contract</th>
       <th>From date</th>
@@ -20,7 +20,7 @@
   <tbody>
     <% @akts.each do |akt| %>
       <tr>
-        <td><%= akt.contract %></td>
+        <td><%= akt.contract.name %> від <%= akt.contract.from_date %></td>
         <td><%= akt.from_date %></td>
         <td><%= akt.sum %></td>
         <td><%= akt.scan_path %></td>
