@@ -6,13 +6,15 @@
   <thead class="thead-default">
     <tr>
       <th>ID</th>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Sum</th>
-      <th>From date</th>
-      <th>To date</th>
-      <th>Till</th>
+
+      <th>Type
+      Name
+      Number
+      Sum
+      From date
+      To date
+      Till</th>
+
       <th>Payer</th>
       <th>Recipient</th>
       <th>Is signed</th>
@@ -20,8 +22,10 @@
       <!-- <th>Is deleted</th> -->
       <th>Responsible user</th>
       <th>Creator user</th>
-      <!-- <th>Acts schedule</th>
-      <th>Payments schedule</th> -->
+
+      <th>Acts reminders</th>
+      <th>Invoices reminders</th>
+
       <th>Scan</th>
       <th>Text</th>
       <th>Нагадування</th>
@@ -33,13 +37,15 @@
     <% @contracts.each do |contract| %>
       <tr>
         <td><%= contract.id %></td>
-        <td><%= contract.type.name %></td>
-        <td><%= contract.name %></td>
-        <td><%= contract.number %></td>
-        <td><%= contract.sum %></td>
-        <td><%= contract.from_date.strftime("%d.%m.%Y") %></td>
-        <td><%= contract.to_date.strftime("%d.%m.%Y") %></td>
-        <td><%= contract.till %></td>
+        
+        <td><%= contract.type.name %>
+        <%= contract.name %>
+        № <%= contract.number %>
+        на <%= contract.sum %> грн.
+        від <%= contract.from_date.strftime("%d.%m.%Y") %>
+        до <%= contract.to_date.strftime("%d.%m.%Y") %>
+        (<%= contract.till %>)</td>
+
         <td><%= contract.payer.name %></td>
         <td><%= contract.recipient.name %></td>
         <td><%= contract.is_signed %></td>
@@ -47,13 +53,23 @@
         <!-- <td><%= contract.is_deleted %></td> -->
         <td><%= contract.responsible_user.name %></td>
         <td><%= contract.creator_user.name %></td>
-        <!-- <td><%= contract.acts_schedule %></td>
-        <td><%= contract.payments_schedule %></td> -->
+        
+        <td>
+          <% contract.akts_reminders.each do |r| %>
+            <%= r.reminder_type.name %>
+          <% end %>
+          
+          <%= link_to "New", new_reminder_path(contract_id: contract.id) %>
+        </td>
+
+        <td>
+        </td>
+
         <td><%= contract.scan_path %></td>
         <td><%= contract.text_path %></td>
+
         <td>
-          перелік нагадувань
-          <%= button_to "нова подія", events_path( reminderable_id: contract.id ) %>
+          <%= button_to "Check reminders"%>
         </td>
 
         <td>

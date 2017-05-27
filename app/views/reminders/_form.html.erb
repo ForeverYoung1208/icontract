@@ -17,8 +17,8 @@
   </div> -->
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.collection_select :type_id, @reminder_types, :id, :name %>
+    <%= form.label :reminder_type_id %>
+    <%= form.collection_select :reminder_type_id, @reminder_types, :id, :name %>
 
   </div>
 
@@ -61,6 +61,16 @@
   <div class="field">
     <%= form.label :is_active %>
     <%= form.check_box :is_active, id: :reminder_is_active %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :reminderable_id %>
+    <%= form.text_field :reminderable_id, id: :reminder_reminderable_type %>
+  </div>
+  <div class="field">
+    <%= form.label :reminderable_type %>
+    <%= form.text_field :reminderable_type, id: :reminder_reminderable_type %>
   </div>
 
   <div class="actions">

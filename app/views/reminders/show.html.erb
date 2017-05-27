@@ -45,5 +45,14 @@
   <%= @reminder.is_active %>
 </p>
 
+<p>
+  <strong>Reminderable_type:</strong>
+  <%= @reminder.reminderable_type %>
+</p>
+<p>
+  <strong>Reminderable_id:</strong>
+  <%= @reminder.reminderable_id %>
+</p>
+
 <%= link_to 'Edit', edit_reminder_path(@reminder) %> |
 <%= link_to 'Back', reminders_path %>

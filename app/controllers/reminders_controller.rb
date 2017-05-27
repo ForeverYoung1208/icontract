@@ -15,7 +15,10 @@ class RemindersController < ApplicationController
   # GET /reminders/new
   def new
     @reminder_types = ReminderType.all
-    @reminder = Reminder.new
+    contract = Contract.find( params[:contract_id] )
+
+    @reminder = Reminder.new( reminderable: contract)
+
   end
 
   # GET /reminders/1/edit
@@ -33,6 +36,7 @@ class RemindersController < ApplicationController
         format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
         format.json { render :show, status: :created, location: @reminder }
       else
+        @reminder_types = ReminderType.all
         format.html { render :new }
         format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end
@@ -71,6 +75,9 @@ class RemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
-      params.require(:reminder).permit(:type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, :ends, :is_active)
+      params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, :ends, :is_active, :reminderable_id, :reminderable_type)
     end
+    # def new_reminder_params
+    #   params.permit(:contract_id)
+    # end
 end

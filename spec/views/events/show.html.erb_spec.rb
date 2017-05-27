@@ -1,11 +1,11 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "events/show", type: :view do
-  before(:each) do
-    @event = assign(:event, Event.create!())
-  end
+# RSpec.describe "events/show", type: :view do
+#   before(:each) do
+#     @event = assign(:event, Event.create!())
+#   end
 
-  it "renders attributes in <p>" do
-    render
-  end
-end
+#   it "renders attributes in <p>" do
+#     render
+#   end
+# end

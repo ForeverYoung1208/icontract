@@ -1,14 +1,14 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "events/index", type: :view do
-  before(:each) do
-    assign(:events, [
-      Event.create!(),
-      Event.create!()
-    ])
-  end
+# RSpec.describe "events/index", type: :view do
+#   before(:each) do
+#     assign(:events, [
+#       Event.create!(),
+#       Event.create!()
+#     ])
+#   end
 
-  it "renders a list of events" do
-    render
-  end
-end
+#   it "renders a list of events" do
+#     render
+#   end
+# end
