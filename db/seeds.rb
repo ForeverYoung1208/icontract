@@ -40,7 +40,6 @@ types = [
 # 	  description: "reminder_description1"
 # }])
 
-
 reminder_types=[
     ReminderType.where(id:1).first_or_create(
         name: "Щотижнево",
@@ -60,33 +59,6 @@ reminder_types=[
     )
 ]
 
-
-
-
-reminders = [
-    Reminder.where(id:1).first_or_create(
-		reminder_type: reminder_types[0],
-		dd: "21",
-		mm: "11",
-		yyyy: "2017",
-		dofw: "1",
-		moq: "1",
-		begins: "01.01.2017",
-		ends: "21.12.2017",
-		is_active: true
-	),
-    Reminder.where(id:2).first_or_create(
-    	reminder_type: reminder_types[1],
-		dd: "22",
-		mm: "12",
-		yyyy: "2017",
-		dofw: "2",
-		moq: "2",
-		begins: "02.02.2017",
-		ends: "22.12.2017",
-		is_active: true
-    )
-]
 
 contracts = [
     Contract.where(id:1).first_or_create(
@@ -157,6 +129,36 @@ akts = [
         is_signed: false,
         is_deleted: false,
         is_taken_as_original: true
+    )
+]
+
+
+reminders = [
+    Reminder.where(id:1).first_or_create(
+        reminder_type: reminder_types[0],
+        reminderable: contracts[0],
+        dd: "21",
+        mm: "11",
+        yyyy: "2017",
+        dofw: "1",
+        moq: "1",
+        begins: "01.01.2017",
+        ends: "21.12.2017",
+        message: "тестове нагадування1",
+        is_active: true
+    ),
+    Reminder.where(id:2).first_or_create(
+        reminder_type: reminder_types[1],
+        reminderable: akts[0],
+        dd: "22",
+        mm: "12",
+        yyyy: "2017",
+        dofw: "2",
+        moq: "2",
+        begins: "02.02.2017",
+        ends: "22.12.2017",
+        message: "тестове нагадування2",        
+        is_active: true
     )
 ]
 

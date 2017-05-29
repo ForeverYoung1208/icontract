@@ -7,8 +7,8 @@ FactoryGirl.define do
     yyyy "2017"
     dofw "1"
     moq "1"
-    begins "2017-05-17"
-    ends "2017-05-17"
+    begins "01.01.2017"
+    ends "01.01.2018"
     is_active true
   end
 end

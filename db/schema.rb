@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523151050) do
+ActiveRecord::Schema.define(version: 20170529152151) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170523151050) do
     t.datetime "updated_at", null: false
     t.string "reminderable_type"
     t.bigint "reminderable_id"
+    t.string "message"
     t.index ["reminder_type_id"], name: "index_reminders_on_reminder_type_id"
     t.index ["reminderable_type", "reminderable_id"], name: "index_reminders_on_reminderable_type_and_reminderable_id"
   end

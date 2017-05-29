@@ -53,19 +53,14 @@ RSpec.describe Reminder, type: :model do
 	end  
 
   it "reminders should be 4" do
-		print "\n----------\n"
-  	@reminders.each{ |r| print r.inspect+"\n--------------\n"}
-		print "\n----------\n"
+		# print "\n----------\n"
+  # 	@reminders.each{ |r| print r.inspect+"\n--------------\n"}
+		# print "\n----------\n"
   	expect(@reminders.size).to eq(4)
   end
 
-  it "first reminder -weekly, with given date '24.05.2017' must create event on 29.05.2017" do
+  it "first reminder -weekly, with given date !!!!'24.05.2017' must create event on 29.05.2017" do
   	event = @reminders[0].generate_next_event('24.05.2017')
-
-		print "\n----------\n"
-  	print event.inspect
-		print "\n----------\n"  	
-
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '29.05.2017' )
 
   end
@@ -75,16 +70,16 @@ RSpec.describe Reminder, type: :model do
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '05.06.2017' )
   end
 
+  it "second reminder -monthly, with given date !!!'24.05.2017' must create event on 02.06.2017" do
+  	event = @reminders[1].generate_next_event('24.05.2017')
+  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.06.2017' )
+  end
 
   it "second reminder -monthly, with given date '01.05.2017' must create event on 02.05.2017" do
   	event = @reminders[1].generate_next_event('01.05.2017')
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.05.2017' )
   end
 
-  it "second reminder -monthly, with given date '24.05.2017' must create event on 02.06.2017" do
-  	event = @reminders[1].generate_next_event('24.05.2017')
-  	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.06.2017' )
-  end
 
   it "second reminder -monthly, with dd=29 and given date '30.01.2017' must create event on 28.02.2017" do
   	@reminders[1].dd="29"
@@ -93,13 +88,12 @@ RSpec.describe Reminder, type: :model do
   end
 
 
-
-  it "third reminder -quoterly, with given date '24.05.2017' must create event on 02.08.2017" do
+  it "third reminder -quoterly, with given date !!!'24.05.2017' must create event on 02.08.2017" do
   	event = @reminders[2].generate_next_event('24.05.2017')
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.08.2017' )
   end
 
-  it "fourth reminder -yearly, with given date '24.05.2017' must create event on 02.02.2018" do
+  it "fourth reminder -yearly, with given date !!!'24.05.2017' must create event on 02.02.2018" do
   	event = @reminders[3].generate_next_event('24.05.2017')
   	expect(event.on_date.strftime("%d.%m.%Y") ).to eq( '02.02.2018' )
   end

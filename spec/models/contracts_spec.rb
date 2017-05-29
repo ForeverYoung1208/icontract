@@ -11,9 +11,7 @@ RSpec.describe Contract, type: :model do
 		end
 
 		@creator_user = User.find(1)
-		@creator_user.name = 'user1'
 		@responsible_user = User.find(2)
-		@responsible_user.name = 'user2'
 
 
 		@contract=Contract.create( attributes_for(:contract,
@@ -26,6 +24,36 @@ RSpec.describe Contract, type: :model do
 	    creator_user_name: @creator_user.name,
 		) )
 
+		@reminder_types=[
+		    ReminderType.where(id:1).first_or_create(
+		        name: "Щотижнево",
+		        description: "reminder_description1"
+		    ), 
+		    ReminderType.where(id:2).first_or_create(
+		        name: "Щомісячно",
+		        description: "reminder_description2"
+		    ),
+		    ReminderType.where(id:3).first_or_create(
+		        name: "Щоквартально",
+		        description: "reminder_description3"
+		    ),
+		    ReminderType.where(id:4).first_or_create(
+		        name: "Щорічно",
+		        description: "reminder_description4"
+		    )
+		]
+
+
+		@reminders = Array.new(4){ |i| Reminder.create!( attributes_for(:reminder, 
+			reminder_type: @reminder_types[i], #1..4
+			reminderable: @contract,
+	    dd: "2",
+	    mm: "2",
+	    yyyy: "2017",
+	    dofw: "1"
+		)) } 
+
+
 	end
 
 
@@ -33,8 +61,20 @@ RSpec.describe Contract, type: :model do
 		expect( @contract.type.name ).to eq('type_name0')
 		expect( @contract.payer.name ).to eq('company_name0')
 		expect( @contract.recipient.name ).to eq('company_name1')
-		expect( @contract.creator_user.name ).to eq('user1')
-		expect( @contract.responsible_user.name ).to eq('user2')
 	end
+
+
+	it "contract 'enerate_next_events' with given date 24.05.2017 must generate events with all reminders" do
+
+		expect( @contract.reminders.size).to eq(4)
+
+		@contract.generate_next_events('24.05.2017')
+
+		expect( @contract.reminders[0].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '29.05.2017' )
+		expect( @contract.reminders[1].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '02.06.2017' )
+		expect( @contract.reminders[2].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '02.08.2017' )
+		expect( @contract.reminders[3].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '02.02.2018' )
+	end
+
 
 end

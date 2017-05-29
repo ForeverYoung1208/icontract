@@ -5,14 +5,18 @@ class Contract < ApplicationRecord
   belongs_to :responsible_user, class_name: :User, foreign_key: :responsible_user_id
   belongs_to :creator_user, class_name: :User, foreign_key: :creator_user_id
 
-  has_many :invoice_reminders, class_name: :Reminder, as: :reminderable
-  has_many :akts_reminders, class_name: :Reminder, as: :reminderable
+  has_many :reminders, as: :reminderable
 
   has_many :akts
 
   def doctype 
   	'Договір'
   end
+
+  def generate_next_events( given_date )
+    reminders.each { |r| r.generate_next_event(given_date) }
+  end
+
 
 
 end
