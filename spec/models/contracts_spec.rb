@@ -68,7 +68,7 @@ RSpec.describe Contract, type: :model do
 
 		expect( @contract.reminders.size).to eq(4)
 
-		@contract.generate_next_events('24.05.2017')
+		@contract.check_reminders('24.05.2017')
 
 		expect( @contract.reminders[0].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '29.05.2017' )
 		expect( @contract.reminders[1].events[0].on_date.strftime("%d.%m.%Y") ).to eq( '02.06.2017' )

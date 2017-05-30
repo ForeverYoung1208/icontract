@@ -23,14 +23,14 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td>event.id   </td>
-        <td>event.reminder.name   </td>
-        <td>event.user.name </td>
-        <td>event.is_sent   </td>
-        <td>event.to_send   </td>
-        <td>event.email_address   </td>
-        <td>event.email_text   </td>
-        <td>event.on_date   </td>
+        <td><%= event.id %></td>
+        <td><%= event.reminder.message %></td>
+        <td><%= event.user.name %></td>
+        <td><%= event.is_sent %></td>
+        <td><%= event.to_send %></td>
+        <td><%= event.email_address %></td>
+        <td><%= event.email_text %></td>
+        <td><%= event.on_date %></td>
 
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>

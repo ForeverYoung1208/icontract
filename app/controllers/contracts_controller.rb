@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  before_action :set_contract, only: [:show, :edit, :update, :destroy]
+  before_action :set_contract, only: [:show, :edit, :update, :destroy, :check_reminders]
 
   # GET /contracts
   # GET /contracts.json
@@ -36,6 +36,13 @@ class ContractsController < ApplicationController
         format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST  /contract/1/check_reminders
+  def check_reminders
+    @contract.check_reminders(params[:date])
+    redirect_to events_path, notice: "events for contract.id = #{@contract.id} created"
+
   end
 
   # PATCH/PUT /contracts/1

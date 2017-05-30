@@ -13,7 +13,7 @@ class Contract < ApplicationRecord
   	'Договір'
   end
 
-  def generate_next_events( given_date )
+  def check_reminders( given_date )
     reminders.each { |r| r.generate_next_event(given_date) }
   end
 

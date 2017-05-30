@@ -23,8 +23,7 @@
       <th>Responsible user</th>
       <th>Creator user</th>
 
-      <th>Acts reminders</th>
-      <th>Invoices reminders</th>
+      <th>Reminders</th>
 
       <th>Scan</th>
       <th>Text</th>
@@ -55,21 +54,19 @@
         <td><%= contract.creator_user.name %></td>
         
         <td>
-          <% contract.akts_reminders.each do |r| %>
+          <% contract.reminders.each do |r| %>
             <%= r.reminder_type.name %>
           <% end %>
           
           <%= link_to "New", new_reminder_path(contract_id: contract.id) %>
         </td>
 
-        <td>
-        </td>
 
         <td><%= contract.scan_path %></td>
         <td><%= contract.text_path %></td>
 
         <td>
-          <%= button_to "Check reminders"%>
+          <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
         </td>
 
         <td>
