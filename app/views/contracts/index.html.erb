@@ -62,8 +62,8 @@
         </td>
 
 
-        <td><%= contract.scan_path %></td>
-        <td><%= contract.text_path %></td>
+        <td> contract.scan_path </td>
+        <td> contract.text_path </td>
 
         <td>
           <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>

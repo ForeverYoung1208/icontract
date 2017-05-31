@@ -5,6 +5,7 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
     @contracts = Contract.all
+
     #.includes(:type)
   end
 
@@ -16,16 +17,24 @@ class ContractsController < ApplicationController
   # GET /contracts/new
   def new
     @contract = Contract.new
+    @types = Type.all
+    @companies = Company.all
+
   end
 
   # GET /contracts/1/edit
   def edit
+    @types = Type.all
+    @companies = Company.all
+
   end
 
   # POST /contracts
   # POST /contracts.json
   def create
     @contract = Contract.new(contract_params)
+    @types = Type.all
+    @companies = Company.all
 
     respond_to do |format|
       if @contract.save
@@ -73,10 +82,13 @@ class ContractsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
       @contract = Contract.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contract_params
-      params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, :responsible_user_id, :creator_user_id, :acts_schedule, :payments_schedule, :scan_path, :text_path)
+      params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
+        :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, 
+        :responsible_user_id, :creator_user_id, {scanfiles: []})
     end
 end

@@ -9,10 +9,6 @@ FactoryGirl.define do
     is_signed true
     is_active true
     is_deleted false
-    acts_schedule 'acts_schedule1'
-    payments_schedule 'payments_schedule1'
-    scan_path 'scan_path1'
-    text_path 'text_path1'
     preferences 'none'   
 
   end

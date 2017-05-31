@@ -9,6 +9,9 @@ class Contract < ApplicationRecord
 
   has_many :akts
 
+  mount_uploaders :scanfiles, ScanContractUploader
+  serialize :scanfiles, JSON
+
   def doctype 
   	'Договір'
   end

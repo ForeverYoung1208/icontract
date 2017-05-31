@@ -13,8 +13,9 @@
 
   <div class="field">
     <%= form.label :type_id %>
-    <%= form.text_field :type_id, id: :contract_type_id %>
+    <%= form.collection_select :type_id, @types, :id, :name %>
   </div>
+
 
   <div class="field">
     <%= form.label :name %>
@@ -46,15 +47,17 @@
     <%= form.text_field :till, id: :contract_till %>
   </div>
 
+
   <div class="field">
     <%= form.label :payer_id %>
-    <%= form.text_field :payer_id, id: :contract_payer_id %>
+    <%= form.collection_select :payer_id, @companies, :id, :name %>
   </div>
 
   <div class="field">
     <%= form.label :recipient_id %>
-    <%= form.text_field :recipient_id, id: :contract_recipient_id %>
+    <%= form.collection_select :recipient_id, @companies, :id, :name %>
   </div>
+
 
   <div class="field">
     <%= form.label :is_signed %>
@@ -82,24 +85,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :acts_schedule %>
-    <%= form.text_field :acts_schedule, id: :contract_acts_schedule %>
+    <%= form.label :scanfiles %>
+    <%= form.file_field :scanfiles, multiple: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :payments_schedule %>
-    <%= form.text_field :payments_schedule, id: :contract_payments_schedule %>
-  </div>
 
-  <div class="field">
-    <%= form.label :scan_path %>
-    <%= form.text_field :scan_path, id: :contract_scan_path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :text_path %>
-    <%= form.text_field :text_path, id: :contract_text_path %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

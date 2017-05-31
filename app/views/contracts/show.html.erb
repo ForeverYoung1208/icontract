@@ -70,24 +70,21 @@
   <%= @contract.creator_user %>
 </p>
 
+
 <p>
-  <strong>Acts schedule:</strong>
-  <%= @contract.acts_schedule %>
+  <strong>Scan </strong>
+  <% @contract.scanfiles.each do |sf| %>
+     <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+  <% end %>
 </p>
 
 <p>
-  <strong>Payments schedule:</strong>
-  <%= @contract.payments_schedule %>
-</p>
-
-<p>
-  <strong>Scan path:</strong>
-  <%= @contract.scan_path %>
-</p>
-
-<p>
-  <strong>Text path:</strong>
-  <%= @contract.text_path %>
+  <strong>Text </strong>
+  <% if @contract.textfiles %>
+    <% @contract.textfiles.each do |sf| %>
+       <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+    <% end %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_contract_path(@contract) %> |
