@@ -55,10 +55,10 @@
         
         <td>
           <% contract.reminders.each do |r| %>
-            <%= r.reminder_type.name %>
+            <%= link_to r.reminder_type.name, reminder_path(r) %>
           <% end %>
           
-          <%= link_to "New", new_reminder_path(contract_id: contract.id) %>
+          <%= tag.pre link_to "Add New", new_reminder_path(contract_id: contract.id) %>
         </td>
 
 
