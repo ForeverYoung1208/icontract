@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Contracts</h1>
+<h1>Users</h1>
 
 <table class="table">
   <thead class="thead-default">
@@ -16,13 +16,11 @@
   <tbody>
   	<% @users.each do |u|%>
 	  	<tr>
-	  		<td> <% u.id %> </td>
-	  		<td> <% u.name %> </td>
-	  		<td> <% u.email %> </td>
-	  		<td> <% u.id %> </td>
-	  		<td> <% u.id %> </td>
-
-
+	  		<td> <%= u.id %> </td>
+	  		<td> <%= u.name %> </td>
+	  		<td> <%= u.email %> </td>
+	  		<td> <%= 'u.accesslevel - not implemented yet' %> </td>
+	  		<td> <%= u.ip_address %> </td>
 	  	</tr>
 	  <% end %>
 

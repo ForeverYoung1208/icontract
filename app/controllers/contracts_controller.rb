@@ -4,9 +4,12 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @contracts = Contract.all
-
-    #.includes(:type)
+    @contracts = Contract.all.includes(:type)
+      .includes(:responsible_user)
+      .includes(:creator_user)
+      .includes(:payer)
+      .includes(:recipient)
+      .includes(:reminders)
   end
 
   # GET /contracts/1

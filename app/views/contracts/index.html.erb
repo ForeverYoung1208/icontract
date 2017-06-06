@@ -50,8 +50,8 @@
         <td><%= contract.is_signed %></td>
         <td><%= contract.is_active %></td>
         <!-- <td><%= contract.is_deleted %></td> -->
-        <td><%= contract.responsible_user.name %></td>
-        <td><%= contract.creator_user.name %></td>
+        <td><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
+        <td><%= link_to contract.creator_user.name, user_path(contract.creator_user.id) %></td>
         
         <td>
           <% contract.reminders.each do |r| %>
