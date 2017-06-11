@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :contracts_creator, class_name: :Contract, foreign_key: :creator_user_id
   has_many :contracts_responsible, class_name: :Contract, foreign_key: :responsible_user_id
+  has_and_belongs_to_many :roles
 
   attr_accessor :password
 
