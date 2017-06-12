@@ -38,6 +38,7 @@ gem 'carrierwave'
 ###
 
 ###
+gem 'tether-rails'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass'
 
