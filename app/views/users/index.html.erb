@@ -19,7 +19,7 @@
 	  		<td> <%= u.id %> </td>
 	  		<td> <%= u.name %> </td>
 	  		<td> <%= u.email %> </td>
-	  		<td> <%= 'u.accesslevel - not implemented yet' %> </td>
+	  		<td> <%= u.roles.each { |r| tag.pre r.name} %> </td>
 	  		<td> <%= u.ip_address %> </td>
 	  	</tr>
 	  <% end %>
