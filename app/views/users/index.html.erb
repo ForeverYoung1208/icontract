@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
+	<div class="row">
+		<div class="col-sm-8" id='ajaxUsers'>
+      <h2>Users ajax</h2>			
+		</div>
+	</div>
   <div class="row">
     <div class="col-sm-8">
       <h2>Users</h2>
+
       <table class="table">
         <thead class="thead-default">
           <tr>
@@ -16,45 +22,53 @@
         </thead>
 
         <tbody>
-        	<% @users.each do |u|%>
-            <%= tag.tr('data-uid': u.id) do %>
-      	  		<td> <%= u.id %> </td>
-      	  		<td> <%= u.name %> </td>
-      	  		<td> <%= u.email %> </td>
-      	  		<td> <%= u.roles.each { |r| tag.pre r.name} %> </td>
-      	  		<td> <%= u.ip_address %> </td>
-            <% end %>  
-      	  <% end %>
+          <tr>
+    	  		<td>  u.id </td>
+    	  		<td>  u.name </td>
+    	  		<td>  u.email </td>
+    	  		<td>  u.roles </td>
+    	  		<td>  u.ip_address </td>
+          </tr>  
 
         </tbody>
 
-       </table>
+	    </table>
     </div>
 
 
-    <div class="col-sm-3 offset-sm-1">
-      <h2>Available Roles</h1>
-      <table class="table">
-        <thead class="thead-default">
-          <th>id</th>
-          <th>name</th>
-        </thead>
-        <tbody>
-          <% @roles.each do |r| %>
-            <tr>
-              <td> <%= r.id %> </td>
-              <td> <%= r.name %> </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>    
+    <div class="col-sm-4">
+			<div class="card card-default" id="rolesList">
+		    <div class="card-header"> 
+		    	<h2 class="card-title">Available Roles </h2>
+		    </div>
+		    <div class="card-block" >
+			    <table class="table">
+			      <thead class="thead-default">
+			        <th>id</th>
+			        <th>name</th>
+			      </thead>
+			      <tbody>
+			        <% @roles.each do |r| %>
+			          <tr>
+			            <td> <%= r.id %> </td>
+			            <td> <%= r.name %> </td>
+			          </tr>
+			        <% end %>
+			      </tbody>
+			    </table>
+			  </div>
+		  </div>
+    </div>
+
   </div> <!-- row -->
+
+
+
 
   <script type="text/javascript">
     var user='Aaaaaaaaa'
-//    $(document).ready(showUsersRoles(user))
-    $(document).on('turbolinks:load', showUsersRoles(user))
+   	// $(document).ready(showUsersRoles(user))
+    // $(document).on('turbolinks:load', showUsersRoles(user))
   </script>
 
-</div>
+</div> <!-- container -->
