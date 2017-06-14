@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		  	@roles = Role.all
     	end
     	format.json do
-    		render json: @users
+    		render json: @users.map{ |u| {id: u.id, email: u.email, name: u.name, roles: u.roles.all } }
     	end
 
     end  	

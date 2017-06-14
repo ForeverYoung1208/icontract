@@ -5,16 +5,17 @@
 
 
 class Users
-	@data: []
+	constructor: ()->
+		@data = []
 	fetch: ()->
 		jqxhr = $.get("users.json")
-			.done (res)->
-				console.log( res )
+			.done (res)=>
 				@data = res
-			.always ()->
-				console.log('fetching users always')
-	redraw: (el)->
-		console.log('redrawing to '+el)
+				@redrawTo( $('#ajaxUsers') ) 
+	redrawTo: (el)->
+		@data.each (user)->
+			el.append('<div>'+user.name+'</div>')
+			
 
 
 
@@ -22,5 +23,3 @@ $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
 		users = new Users;
 		users.fetch();
-		users.redraw( $('#ajaxUsers') )
-		console.log( users.data+ 'jjjjjj' )
