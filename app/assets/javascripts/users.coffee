@@ -54,4 +54,10 @@ $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
 		users = new Users;
 		users.fetch();
-		$('.draggable').draggable()
+		$('.draggable').draggable({
+			start: (e, u)->
+				console.log('drag start!'+$(this).attr('data-uid'))
+			stop: (e, u)->
+				console.log('drag stop!'+$(this).attr('data-uid'))
+
+		})
