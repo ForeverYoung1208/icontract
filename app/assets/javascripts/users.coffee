@@ -1,14 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-# $( "#droppable" ).droppable({
-#   drop: function( event, ui ) {
-#     $( this )
-#       .addClass( "ui-state-highlight" )
-#       .find( "p" )
-#         .html( "Dropped!" );
-#   }
 
 class Roles
 	constructor:()->
@@ -20,16 +9,13 @@ class Roles
 			if role.id.toString() == id
 				return role
 
-
-
-
-
 class Users
 	@instances=[]
-	constructor: (id)->
+	constructor: (id, allRoles)->
 		@data = []
 		@element_id = id
 		@constructor.instances<<this
+		@allRoles = allRoles
 
 	show: ()->
 		jqxhr = $.get("users.json")
@@ -59,19 +45,13 @@ class Users
 					if user.id.toString() == uid 
 						user.roles.push( rid ) if not (rid in user.roles)
 						self.drawRolesforUsers([user])
-
-				# console.log(self)
-				# console.log(this)
-				# console.log( uid+'drop!'+rid)
-
 		})
-
 	drawRolesforUsers: (users)->
 		res = ''
 		for user in users
 			res = ''
 			for role_id in user.roles
-				res += '<span class="draggable badge badge-pill badge-info" data-rid="'+role_id+'" data-uid="'+user.id+'" >'+role_id+' ' +roles.getById(role_id).name + '</span>'
+				res += '<span class="draggable badge badge-pill badge-info" data-rid="'+role_id+'" data-uid="'+user.id+'" >'+role_id+' ' +@allRoles.getById(role_id).name + '</span>'
 			$(@element_id).find("[data-uid='" + user.id + "']").html( res )
 			$('.draggable').draggable(
 				helper: 'clone'
@@ -80,8 +60,8 @@ class Users
 
 $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
-		window.roles = new Roles
-		allUsers = new Users('#ajaxUsers');
+		allRoles = new Roles
+		allUsers = new Users('#ajaxUsers', allRoles);
 		allUsers.show();
 		$('.draggable').draggable(
 			helper: 'clone'
