@@ -6,8 +6,14 @@
 	position: fixed;
 }
 
+#functions{
+	position: fixed;
+	margin-top: 200px;
+}
+
 .draggable{
 	cursor:grab;
+	z-index: 1000;
 }
 
 .userRoles{

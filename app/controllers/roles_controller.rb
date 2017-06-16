@@ -5,6 +5,12 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
+
+    respond_to do |format|    
+      format.html {}
+      format.json {render json: @roles}
+    end
+
   end
 
   # GET /roles/1
