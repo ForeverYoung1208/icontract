@@ -56,6 +56,8 @@ class Users
 			$('.draggable').draggable(
 				helper: 'clone'
 			)
+	deleteRoleFromUser: (role, user) ->
+		
 
 
 $(document).on 'turbolinks:load', ->
@@ -66,3 +68,8 @@ $(document).on 'turbolinks:load', ->
 		$('.draggable').draggable(
 			helper: 'clone'
 		)
+		$('.area.droppable').droppable(
+			drop: (event, ui) ->
+				alert('dropped!!! user:'+ ui.draggable.attr('data-uid')+', role: '+ ui.draggable.attr('data-rid') )
+		)
+		
