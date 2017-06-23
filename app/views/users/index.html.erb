@@ -24,33 +24,7 @@
 
 		</div> <!-- col -->
 		<div class="col-sm-4">
-			<div class="row">
 
-				<div class="card card-default" id="functions">
-					<div class="card-header"> 
-						<h2 class="card-title">Функції</h2>
-					</div>
-					<div class="card-block" >
-						<h4> Перетягніть роль на відповідну іконку:</h3>
-						<div class="area droppable" id="btnDelete"><span class="fa-stack">
-							  <i class="fa fa-trash fa-stack-2x"></i>
-							</span> Видалити</div>
-						<div class="area droppable" id="btnAddAll" ><span class="fa-stack">
-							  <i class="fa fa-plus fa-stack-2x"></i>
-							</span> Додати всім</div>
-						<div class="area droppable" id="btnDeleteAll" >
-							<span class="fa-stack">
-							  <i class="fa fa-trash fa-stack-2x"></i>
-							  <i class="fa fa-warning fa-stack-1x text-danger"></i>
-							</span> Видалити у всіх
-						</div>
-
-					</div>
-					<div class="card-block" >
-						<button type="button" class="btn btn-primary" id="btnSave" onclick="save()" > Зберегти зміни</button>
-					</div>
-					
-				</div>
 
 
 				<div class="card card-default" id="rolesList">
@@ -64,11 +38,24 @@
 							</span>
 						<% end %>
 					</div>
+					<div class="card-block" >
+						<h4> Перетягніть роль на користувача або на дію:</h4>
+						<div class="area droppable" id="btnDelete"><span class="fa-stack">
+							  <i class="fa fa-trash fa-stack-2x"></i>
+							</span> Додати всім</div>
+						<div class="area droppable" id="btnDeleteAll" >
+							<span class="fa-stack">
+							  <i class="fa fa-trash fa-stack-2x"></i>
+							  <i class="fa fa-warning fa-stack-1x text-danger"></i>
+							</span> Видалити у всіх
+						</div>
+						<div class="card-block" >
+							<button type="button" class="btn btn-primary" id="btnSave" onclick="save()" > Зберегти зміни</button>
+						</div>
+
+					</div>					
 				</div>
 
-
-
-			</div><!-- row-right-->
 
 		</div><!-- col -->
 
