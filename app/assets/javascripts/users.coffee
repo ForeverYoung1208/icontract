@@ -34,8 +34,8 @@ class Users
 					'<'+inTag2+' class = "userRoles rounded droppable" data-uid="'+user.id+'"> Querying roles.... </'+inTag2+'>' + 
 					'</'+inTag1 + '>')
 		@drawRolesforUsers(@data)
-		@setDropRoleActions(el)
-	setDropRoleActions: (el)=>
+		@setActions(el)
+	setActions: (el)=>
 		self = this
 		el.find(".droppable").droppable({
 			drop: (event, ui)->
@@ -46,28 +46,33 @@ class Users
 						user.roles.push( rid ) if not (rid in user.roles)
 						self.drawRolesforUsers([user])
 		})
-	drawRolesforUsers: (users)->
+
+	drawRolesforUsers: (users)=>
 		res = ''
+		self = this
 		for user in users
 			res = ''
-			for role_id in user.roles
-				res += '<span class="badge badge-pill badge-info" data-rid="'+role_id+'" data-uid="'+user.id+'" >'+role_id+' ' +@allRoles.getById(role_id).name 
-				res += ' <i class="fa fa-2x fa-trash deletable"></i>'
-				res += '</span>'					
+			if user.roles
+				for role_id in user.roles 
+					res += '<span class="badge badge-pill badge-info" data-rid="'+role_id+'" data-uid="'+user.id+'" >'+role_id+' ' +@allRoles.getById(role_id).name 
+					res += ' <i class="fa fa-2x fa-trash deletable"></i>'
+					res += '</span>'					
 			$(@element_id).find("[data-uid='" + user.id + "']").html( res )
 			$('.draggable').draggable(
 				helper: 'clone'
 			)
+			$(".deletable").on('click', (e)->
+				uid = $(this).parent().attr('data-uid')
+				rid = $(this).parent().attr('data-rid')
+				self.deleteRoleFromUser(rid, uid)
+				???? self.drawRolesforUsers([uid])????
+			)
+
 	deleteRoleFromUser: (role_id, user_id) =>
 		for user in @data
 			if user.id.toString() == user_id
 				i = user.roles.indexOf(role_id)
 				user.roles.splice(i,1) if i > 0
-
-				
-
-
-
 		
 
 
