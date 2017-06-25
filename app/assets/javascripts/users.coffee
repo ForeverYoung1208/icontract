@@ -64,8 +64,10 @@ class Users
 			$(".deletable").on('click', (e)->
 				uid = $(this).parent().attr('data-uid')
 				rid = $(this).parent().attr('data-rid')
+				# console.log self
 				self.deleteRoleFromUser(rid, uid)
-				???? self.drawRolesforUsers([uid])????
+				self.drawRolesforUsers( [self.getById(uid)])
+				console.log [self.getById(uid)]
 			)
 
 	deleteRoleFromUser: (role_id, user_id) =>
@@ -73,6 +75,12 @@ class Users
 			if user.id.toString() == user_id
 				i = user.roles.indexOf(role_id)
 				user.roles.splice(i,1) if i > 0
+
+	getById: (user_id)=>
+		for user in @data
+			if user.id.toString() == user_id
+				return user
+
 		
 
 
