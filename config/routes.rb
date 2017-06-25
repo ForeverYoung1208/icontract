@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :roles
+  
   resources :users, only: [:index, :show]
+  post 'users', to: "users#update_roles", as: "update_roles"
 
   resources :akts
   resources :reminder_types

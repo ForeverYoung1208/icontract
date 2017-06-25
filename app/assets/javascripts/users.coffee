@@ -17,7 +17,7 @@ class Users
 		@constructor.instances<<this
 		@allRoles = allRoles
 
-	show: ()->
+	getAndShow: ()->
 		jqxhr = $.get("users.json")
 			.done (res)=>
 				@data = res
@@ -25,14 +25,16 @@ class Users
 	redrawTo: (el)=>
 		inTag1 = el.attr('inTag1')
 		inTag2 = el.attr('inTag2')
+		res = ''
 		for user in @data 
 			do (user)=>
-				el.append( '<'+inTag1+'>' + 
+				res +='<'+inTag1+'>' + 
 					'<'+inTag2+'>' + user.id + '</'+inTag2+'>' + 
 					'<'+inTag2+'>' + user.name + '</'+inTag2+'>' + 
 					'<'+inTag2+'>' + user.email + '</'+inTag2+'>' + 
 					'<'+inTag2+' class = "userRoles rounded droppable" data-uid="'+user.id+'"> Querying roles.... </'+inTag2+'>' + 
-					'</'+inTag1 + '>')
+					'</'+inTag1 + '>'
+		el.html( res )
 		@drawRolesforUsers(@data)
 		@setActions(el)
 	setActions: (el)=>
@@ -41,12 +43,10 @@ class Users
 			drop: (event, ui)->
 				uid = $(this).attr('data-uid')
 				rid = ui.draggable.attr('data-rid')
-				for user in self.data
-					if user.id.toString() == uid 
-						user.roles.push( rid ) if not (rid in user.roles)
-						self.drawRolesforUsers([user])
+				user = self.getById( uid )
+				user.roles.push( rid ) if not (rid in user.roles)
+				self.drawRolesforUsers([user])
 		})
-
 	drawRolesforUsers: (users)=>
 		res = ''
 		self = this
@@ -64,36 +64,52 @@ class Users
 			$(".deletable").on('click', (e)->
 				uid = $(this).parent().attr('data-uid')
 				rid = $(this).parent().attr('data-rid')
-				# console.log self
 				self.deleteRoleFromUser(rid, uid)
 				self.drawRolesforUsers( [self.getById(uid)])
-				console.log [self.getById(uid)]
 			)
-
 	deleteRoleFromUser: (role_id, user_id) =>
-		for user in @data
-			if user.id.toString() == user_id
-				i = user.roles.indexOf(role_id)
-				user.roles.splice(i,1) if i > 0
-
+		user = @getById(user_id)
+		i = user.roles.indexOf(role_id)
+		user.roles.splice(i,1) if i >= 0
 	getById: (user_id)=>
 		for user in @data
 			if user.id.toString() == user_id
 				return user
+	deleteRoleFromAll:(rid)=>
+		for user in @data
+			i = user.roles.indexOf(rid)
+			user.roles.splice(i,1) if i >= 0
+		@drawRolesforUsers(@data)
+	addRoleToAll:(rid) =>
+		for user in @data
+			user.roles.push(rid) if not (rid in user.roles)
+		@drawRolesforUsers(@data)
+	save:()=>
+		jqxhr = $.post("users.json", JSON.stringify(@data), (data, status)->
+			console.log data
+			console.log status
+		)
+		console.log @data
 
-		
+
 
 
 $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
 		allRoles = new Roles
-		allUsers = new Users('#ajaxUsers', allRoles);
-		allUsers.show();
+		window.allUsers = new Users('#ajaxUsers', allRoles);
+		allUsers.getAndShow();
 		$('.draggable').draggable(
 			helper: 'clone'
 		)
-		$('.area.droppable').droppable(
+		$('.deleteArea.droppable').droppable(
 			drop: (event, ui) ->
-				alert('dropped!!! user:'+ ui.draggable.attr('data-uid')+', role: '+ ui.draggable.attr('data-rid') )
+				rid = ui.draggable.attr('data-rid')
+				allUsers.deleteRoleFromAll( rid )
+		)
+		$('.addArea.droppable').droppable(
+			drop: (event, ui) ->
+				rid = ui.draggable.attr('data-rid')
+				allUsers.addRoleToAll( rid )
 		)
 		

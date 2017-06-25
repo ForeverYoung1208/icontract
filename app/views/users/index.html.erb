@@ -40,17 +40,18 @@
 					</div>
 					<div class="card-block" >
 						<h4> Перетягніть роль на користувача або на дію:</h4>
-						<div class="area droppable" id="btnDelete"><span class="fa-stack">
+						<div class="addArea droppable"><span class="fa-stack">
 							  <i class="fa fa-trash fa-stack-2x"></i>
 							</span> Додати всім</div>
-						<div class="area droppable" id="btnDeleteAll" >
+						<div class="deleteArea droppable">
 							<span class="fa-stack">
 							  <i class="fa fa-trash fa-stack-2x"></i>
 							  <i class="fa fa-warning fa-stack-1x text-danger"></i>
 							</span> Видалити у всіх
 						</div>
 						<div class="card-block" >
-							<button type="button" class="btn btn-primary" id="btnSave" onclick="save()" > Зберегти зміни</button>
+							<button type="button" class="btn btn-primary" id="btnSave" onclick="allUsers.save()" > Зберегти зміни</button>
+							<button type="button" class="btn btn-primary" id="btnSave" onclick="allUsers.getAndShow()" > Скасувати зміни</button>
 						</div>
 
 					</div>					

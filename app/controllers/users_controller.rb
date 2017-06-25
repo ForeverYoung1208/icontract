@@ -16,4 +16,10 @@ class UsersController < ApplicationController
   def show
   	@user = User.find( params[:id] )
   end
+
+  def update_roles
+    logger.debug('---------- '+params.inspect)
+    logger.debug('========== '+JSON.parse(params).inspect)
+  end
+
 end
