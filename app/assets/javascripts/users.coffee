@@ -1,10 +1,10 @@
 
 class Roles
 	constructor:()->
-		jqxhr = $.get("roles.json")
+		@jqxhr = $.get("roles.json")
 			.done (res)=>
 				@data = res
-	getById: (id)->
+	getRoleById: (id)->
 		for role in @data
 			if role.id.toString() == id
 				return role
@@ -54,7 +54,14 @@ class Users
 			res = ''
 			if user.roles
 				for role_id in user.roles 
-					res += '<span class="badge badge-pill badge-info" data-rid="'+role_id+'" data-uid="'+user.id+'" >'+role_id+' ' +@allRoles.getById(role_id).name 
+					console.log @allRoles
+					res += '<span class="badge badge-pill badge-info" data-rid="'+
+						role_id+
+						'" data-uid="'+
+						user.id+'" >'+
+						role_id+' ' +
+						@allRoles.getRoleById(role_id).name 
+
 					res += ' <i class="fa fa-2x fa-trash deletable"></i>'
 					res += '</span>'					
 			$(@element_id).find("[data-uid='" + user.id + "']").html( res )
@@ -92,6 +99,7 @@ class Users
 			contentType: 'application/json',
 			data : JSON.stringify(@data),
 			complete: ( response, status)->
+				console.log @data
 				console.log response
 				console.log status
 		});
@@ -102,12 +110,15 @@ class Users
 
 $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
-		allRoles = new Roles
-		window.allUsers = new Users('#ajaxUsers', allRoles);
+
+		allRoles = new Roles()
+		allRoles.jqxhr.then ()->
+			window.allUsers = new Users('#ajaxUsers', allRoles);
+			allUsers.getAndShow();
+
+
 		window.cancelDialog = ()->
 			$("#dialog-confirm-cancel").dialog( "open" )
-		allUsers.getAndShow();
-
 
 		$('.draggable').draggable(
 			helper: 'clone'

@@ -1,2 +1,2 @@
-# class RolesUser < ApplicationRecord
-# end
+class RolesUser < ApplicationRecord
+end
