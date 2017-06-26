@@ -85,11 +85,17 @@ class Users
 			user.roles.push(rid) if not (rid in user.roles)
 		@drawRolesforUsers(@data)
 	save:()=>
-		jqxhr = $.post("users.json", JSON.stringify(@data), (data, status)->
-			console.log data
-			console.log status
-		)
-		console.log @data
+		$.ajax({
+			type : "POST",
+			url : "users.json",
+			dataType: 'json',
+			contentType: 'application/json',
+			data : JSON.stringify(@data),
+			complete: ( response, status)->
+				console.log response
+				console.log status
+		});
+
 
 
 
@@ -98,7 +104,11 @@ $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='users' && $('meta[name=psj]').attr('action')=='index'
 		allRoles = new Roles
 		window.allUsers = new Users('#ajaxUsers', allRoles);
+		window.cancelDialog = ()->
+			$("#dialog-confirm-cancel").dialog( "open" )
 		allUsers.getAndShow();
+
+
 		$('.draggable').draggable(
 			helper: 'clone'
 		)
@@ -112,4 +122,28 @@ $(document).on 'turbolinks:load', ->
 				rid = ui.draggable.attr('data-rid')
 				allUsers.addRoleToAll( rid )
 		)
+		$("#dialog-confirm-cancel").dialog
+			resizable: false
+			autoOpen: false
+			height: "auto"
+			width: 400
+			modal: true
+			dialogClass: "no-close"
+			hide: 
+				effect: "fade"
+				duration: 500
+			show: 
+				effect: "fade"
+				duration: 500
+			buttons:
+				"Скасувати": ()->
+					$( this ).dialog( "close" );
+					allUsers.getAndShow()
+				"Відмінити": ()->
+					$( this ).dialog( "close" );
+
+	
+
+
+
 		

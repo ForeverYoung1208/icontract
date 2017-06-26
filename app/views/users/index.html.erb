@@ -41,7 +41,7 @@
 					<div class="card-block" >
 						<h4> Перетягніть роль на користувача або на дію:</h4>
 						<div class="addArea droppable"><span class="fa-stack">
-							  <i class="fa fa-trash fa-stack-2x"></i>
+							  <i class="fa fa-plus fa-stack-2x"></i>
 							</span> Додати всім</div>
 						<div class="deleteArea droppable">
 							<span class="fa-stack">
@@ -51,7 +51,7 @@
 						</div>
 						<div class="card-block" >
 							<button type="button" class="btn btn-primary" id="btnSave" onclick="allUsers.save()" > Зберегти зміни</button>
-							<button type="button" class="btn btn-primary" id="btnSave" onclick="allUsers.getAndShow()" > Скасувати зміни</button>
+							<button type="button" class="btn btn-primary" id="btnSave" onclick="cancelDialog()" > Скасувати зміни</button>
 						</div>
 
 					</div>					
@@ -101,3 +101,7 @@
 
 
 </div> <!-- container -->
+
+<div id="dialog-confirm-cancel" title="Скасувати?">
+  <p>Скасувати всі внесені зміни?</p>
+</div>

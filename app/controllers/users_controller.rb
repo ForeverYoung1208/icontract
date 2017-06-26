@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		  	@roles = Role.all
     	end
     	format.json do
-    		render json: @users.map{ |u| {id: u.id, email: u.email, name: u.name, roles: u.roles.all } }
+    		render json: @users.map{ |u| {id: u.id, email: u.email, name: u.name, roles: u.roles.all } }, staus: :ok
     	end
 
     end  	
@@ -18,8 +18,11 @@ class UsersController < ApplicationController
   end
 
   def update_roles
-    logger.debug('---------- '+params.inspect)
-    logger.debug('========== '+JSON.parse(params).inspect)
+    logger.debug('=========================================================================')
+    logger.debug( params["_json"][0][:name] )
+    logger.debug('=========================================================================')
+    render json: :none, staus: :ok
+
   end
 
 end
