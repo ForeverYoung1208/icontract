@@ -6,7 +6,7 @@ class Roles
 				@data = res
 	getRoleById: (id)->
 		for role in @data
-			if role.id.toString() == id
+			if role.id == id
 				return role
 
 class Users
@@ -41,8 +41,8 @@ class Users
 		self = this
 		el.find(".droppable").droppable({
 			drop: (event, ui)->
-				uid = $(this).attr('data-uid')
-				rid = ui.draggable.attr('data-rid')
+				uid = parseInt( $(this).attr('data-uid') )
+				rid = parseInt( ui.draggable.attr('data-rid') )
 				user = self.getById( uid )
 				user.roles.push( rid ) if not (rid in user.roles)
 				self.drawRolesforUsers([user])
@@ -54,7 +54,6 @@ class Users
 			res = ''
 			if user.roles
 				for role_id in user.roles 
-					console.log @allRoles
 					res += '<span class="badge badge-pill badge-info" data-rid="'+
 						role_id+
 						'" data-uid="'+
@@ -69,8 +68,8 @@ class Users
 				helper: 'clone'
 			)
 			$(".deletable").on('click', (e)->
-				uid = $(this).parent().attr('data-uid')
-				rid = $(this).parent().attr('data-rid')
+				uid = parseInt( $(this).parent().attr('data-uid') )
+				rid = parseInt( $(this).parent().attr('data-rid') )
 				self.deleteRoleFromUser(rid, uid)
 				self.drawRolesforUsers( [self.getById(uid)])
 			)
@@ -80,7 +79,7 @@ class Users
 		user.roles.splice(i,1) if i >= 0
 	getById: (user_id)=>
 		for user in @data
-			if user.id.toString() == user_id
+			if user.id == user_id
 				return user
 	deleteRoleFromAll:(rid)=>
 		for user in @data
@@ -99,8 +98,6 @@ class Users
 			contentType: 'application/json',
 			data : JSON.stringify(@data),
 			complete: ( response, status)->
-				console.log @data
-				console.log response
 				console.log status
 		});
 
@@ -125,12 +122,12 @@ $(document).on 'turbolinks:load', ->
 		)
 		$('.deleteArea.droppable').droppable(
 			drop: (event, ui) ->
-				rid = ui.draggable.attr('data-rid')
+				rid = parseInt( ui.draggable.attr('data-rid') )
 				allUsers.deleteRoleFromAll( rid )
 		)
 		$('.addArea.droppable').droppable(
 			drop: (event, ui) ->
-				rid = ui.draggable.attr('data-rid')
+				rid = parseInt( ui.draggable.attr('data-rid') )
 				allUsers.addRoleToAll( rid )
 		)
 		$("#dialog-confirm-cancel").dialog
