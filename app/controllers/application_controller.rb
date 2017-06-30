@@ -9,5 +9,9 @@ class ApplicationController < ActionController::Base
 
 
   ::SUPERUSERS = ['ForeverYoung','admin']  
+
+  ::ADMIN_ROLLE_ID = 1
+  ::USER_ROLE_ID = 2
+
   
 end

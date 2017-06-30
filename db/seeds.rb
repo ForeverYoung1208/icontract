@@ -8,6 +8,18 @@
 
 users = User.all
 
+
+roles_user = [
+    RolesUser.where(id: ::ADMIN_ROLE_ID).first_or_create(
+        name: "Адмін"
+    ),
+    RolesUser.where(id: ::USER_ROLE_ID).first_or_create(
+        name: "Користувач"
+    ),
+
+]
+
+# Production setup values
 companies =[
     Company.where(edrpou:"12345678").first_or_create(
       	name: "company_name1",
@@ -20,25 +32,6 @@ companies =[
         edrpou: "22345678"
     )
 ]
-
-types = [
-    Type.where(id:1).first_or_create(
-    	name: "type_name1",
-    	typical_contract_name: "typical_contract_name1"
-    ), 
-    Type.where(id:2).first_or_create(
-        name: "type_name2",
-        typical_contract_name: "typical_contract_name2"
-    )
-]
-
-# reminder_types = ReminderType.create([{
-# 	  name: "reminder_type_name1",
-# 	  description: "reminder_description1"
-#   }, {
-# 	  name: "reminder_type_name1",
-# 	  description: "reminder_description1"
-# }])
 
 reminder_types=[
     ReminderType.where(id:1).first_or_create(
@@ -56,6 +49,19 @@ reminder_types=[
     ReminderType.where(id:4).first_or_create(
         name: "Щорічно",
         description: "reminder_description4"
+    )
+]
+
+
+# Development and testing values
+types = [
+    Type.where(id:1).first_or_create(
+    	name: "type_name1",
+    	typical_contract_name: "typical_contract_name1"
+    ), 
+    Type.where(id:2).first_or_create(
+        name: "type_name2",
+        typical_contract_name: "typical_contract_name2"
     )
 ]
 
