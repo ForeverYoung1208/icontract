@@ -1,4 +1,7 @@
 class Role < ApplicationRecord
+
+  # has_many :roles_users
+  # has_many :users, through: :roles_users
 	has_and_belongs_to_many :users
 
 	def bind_to_users!(users_ids)

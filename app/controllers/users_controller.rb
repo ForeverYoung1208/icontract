@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		  	@roles = Role.all
     	end
     	format.json do
-    		render json: @users.map{ |u| {id: u.id, email: u.email, name: u.name, roles: u.roles.all.map{|r| r.id} } }, staus: :ok
+    		render json: @users.map{ |u| {id: u.id, email: u.email, name: u.name, roles: u.roles.where("deleted_at IS NULL").map{|r| r.id} } }, staus: :ok
     	end
 
     end  	
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
       end
     end
 
+    RolesUser.update_all( deleted_at: DateTime.now)
     all_roles.each do |role_id, users_ids|
       role = Role.find(role_id)
       role.bind_to_users!(users_ids)
