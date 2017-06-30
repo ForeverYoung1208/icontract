@@ -1,9 +1,10 @@
-# README
+# Icontract
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Icontract is the system to maintain corporative contracts and to remind users to do actions according contracts.
 
-Things you may want to cover:
+
+
+In further, i'll cover next readme totics:
 
 * Ruby version
 
@@ -20,5 +21,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
