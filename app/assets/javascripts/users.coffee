@@ -98,7 +98,9 @@ class Users
 			contentType: 'application/json',
 			data : JSON.stringify(@data),
 			complete: ( response, status)->
-				console.log status
+				if status =='success'
+					$("#dialog-saved").dialog( "open" )
+
 		});
 
 
@@ -130,6 +132,7 @@ $(document).on 'turbolinks:load', ->
 				rid = parseInt( ui.draggable.attr('data-rid') )
 				allUsers.addRoleToAll( rid )
 		)
+
 		$("#dialog-confirm-cancel").dialog
 			resizable: false
 			autoOpen: false
@@ -150,8 +153,26 @@ $(document).on 'turbolinks:load', ->
 				"Відмінити": ()->
 					$( this ).dialog( "close" );
 
+		$("#dialog-saved").dialog
+			resizable: false
+			autoOpen: false
+			height: "auto"
+			width: 400
+			modal: true
+			dialogClass: "no-close"
+			hide: 
+				effect: "fade"
+				duration: 500
+			show: 
+				effect: "fade"
+				duration: 500
+			buttons:
+				"Ok": ()->
+					$( this ).dialog( "close" );
+
 	
 
 
 
 		
+
