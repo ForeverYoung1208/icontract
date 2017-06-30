@@ -16,6 +16,9 @@ roles_user = [
     RolesUser.where(id: ::USER_ROLE_ID).first_or_create(
         name: "Користувач"
     ),
+    RolesUser.where(id: ::ACCOUNTANT_ROLE_ID = 3).first_or_create(
+        name: "Бухгалтер"
+    )
 
 ]
 

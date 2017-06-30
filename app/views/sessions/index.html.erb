@@ -1,1 +1,7 @@
-<h1>Вітаю, <%= @current_user.name%> </h1>
+<p><h1>Вітаю, <%= @current_user.name%> </h1></p>
+<p>Ваші права у системі icontract:</p>
+<ul>
+	<% @current_user.roles.active.each do |role|%>
+		<%= tag.li role.name %>
+	<% end	%>
+</ul>
