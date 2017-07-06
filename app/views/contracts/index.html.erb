@@ -5,11 +5,27 @@
       <h1>Договори</h1>
     </div> <!-- col -->
     <div class="col-sm-4">
+<!-- 
       <form>
         <input type="radio" name="listType" value="all"> всі що мені доступні
         <br/>
         <input type="radio" name="listType" value="mine"> тільки мої
-      </form>
+      </form> -->
+
+      <%= form_tag(contracts_path) do %>
+
+        <%= radio_button_tag :listType, 'all', @selected[:all], class: "listTypeRadio" %>
+        <%= label_tag :listType_all, 'всі що мені доступні' %>
+
+        <%= radio_button_tag :listType, 'mine', @selected[:mine], class: "listTypeRadio" %>
+        <%= label_tag :listType_mine, 'тільки мої' %>
+
+        <%= submit_tag "Save changes" %>
+      <% end %>
+
+
+
+
     </div> <!-- col -->
   </div> <!-- row -->
 
@@ -92,7 +108,7 @@
                 <%= link_to 'Show', contract %>
                 <%= link_to 'Edit', edit_contract_path(contract) %>
                 <%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
+                <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
 
               </td>
             </tr>

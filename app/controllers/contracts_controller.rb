@@ -4,12 +4,23 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
+
     @contracts = Contract.all.includes(:type)
       .includes(:responsible_user)
       .includes(:creator_user)
       .includes(:payer)
       .includes(:recipient)
       .includes(:reminders)
+
+      @selected = {} 
+      @selected[:all] = false
+      @selected[:mine] = true
+
+
+
+
+
+
   end
 
   # GET /contracts/1
@@ -93,5 +104,9 @@ class ContractsController < ApplicationController
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
         :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, 
         :responsible_user_id, :creator_user_id, {scanfiles: []})
+    end
+
+    def index_params
+      params.permit(:listType)
     end
 end
