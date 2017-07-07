@@ -1,26 +1,22 @@
 class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy, :check_reminders]
 
+  before_action :set_contracts, only: [:index, :all, :mine]
+
   # GET /contracts
   # GET /contracts.json
   def index
 
-    @contracts = Contract.all.includes(:type)
-      .includes(:responsible_user)
-      .includes(:creator_user)
-      .includes(:payer)
-      .includes(:recipient)
-      .includes(:reminders)
+  end
 
-      @selected = {} 
-      @selected[:all] = false
-      @selected[:mine] = true
+  def all
+    @contracts = @contracts.where("responsible_user_id = ?", 1)
+    render 'index'
+  end
 
-
-
-
-
-
+  def mine
+    @contracts = @contracts.where("responsible_user_id = ?", 2)
+    render 'index'
   end
 
   # GET /contracts/1
@@ -97,6 +93,15 @@ class ContractsController < ApplicationController
     def set_contract
       @contract = Contract.find(params[:id])
       
+    end
+
+    def set_contracts
+      @contracts = Contract.all.includes(:type)
+        .includes(:responsible_user)
+        .includes(:creator_user)
+        .includes(:payer)
+        .includes(:recipient)
+        .includes(:reminders)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

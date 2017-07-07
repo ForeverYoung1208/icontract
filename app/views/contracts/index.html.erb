@@ -4,24 +4,14 @@
       <p id="notice"><%= notice %></p>
       <h1>Договори</h1>
     </div> <!-- col -->
+
     <div class="col-sm-4">
-<!-- 
-      <form>
-        <input type="radio" name="listType" value="all"> всі що мені доступні
-        <br/>
-        <input type="radio" name="listType" value="mine"> тільки мої
-      </form> -->
+      <input type="radio" name="listType" value="all" id="radio-contracts-all" checked> всі що мені доступні
+      <%= link_to 'alllll', all_contracts_path %>
+      <br/>
+      <input type="radio" name="listType" value="mine" id=radio-contracts-mine> тільки мої
+      <%= link_to 'mineeeee', mine_contracts_path %>
 
-      <%= form_tag(contracts_path) do %>
-
-        <%= radio_button_tag :listType, 'all', @selected[:all], class: "listTypeRadio" %>
-        <%= label_tag :listType_all, 'всі що мені доступні' %>
-
-        <%= radio_button_tag :listType, 'mine', @selected[:mine], class: "listTypeRadio" %>
-        <%= label_tag :listType_mine, 'тільки мої' %>
-
-        <%= submit_tag "Save changes" %>
-      <% end %>
 
 
 
@@ -31,90 +21,9 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <table class="table">
-        <thead class="thead-default">
-          <tr>
-            <th>ID</th>
 
-            <th>Тип, нйменування, номер, сума, від дати, до дати (дісний до)</th>
-
-            <th>Платник, 
-            отримувач</th>
-            <th>Стан</th>
-            <!-- <th>Is deleted</th> -->
-            <th>Відповідальний користувач</th>
-            <th>Ким створено</th>
-
-            <th>Нагадування</th>
-
-            <th>Скан</th>
-            <th>Текст</th>
-            <th>Керування</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @contracts.each do |contract| %>
-            <tr>
-              <td><%= contract.id %></td>
-              
-              <td><%= contract.type.name %>, 
-              <%= contract.name %>, 
-              № <%= contract.number %>, 
-              на <%= contract.sum %> грн., 
-              від <%= contract.from_date.strftime("%d.%m.%Y") %>, 
-              до <%= contract.to_date.strftime("%d.%m.%Y") %>, 
-              (<%= contract.till %>)</td>
-
-              <td> 
-                <p> <b>платник:</b> <%= contract.payer.name %> </p>
-                <p> <b>отримувач:</b> <%= contract.recipient.name %> </p>
-              </td> 
-              <td>
-
-                <p> <b>Активний?:</b> <%= contract.is_active %> </p>
-                <p> <b>Підписаний?:</b> <%= contract.is_signed %> </p>
-
-               </td>
-              <!-- <td><%= contract.is_deleted %></td> -->
-              <td><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
-              <td><%= link_to contract.creator_user.name, user_path(contract.creator_user.id) %></td>
-              
-              <td>
-                <% contract.reminders.each do |r| %>
-                  <%= link_to r.reminder_type.name, reminder_path(r) %>
-                <% end %>
-                
-                <%= tag.pre link_to "Add New", new_reminder_path(contract_id: contract.id) %>
-              </td>
-
-
-              <td>
-                <% if contract.scanfiles %>
-                  <% contract.scanfiles.each do |sf| %>
-                     <%= link_to sf.file.filename, sf.url %> <br/>
-                  <% end %>
-                <% end %>
-              </td>
-              <td> 
-                <% if contract.textfiles %>
-                  <% contract.textfiles.each do |tf| %>
-                     <%= link_to tf.file.filename, tf.url %> <br/>
-                  <% end %>
-                <% end %>
-              </td>
-
-              <td>
-                <%= link_to 'Show', contract %>
-                <%= link_to 'Edit', edit_contract_path(contract) %>
-                <%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
-
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <%= render 'contracts_table' %>
+      
     </div> <!-- col -->
   </div> <!-- row -->
 

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     member do
       post 'check_reminders'
     end
+    get 'all', on: :collection
+    get 'mine', on: :collection
   end
   ### post '/contract/:id/check_reminders', to: "contracts#check_reminders", as: "check_reminders"
 
