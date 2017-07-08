@@ -13,13 +13,13 @@ class ContractsController < ApplicationController
   def all
     @contracts = @contracts.where("responsible_user_id = ?", 1)
     @list_type = {all: true}
-    render 'index' 
+    render '_contracts_table', layout: false
   end
 
   def mine
     @contracts = @contracts.where("responsible_user_id = ?", 2)
     @list_type = {mine: true}    
-    render 'index'
+    render '_contracts_table', layout: false
   end
 
   # GET /contracts/1

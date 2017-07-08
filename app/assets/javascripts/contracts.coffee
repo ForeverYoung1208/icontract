@@ -6,21 +6,11 @@ $(document).on 'turbolinks:load', ->
 
 	if $('meta[name=psj]').attr('controller')=='contracts'
 		window.listChange = (path)->
-			window.location.href = path;
-
-
-			# switch val
-			# 	when 'all' 
-			# 		$.ajax({
-			# 			type : "GET",
-			# 			url : "all",
-			# 			dataType: 'js',
-			# 			contentType: 'application/javascript',
-			# 			complete: ( response, status)->
-			# 				if status =='success'
-			# 					$("#contracts-container").innerHtml = response
-			# 				else
-			# 					console.log response
-			# 		});
-			# 	when 'mine' 
-			# 		alert 'mineeeeee'
+		# 	window.location.href = path;
+			$.ajax({
+				type : "GET",
+				url : path,
+				complete: ( response, status)->
+					$("#contracts-container").html(response.responseText)
+					
+			});
