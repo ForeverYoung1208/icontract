@@ -6,10 +6,26 @@
     </div> <!-- col -->
 
     <div class="col-sm-4">
-      <input type="radio" name="listType" value="all" id="radio-contracts-all" checked> всі що мені доступні
+      <input 
+        type="radio" 
+        name="listType" 
+        id="radio-contracts-all" 
+        onchange="listChange('<%= all_contracts_path %>')" <%= 'checked' if @list_type[:all] %>
+      > 
+
+      всі що мені доступні
       <%= link_to 'alllll', all_contracts_path %>
+
       <br/>
-      <input type="radio" name="listType" value="mine" id=radio-contracts-mine> тільки мої
+
+      <input 
+        type="radio" 
+        name="listType" 
+        id="radio-contracts-all" 
+        onchange="listChange('<%= mine_contracts_path %>')" <%= 'checked' if @list_type[:mine] %>
+      > 
+
+      тільки мої
       <%= link_to 'mineeeee', mine_contracts_path %>
 
 
@@ -20,7 +36,7 @@
   </div> <!-- row -->
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12" id="contracts-container">
 
     <%= render 'contracts_table' %>
       

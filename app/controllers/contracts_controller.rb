@@ -6,16 +6,19 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
+    @list_type = {all: true}
 
   end
 
   def all
     @contracts = @contracts.where("responsible_user_id = ?", 1)
-    render 'index'
+    @list_type = {all: true}
+    render 'index' 
   end
 
   def mine
     @contracts = @contracts.where("responsible_user_id = ?", 2)
+    @list_type = {mine: true}    
     render 'index'
   end
 
