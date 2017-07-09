@@ -40,6 +40,19 @@ class User < ApplicationRecord
 		end
   end
 
+  def allowed_users_ids
+    if self.is_admin
+      res = User.all.pluck(:id) 
+    else
+      res = self.id
+    end
+    res
+  end
+
+  def is_admin
+    self.roles.active.pluck(:id).include?( ::ADMIN_ROLE_ID )
+  end
+
   # attr_readonly :email, :name, :password_hash, :password_salt, :userlevel_id, :created_at, :updated_at, :company_id, :is_ip_controlled, :ip_address
 
 

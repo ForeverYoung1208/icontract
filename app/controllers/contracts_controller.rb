@@ -7,17 +7,19 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
     @list_type = {all: true}
-
+    # allowed_users_ids = User.all.pluck(:id)
+    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
   end
 
   def all
-    @contracts = @contracts.where("responsible_user_id = ?", 1)
+    # allowed_users_ids = User.all.pluck(:id)
+    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
     @list_type = {all: true}
     render '_contracts_table', layout: false
   end
 
   def mine
-    @contracts = @contracts.where("responsible_user_id = ?", 2)
+    @contracts = @contracts.where("responsible_user_id = ?", session[:current_user_id])
     @list_type = {mine: true}    
     render '_contracts_table', layout: false
   end
@@ -99,7 +101,8 @@ class ContractsController < ApplicationController
     end
 
     def set_contracts
-      @contracts = Contract.all.includes(:type)
+      # @contracts = Contract.all.includes(:type)
+      @contracts = Contract.where(id: @current_user.allowed_users_ids).includes(:type)
         .includes(:responsible_user)
         .includes(:creator_user)
         .includes(:payer)
