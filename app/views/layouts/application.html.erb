@@ -40,9 +40,31 @@
 
         </ul>
 
-        <%= 'render home/user_zone' %>
-
       </div><!-- /.navbar-collapse -->
+
+      <div class="navbar-brand">
+        <input 
+          type="radio" 
+          name="listType" 
+          id="radio-contracts-all" 
+          onchange="listChange('<%= all_contracts_path %>')" <%= 'checked' if @list_type && @list_type[:all] %>
+        > 
+        <label for="radio-contracts-all"> все що мені доступно</label>
+
+        <input 
+          type="radio" 
+          name="listType" 
+          id="radio-contracts-mine" 
+          onchange="listChange('<%= mine_contracts_path %>')" <%= 'checked' if @list_type && @list_type[:mine] %>
+        > 
+        <label for="radio-contracts-mine">тільки моє</label>
+       
+      </div>
+      <div class="navbar-text">
+        <%= 'render home/user_zone' %>
+      </div>
+
+
 
 	    
 	  </nav>
