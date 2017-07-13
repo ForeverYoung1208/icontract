@@ -102,7 +102,8 @@ class ContractsController < ApplicationController
 
     def set_contracts
       # @contracts = Contract.all.includes(:type)
-      @contracts = Contract.where(id: @current_user.allowed_users_ids).includes(:type)
+      @contracts = Contract.where(id: @current_user.allowed_users_ids)
+        .includes(:type)
         .includes(:responsible_user)
         .includes(:creator_user)
         .includes(:payer)
@@ -117,7 +118,5 @@ class ContractsController < ApplicationController
         :responsible_user_id, :creator_user_id, {scanfiles: []})
     end
 
-    def index_params
-      params.permit(:listType)
-    end
+
 end

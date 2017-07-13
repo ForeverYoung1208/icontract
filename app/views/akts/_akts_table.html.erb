@@ -1,0 +1,32 @@
+<table class="table" id="akts_table">
+  <thead class="thead-default">
+    <tr>
+      <th>Договір</th>
+      <th>Дата акту</th>
+      <th>Сума акту</th>
+      <th>Скан, текст</th>
+      <th>Підписаний?</th>
+      <th>Видалений?</th>
+      <th>Прийнято бухгалтером?</th>
+      <th> керування</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @akts.each do |akt| %>
+      <tr>
+        <td><%= akt.contract.name %> від <%= akt.contract.from_date %></td>
+        <td><%= akt.from_date %></td>
+        <td><%= akt.sum %></td>
+        <td><%= akt.scan_path %>
+          <%= akt.text_path %></td>
+        <td><%= akt.is_signed %></td>
+        <td><%= akt.is_deleted %></td>
+        <td><%= akt.is_taken_as_original %></td>
+        <td><%= link_to 'Show', akt %>
+          <%= link_to 'Edit', edit_akt_path(akt) %>
+          <%= link_to 'Destroy', akt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

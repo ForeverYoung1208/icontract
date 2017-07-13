@@ -5,11 +5,16 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   post 'users', to: "users#update_roles", as: "update_roles"
 
-  resources :akts
+  resources :akts do
+    get 'all', on: :collection
+    get 'mine', on: :collection
+  end
+
   resources :reminder_types
   resources :reminders
   resources :companies
   resources :types
+
   resources :contracts do
     member do
       post 'check_reminders'
@@ -19,10 +24,11 @@ Rails.application.routes.draw do
   end
   ### post '/contract/:id/check_reminders', to: "contracts#check_reminders", as: "check_reminders"
 
-  resources :events
+  resources :events do    
+    get 'all', on: :collection
+    get 'mine', on: :collection
+  end
   resources :sessions
-  # get 'sessions/create'
-  # get 'sessions/destroy'
 
   get 'main', to: "main#show", as: 'main'
 

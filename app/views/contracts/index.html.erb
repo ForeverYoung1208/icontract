@@ -6,33 +6,16 @@
     </div> <!-- col -->
 
     <div class="col-sm-4">
-      <input 
-        type="radio" 
-        name="listType" 
-        id="radio-contracts-all" 
-        onchange="listChange('<%= all_contracts_path %>')" <%= 'checked' if @list_type[:all] %>
-      > 
-      всі що мені доступні
-
-      <br/>
-
-      <input 
-        type="radio" 
-        name="listType" 
-        id="radio-contracts-all" 
-        onchange="listChange('<%= mine_contracts_path %>')" <%= 'checked' if @list_type[:mine] %>
-      > 
-      тільки мої
-
-
-
-
+      <%= list_change_buttons( "listChange('#{all_contracts_path}')",
+                               "listChange('#{mine_contracts_path}')", 
+                               @list_type[:all]==true ) 
+      %>
 
     </div> <!-- col -->
   </div> <!-- row -->
 
   <div class="row">
-    <div class="col-sm-12" id="contracts-container">
+    <div class="col-sm-12" id="data-container">
 
     <%= render 'contracts_table' %>
       

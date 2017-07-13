@@ -21,10 +21,10 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy(msg)
+  def destroy
     session[:current_user] = nil
     reset_session
-    flash[:notice] = "#{msg}, Сеанс завершено."
+    flash[:notice] = "Сеанс завершено."
     redirect_to root_url
   end
 

@@ -1,11 +1,27 @@
 class AktsController < ApplicationController
   before_action :set_akt, only: [:show, :edit, :update, :destroy]
+  before_action :set_akts, only: [:index, :all, :mine]
 
   # GET /akts
   # GET /akts.json
   def index
-    @akts = Akt.all
+    @list_type = {all: true}    
   end
+
+
+  def all
+    # allowed_users_ids = User.all.pluck(:id)
+    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
+    @list_type = {all: true}
+    render '_akts_table', layout: false
+  end
+
+  def mine
+    # @contracts = @akts.where("responsible_user_id = ?", session[:current_user_id])
+    @list_type = {mine: true}    
+    render '_akts_table', layout: false
+  end
+
 
   # GET /akts/1
   # GET /akts/1.json
@@ -65,6 +81,10 @@ class AktsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_akt
       @akt = Akt.find(params[:id])
+    end
+
+    def set_akts
+      @akts = Akt.all.includes(:contract)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

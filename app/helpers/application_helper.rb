@@ -51,17 +51,25 @@ module ApplicationHelper
 
   end
 
-          # <li class="nav-item dropdown">
-          #   <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          #     Налаштування
-          #   </a>
-          #   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          #     <%= link_to 'Компанії', companies_path, {class: 'dropdown-item'} %>
-          #     <%= link_to 'Типи договорів', types_path, {class: 'dropdown-item'} %>
-          #     <%= link_to 'Типи подій-нагадувань', reminder_types_path, {class: 'dropdown-item'} %>
-          #   </div>
-          # </li>
+  def list_change_buttons(all_fn, mine_fn, is_all_checked)
 
+      content_tag("input", {
+        type: "radio",
+        name: "listType",
+        id: "radio-contracts-all",
+        onchange: all_fn,
+        checked: is_all_checked
+      }) {' всі що мені доступні'} +
+      tag.br + 
+      content_tag("input", {
+        type: "radio",
+        name: "listType",
+        id: "radio-contracts-mine" ,
+        onchange: mine_fn,
+        checked: !is_all_checked
+      }) {' тільки мої'}
+      
+  end
 
 
 end
