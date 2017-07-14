@@ -1,0 +1,17 @@
+      <input 
+        type="radio" 
+        name="listType" 
+        id="radio-contracts-all" 
+        onchange="listChange('all')" <%= 'checked' if @list_type[:all] %>
+      > 
+      всі що мені доступні
+
+      <br/>
+
+      <input 
+        type="radio" 
+        name="listType" 
+        id="radio-contracts-all" 
+        onchange="listChange('mine')" <%= 'checked' if @list_type[:mine] %>
+      > 
+      тільки мої

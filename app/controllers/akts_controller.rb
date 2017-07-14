@@ -10,14 +10,12 @@ class AktsController < ApplicationController
 
 
   def all
-    # allowed_users_ids = User.all.pluck(:id)
-    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
     @list_type = {all: true}
     render '_akts_table', layout: false
   end
 
   def mine
-    # @contracts = @akts.where("responsible_user_id = ?", session[:current_user_id])
+    @akts = @akts.where(:'contracts.responsible_user_id' => session[:current_user_id])
     @list_type = {mine: true}    
     render '_akts_table', layout: false
   end
@@ -84,7 +82,7 @@ class AktsController < ApplicationController
     end
 
     def set_akts
-      @akts = Akt.all.includes(:contract)
+      @akts = Akt.all.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

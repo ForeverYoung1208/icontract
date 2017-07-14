@@ -22,8 +22,15 @@
     border-left:1px solid #444;
    }  
 
-
 }
+
+.navbar-nav li a {
+    line-height: 3em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
 
 .container{
   min-width: 960px;
