@@ -72,9 +72,9 @@
         </td>
 
         <td>
-          <%= link_to 'Show', contract %>
-          <%= link_to 'Edit', edit_contract_path(contract) %>
-          <%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+          <%= management_links( contract ) %>
+
           <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
 
         </td>

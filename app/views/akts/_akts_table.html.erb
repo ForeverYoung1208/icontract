@@ -23,9 +23,10 @@
         <td><%= akt.is_signed %></td>
         <td><%= akt.is_deleted %></td>
         <td><%= akt.is_taken_as_original %></td>
-        <td><%= link_to 'Show', akt %>
-          <%= link_to 'Edit', edit_akt_path(akt) %>
-          <%= link_to 'Destroy', akt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+
+          <%= management_links( akt ) %>
+
       </tr>
     <% end %>
   </tbody>

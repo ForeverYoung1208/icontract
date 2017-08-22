@@ -72,4 +72,22 @@ module ApplicationHelper
   end
 
 
+  def management_details( entity )
+    fa_link_to('-id-card fa-2x', entity) {''}
+  end
+
+  def management_edit( entity )
+    fa_link_to('-edit fa-2x', polymorphic_path(entity, {action: :edit}) ) {''}
+  end
+
+  def management_delete( entity )
+    fa_link_to('-remove fa-2x', entity , method: :delete, data: { confirm: 'Видалити запис?' }) {''}
+  end
+
+  def management_links( entity )
+    management_details(entity) + 
+    management_edit(entity) + 
+    management_delete(entity)
+  end
+
 end
