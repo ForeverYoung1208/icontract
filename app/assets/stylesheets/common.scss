@@ -43,3 +43,21 @@
 .management-action-icon{
   margin-right: 1em;
 }
+
+.table a {
+
+
+  &:link, &:visited {
+    color: #3399FF;
+    background-color: transparent;
+
+  };
+
+
+  &:hover {
+    color: #0000FF;
+    background-color: transparent;
+    text-decoration: none;
+
+  }
+}

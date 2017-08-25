@@ -8,3 +8,4 @@ $(document).on 'turbolinks:load', ->
 				$("#data-container").html(response.responseText)
 				
 		});
+	$('[data-toggle="tooltip"]').tooltip()

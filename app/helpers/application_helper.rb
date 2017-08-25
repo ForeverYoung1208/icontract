@@ -73,16 +73,18 @@ module ApplicationHelper
 
 
   def management_details( entity )
-    fa_link_to('-id-card fa-2x', entity) {''}
+    fa_link_to('-id-card fa-2x', entity, data: { toggle: "tooltip", placement: "bottom" }, title: "Деталі") {''}
   end
 
   def management_edit( entity )
-    fa_link_to('-edit fa-2x', polymorphic_path(entity, {action: :edit}) ) {''}
+    fa_link_to('-edit fa-2x', polymorphic_path(entity, {action: :edit}), data: { toggle: "tooltip", placement: "bottom" }, title: "Редагувати" ) {''}
   end
 
   def management_delete( entity )
-    fa_link_to('-remove fa-2x', entity , method: :delete, data: { confirm: 'Видалити запис?' }) {''}
+    fa_link_to('-remove fa-2x', entity , method: :delete, data: { confirm: 'Видалити запис?', toggle: "tooltip", placement: "bottom" }, title: "Видалити" ) {''}
   end
+
+  # data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"
 
   def management_links( entity )
     management_details(entity) + 
