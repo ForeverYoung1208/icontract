@@ -11,6 +11,8 @@ class User < ApplicationRecord
   # has_many :roles, through: :roles_users
   has_and_belongs_to_many :roles
 
+  scope :all_with_any_role ->{ where roles.any? }
+
   attr_accessor :password
 
 

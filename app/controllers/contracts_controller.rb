@@ -35,6 +35,9 @@ class ContractsController < ApplicationController
     @types = Type.all
     @companies = Company.all
 
+    @responsible_users = User.all_with_any_role
+    @creator_users = [ @current_user ]
+
   end
 
   # GET /contracts/1/edit

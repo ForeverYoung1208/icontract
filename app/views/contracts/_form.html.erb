@@ -30,15 +30,14 @@
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :from_date, 'від (дата): ' %></div>
-      <div class="col-sm-3"><%= form.date_select :from_date, id: :contract_from_date %></div>
-    </div>
-
-    <div class="field row">
       <div class="col-sm-2 text-sm-right" > <%= form.label :sum, 'Сума договору: ' %></div>
       <div class="col-sm-3"><%= form.text_field :sum, id: :contract_sum %></div>
     </div>
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right" > <%= form.label :from_date, 'від (дата): ' %></div>
+      <div class="col-sm-3"><%= form.date_select :from_date, id: :contract_from_date %></div>
+    </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right" > <%= form.label :to_date, "діє до дати: " %></div>
@@ -79,12 +78,12 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :responsible_user_id, "Відповідальна особа:" %></div>
-      <div class="col-sm-3"><%= form.text_field :responsible_user_id, id: :contract_responsible_user_id %></div>
+      <div class="col-sm-3"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name %></div>      
     </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :creator_user_id, "Хто зареєстрував:" %></div>
-      <div class="col-sm-3"><%= form.text_field :creator_user_id, id: :contract_creator_user_id %></div>
+      <div class="col-sm-3"><%= form.collection_select :creator_user_id, @creator_users, :id, :name %></div>      
     </div>
 
     <div class="field row">
