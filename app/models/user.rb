@@ -57,7 +57,7 @@ class User < ApplicationRecord
   def self.all_with_any_role
     uids = RolesUser.all.pluck(:user_id)
 
-    find_all_by_id(uids)
+    self.where(id: uids)
 
   end
 
