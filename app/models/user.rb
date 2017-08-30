@@ -11,8 +11,7 @@ class User < ApplicationRecord
   # has_many :roles, through: :roles_users
   has_and_belongs_to_many :roles
 
-  scope :all_with_any_role ->{ where roles.any? }
-
+  
   attr_accessor :password
 
 
@@ -53,6 +52,13 @@ class User < ApplicationRecord
 
   def is_admin
     self.roles.active.pluck(:id).include?( ::ADMIN_ROLE_ID )
+  end
+
+  def self.all_with_any_role
+    uids = RolesUser.all.pluck(:user_id)
+
+    find_all_by_id(uids)
+
   end
 
   # attr_readonly :email, :name, :password_hash, :password_salt, :userlevel_id, :created_at, :updated_at, :company_id, :is_ip_controlled, :ip_address
