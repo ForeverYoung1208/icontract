@@ -32,18 +32,14 @@ class ContractsController < ApplicationController
   # GET /contracts/new
   def new
     @contract = Contract.new
-    @types = Type.all
-    @companies = Company.all
 
-    @responsible_users = User.all_with_any_role
-    @creator_users = [ @current_user ]
+    prepare_form_data
 
   end
 
   # GET /contracts/1/edit
   def edit
-    @types = Type.all
-    @companies = Company.all
+    prepare_form_data
 
   end
 
@@ -51,15 +47,17 @@ class ContractsController < ApplicationController
   # POST /contracts.json
   def create
     @contract = Contract.new(contract_params)
-    @types = Type.all
-    @companies = Company.all
+
 
     respond_to do |format|
       if @contract.save
         format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
         format.json { render :show, status: :created, location: @contract }
       else
-        format.html { render :new }
+        format.html do
+          prepare_form_data
+          render :new
+        end
         format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
     end
@@ -80,7 +78,10 @@ class ContractsController < ApplicationController
         format.html { redirect_to @contract, notice: 'Contract was successfully updated.' }
         format.json { render :show, status: :ok, location: @contract }
       else
-        format.html { render :edit }
+        format.html do
+          prepare_form_data
+          render :edit
+        end
         format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
     end
@@ -114,11 +115,18 @@ class ContractsController < ApplicationController
         .includes(:reminders)
     end
 
+    def prepare_form_data
+      @types = Type.all
+      @companies = Company.all
+      @responsible_users = User.all_with_any_role
+      @creator_users = [ @current_user ]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def contract_params
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
         :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, 
-        :responsible_user_id, :creator_user_id, {scanfiles: []})
+        :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []})
     end
 
 

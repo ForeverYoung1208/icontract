@@ -9,3 +9,5 @@ $(document).on 'turbolinks:load', ->
 				
 		});
 	$('[data-toggle="tooltip"]').tooltip()
+	$('input[type=file]').bootstrapFileInput();
+	$('.file-inputs').bootstrapFileInput();

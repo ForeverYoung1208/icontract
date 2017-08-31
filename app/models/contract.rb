@@ -12,6 +12,9 @@ class Contract < ApplicationRecord
   mount_uploaders :scanfiles, ScanContractUploader
   serialize :scanfiles, JSON
 
+  mount_uploaders :textfiles, TextContractUploader
+  serialize :textfiles, JSON
+
   def doctype 
   	'Договір'
   end

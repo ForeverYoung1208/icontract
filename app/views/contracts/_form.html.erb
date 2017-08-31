@@ -88,8 +88,27 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :scanfiles, "Сканокопія:" %></div>
-      <div class="col-sm-3"><%= form.file_field :scanfiles, multiple: true %></div>
+      <div class="col-sm-5">
+        <% if @contract.scanfiles %>      
+          <% @contract.scanfiles.each do |sf| %>
+            <%= link_to "file: #{ sf.file.filename} ", sf.url %>
+          <% end %>
+        <% end %> 
+        <%= form.file_field :scanfiles, title: 'Замінити на', multiple: true %></div>
     </div>
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right"><%= form.label :textfiles, "Шаблон/текст:" %></div>
+      <div class="col-sm-5">
+        <% if @contract.textfiles %>      
+          <% @contract.textfiles.each do |sf| %>
+            <%= link_to "file: #{ sf.file.filename} ", sf.url %>
+          <% end %>
+        <% else %>
+          <%= 'Інформації немає' %>
+        <% end %> 
+        <%= form.file_field :textfiles, title: 'Замінити на', multiple: true %></div>
+    </div>
+
   </div>
 
 

@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap.file-input
 //= require_tree .
