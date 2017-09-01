@@ -94,7 +94,7 @@
             <%= link_to "file: #{ sf.file.filename} ", sf.url %>
           <% end %>
         <% end %> 
-        <%= form.file_field :scanfiles, title: 'Замінити на', multiple: true %></div>
+        <%= form.file_field :scanfiles, title: 'Замінити', class: 'btn-info', multiple: true %></div>
     </div>
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :textfiles, "Шаблон/текст:" %></div>
@@ -106,7 +106,7 @@
         <% else %>
           <%= 'Інформації немає' %>
         <% end %> 
-        <%= form.file_field :textfiles, title: 'Замінити на', multiple: true %></div>
+        <%= form.file_field :textfiles, title: 'Замінити', class: 'btn-info', multiple: true %></div>
     </div>
 
   </div>
@@ -114,6 +114,8 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <div class="col-sm-2 text-sm-right">
+      <%= form.submit 'Зберегти', class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
