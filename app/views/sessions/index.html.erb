@@ -4,4 +4,10 @@
 	<% @current_user.roles.active.each do |role|%>
 		<%= tag.li role.name %>
 	<% end	%>
+
 </ul>
+
+<p>
+	Запустити перевірку подій
+  <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_all_reminders_contracts_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	
+</p>

@@ -80,6 +80,12 @@ class ContractsController < ApplicationController
 
   end
 
+  def check_all_reminders
+    @contract.check_reminders(params[:date])
+    redirect_to events_path, notice: "events for contract.id = #{@contract.id} created"
+
+  end
+
   # PATCH/PUT /contracts/1
   # PATCH/PUT /contracts/1.json
   def update
