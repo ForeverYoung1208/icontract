@@ -7,9 +7,12 @@
     </div> <!-- col -->
 
     <div class="col-sm-4">
-      <%= list_change_buttons( "listChange('#{all_contracts_path}')",
+
+      <%= 
+        # debugger
+        list_change_buttons( "listChange('#{all_contracts_path}')",
                                "listChange('#{mine_contracts_path}')", 
-                               @list_type[:all]==true ) 
+                               @list_type["all"] ) 
       %>
 
     </div> <!-- col -->

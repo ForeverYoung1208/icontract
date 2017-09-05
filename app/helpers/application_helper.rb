@@ -53,22 +53,22 @@ module ApplicationHelper
 
   def list_change_buttons(all_fn, mine_fn, is_all_checked)
 
-      content_tag("input", {
-        type: "radio",
-        name: "listType",
-        id: "radio-contracts-all",
-        onchange: all_fn,
-        checked: is_all_checked
-      }) {' всі що мені доступні'} +
-      tag.br + 
-      content_tag("input", {
-        type: "radio",
-        name: "listType",
-        id: "radio-contracts-mine" ,
-        onchange: mine_fn,
-        checked: !is_all_checked
-      }) {' тільки мої'}
-      
+    content_tag("input", {
+      type: "radio",
+      name: "listType",
+      id: "radio-contracts-all",
+      onchange: all_fn,
+      checked: is_all_checked
+    }) {' всі що мені доступні'} +
+    tag.br + 
+    content_tag("input", {
+      type: "radio",
+      name: "listType",
+      id: "radio-contracts-mine" ,
+      onchange: mine_fn,
+      checked: !is_all_checked
+    }) {' тільки мої'}
+    
   end
 
 

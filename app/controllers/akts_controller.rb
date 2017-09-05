@@ -5,19 +5,34 @@ class AktsController < ApplicationController
   # GET /akts
   # GET /akts.json
   def index
-    @list_type = {all: true}    
+
+    session[:akts_list_type]||= {"all" => true}
+    if session[:akts_list_type]["mine"]
+      redirect_to mine_akts_path and return
+    elsif session[:akts_list_type]["all"] 
+      redirect_to all_akts_path and return
+    else
+      raise Exception.new('Error with akts list')
+    end
+
+
+    # @list_type = {all: true}    
   end
 
 
   def all
-    @list_type = {all: true}
-    render '_akts_table', layout: false
+    session[:akts_list_type] = {"all" => true}
+    @list_type = session[:akts_list_type]
+
+    render 'index'
   end
 
   def mine
     @akts = @akts.where(:'contracts.responsible_user_id' => session[:current_user_id])
-    @list_type = {mine: true}    
-    render '_akts_table', layout: false
+
+    session[:akts_list_type] = {"mine" => true}
+    @list_type = session[:akts_list_type]    
+    render 'index'
   end
 
 

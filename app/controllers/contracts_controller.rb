@@ -6,22 +6,32 @@ class ContractsController < ApplicationController
   # GET /contracts
   # GET /contracts.json
   def index
-    @list_type = {all: true}
-    # allowed_users_ids = User.all.pluck(:id)
-    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
+    session[:contracts_list_type]||= {"all" => true}
+    if session[:contracts_list_type]["mine"]
+      redirect_to mine_contracts_path and return
+    elsif session[:contracts_list_type]["all"] 
+      redirect_to all_contracts_path and return
+    else
+      raise Exception.new('Error with contracts list')
+    end
+
   end
 
   def all
-    # allowed_users_ids = User.all.pluck(:id)
-    # @contracts = @contracts.where(responsible_user_id: allowed_users_ids)
-    @list_type = {all: true}
-    render '_contracts_table', layout: false
+    session[:contracts_list_type] = {"all" => true}
+
+    @list_type = session[:contracts_list_type]
+
+    render 'index'
   end
 
   def mine
     @contracts = @contracts.where("responsible_user_id = ?", session[:current_user_id])
-    @list_type = {mine: true}    
-    render '_contracts_table', layout: false
+
+    session[:contracts_list_type] = {"mine" => true}
+    @list_type = session[:contracts_list_type]
+
+    render 'index'
   end
 
   # GET /contracts/1
