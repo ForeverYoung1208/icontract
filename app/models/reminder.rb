@@ -29,15 +29,23 @@ class Reminder < ApplicationRecord
       raise "Помилка: Невідомий тип події"
     end
 
-    return Event.create!(
-      reminder: self,
-      user: reminderable.responsible_user,
-      is_sent: false,
-      to_send: true,
-      email_address: reminderable.responsible_user.email,
-      email_text: "Нагадування: #{message} для#{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")}, #{self.reminder_type.name} ",
-      on_date: needed_date
-    )  
+    begin
+      event = Event.create!(
+        reminder: self,
+        user: reminderable.responsible_user,
+        is_sent: false,
+        to_send: true,
+        email_address: reminderable.responsible_user.email,
+        email_text: "Нагадування: #{message} для#{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")}, #{self.reminder_type.name} ",
+        on_date: needed_date
+      )  
+    rescue ActiveRecord::RecordInvalid => err
+      # if err.message =~ /Validation failed.*/
+        
+      # end
+    ensure
+      return event
+    end
 
     
   end

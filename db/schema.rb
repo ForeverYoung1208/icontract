@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630121514) do
+ActiveRecord::Schema.define(version: 20170906115309) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170630121514) do
     t.date "on_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["reminder_id"], name: "index_events_on_reminder_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end

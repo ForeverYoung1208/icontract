@@ -1,0 +1,31 @@
+<table class="table" id="events-table">
+  <thead class="thead-default">
+    <tr>
+      <th>ID</th>
+      <th>Повідомлення reminder-а</th>
+      <th>Для користувача</th>
+      <th>Відправляти емейл? / Відправлений ? </th>
+      <th>Емейл адреса</th>
+      <th>Текст емейл-листа</th>
+      <th>Дата нагадування</th>
+      <th>Керування</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.id %></td>
+        <td><%= event.reminder.message %></td>
+        <td><%= event.user.name %></td>
+        <td><%= event.to_send.to_s+ ' / '+event.is_sent.to_s %></td>
+        <td><%= event.email_address %></td>
+        <td><%= event.email_text %></td>
+        <td><%= event.on_date %></td>
+
+        <td> <%= management_links( event ) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

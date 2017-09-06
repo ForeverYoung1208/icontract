@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
       i==0 ? scanned_contracts_ids+=contract.id.to_s : scanned_contracts_ids+=', '+contract.id.to_s
       
     end
-    redirect_to events_path, notice: "events for contract.id = #{scanned_contracts_ids} created"
+    redirect_to events_path, notice: "events for contract.id = #{scanned_contracts_ids} created (or already exists)"
 
   end
 
