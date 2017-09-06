@@ -1,13 +1,14 @@
 <p><h1>Вітаю, <%= @current_user.name%> </h1></p>
-<p>Ваші права у системі icontract:</p>
-<ul>
-	<% @current_user.roles.active.each do |role|%>
-		<%= tag.li role.name %>
-	<% end	%>
+<pre>Ваші права у системі icontract:
+	<ul>
+		<% @current_user.roles.active.each do |role|%>
+			<%= tag.li role.name %>
+		<% end	%>
 
-</ul>
+	</ul>
+</pre>
 
-<p>
-	Запустити перевірку подій
+<pre>	Запустити перевірку подій:
   <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_all_reminders_contracts_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	
-</p>
+
+</pre>

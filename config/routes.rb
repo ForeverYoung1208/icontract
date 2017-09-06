@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     member do
       post 'check_reminders'
     end
-    post 'check_all_reminders'
+    post 'check_all_reminders', on: :collection
     get 'all', on: :collection
     get 'mine', on: :collection
   end
