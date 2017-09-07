@@ -1,102 +1,123 @@
-<p id="notice"><%= notice %></p>
-  <div class="container-fluid">
+<div class="container-fluid">
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label 'Тип договору: ' %></div>
-      <div class="col-sm-3"><%= @contract.type.name %></div>
-    </div>
+  <div class="row">
+    <div class="col-sm-5">
 
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label 'Назва договору: ' %></div>
-      <div class="col-sm-3"><%= @contract.name %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label 'Номер: ' %></div>
-      <div class="col-sm-3"><%= @contract.number %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label 'Сума договору: ' %></div>
-      <div class="col-sm-3"><%= @contract.sum %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label 'від (дата): ' %></div>
-      <div class="col-sm-3"><%= @contract.from_date %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= tag.label "діє до дати: " %></div>
-      <div class="col-sm-3"><%= @contract.to_date %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"> <%= tag.label "діє до (умови): " %></div>
-      <div class="col-sm-3"><%= @contract.till %></div>
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Тип договору: ' %></div>
+        <div class="col-sm-7"><%= @contract.type.name %></div>
+      </div>
 
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label 'Платник' %></div>
-      <div class="col-sm-3"><%= @contract.payer.name %></div>
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Назва договору: ' %></div>
+        <div class="col-sm-7"><%= @contract.name %></div>
+      </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Отримувач" %></div>
-      <div class="col-sm-3"><%= @contract.recipient.name %></div>
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Номер: ' %></div>
+        <div class="col-sm-7"><%= @contract.number %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Сума договору: ' %></div>
+        <div class="col-sm-7"><%= @contract.sum %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'від (дата): ' %></div>
+        <div class="col-sm-7"><%= @contract.from_date %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label "діє до дати: " %></div>
+        <div class="col-sm-7"><%= @contract.to_date %></div>
+      </div>
+
+<!--       <div class="field row">
+        <div class="col-sm-5 text-sm-right"> <%= tag.label "діє до (умови): " %></div>
+        <div class="col-sm-7"><%= @contract.till %></div>
+      </div> -->
 
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Підписаний?" %></div>
-      <div class="col-sm-3"><%= @contract.is_signed %></div>
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label 'Платник' %></div>
+        <div class="col-sm-7"><%= @contract.payer.name %></div>
+      </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Активний?" %></div>
-      <div class="col-sm-3"><%= @contract.is_active %></div>
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Отримувач" %></div>
+        <div class="col-sm-7"><%= @contract.recipient.name %></div>
+      </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Видалений?" %></div>
-      <div class="col-sm-3"><%= @contract.is_deleted %></div>
-    </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Відповідальна особа:" %></div>
-      <div class="col-sm-3"><%= @contract.responsible_user.name %></div>      
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Підписаний?" %></div>
+        <div class="col-sm-7"><%= @contract.is_signed %></div>
+      </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Хто зареєстрував:" %></div>
-      <div class="col-sm-3"><%= @contract.creator_user.name %></div>      
-    </div>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Активний?" %></div>
+        <div class="col-sm-7"><%= @contract.is_active %></div>
+      </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Сканокопія:" %></div>
-      <div class="col-sm-3">
-        <% if @contract.scanfiles %>      
-          <% @contract.scanfiles.each do |sf| %>
-            <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
-          <% end %>
-        <% end %>        
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Видалений?" %></div>
+        <div class="col-sm-7"><%= @contract.is_deleted %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Відповідальна особа:" %></div>
+        <div class="col-sm-7"><%= @contract.responsible_user.name %></div>      
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Хто зареєстрував:" %></div>
+        <div class="col-sm-7"><%= @contract.creator_user.name %></div>      
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Сканокопія:" %></div>
+        <div class="col-sm-7">
+          <% if @contract.scanfiles %>      
+            <% @contract.scanfiles.each do |sf| %>
+              <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Шаблон/текст:" %></div>
+        <div class="col-sm-7">
+          <% if @contract.textfiles %>      
+            <% @contract.textfiles.each do |sf| %>
+              <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+      <div class="col-sm-12 text-sm-center">
+        <%= link_to 'Редагувати', edit_contract_path(@contract) %> |
+        <%= link_to 'Список договорів', contracts_path %>   
       </div>
     </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= tag.label "Шаблон/текст:" %></div>
-      <div class="col-sm-3">
-        <% if @contract.textfiles %>      
-          <% @contract.textfiles.each do |sf| %>
-            <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
-          <% end %>
-        <% end %>        
-      </div>
-    </div>
+    <div class="col-sm-7 pdf-area">
 
+      <% if @contract.scanfiles %>      
+        <% @contract.scanfiles.each do |sf| %>
+          <object data=" <%=  sf.url %>" type="application/pdf" width="750px" height="750px">
+            <embed src="<%=  sf.url %>" type="application/pdf">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <%= link_to sf.url%> Download PDF</a>.</p>
+            </embed>
+          </object>
+        <% end %>
+      <% end %>  
+
+    </div>
   </div>
+</div>    
 
-<%= link_to 'Редагувати', edit_contract_path(@contract) %> |
-<%= link_to 'Список договорів', contracts_path %>
+

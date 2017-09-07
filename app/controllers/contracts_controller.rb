@@ -149,7 +149,7 @@ class ContractsController < ApplicationController
     def contract_params
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
         :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, 
-        :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []})
+        :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles)
     end
 
 

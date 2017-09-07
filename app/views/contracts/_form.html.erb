@@ -15,86 +15,99 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right" > <%= form.label :type_id, 'Тип договору: ' %></div>
-      <div class="col-sm-3"><%= form.collection_select :type_id, @types, :id, :name %></div>
+      <div class="col-sm-2">
+        <%= form.collection_select :type_id, @types, :id, :name %>
+      </div>
+    </div>
+
+    <div class="field row">
+      
+      <div class="col-sm-2 text-sm-right" ><%= form.label :name, 'Назва договору: ' %></div>
+      <div class="col-sm-8">
+        <%= form.text_field :name, id: :contract_name %>
+
+        <%= form.label :number, 'Номер: ' %>
+        <%= form.text_field :number, id: :contract_number %>
+          
+      </div>
     </div>
 
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :name, 'Назва договору: ' %></div>
-      <div class="col-sm-3"><%= form.text_field :name, id: :contract_name %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :number, 'Номер: ' %></div>
-      <div class="col-sm-3"><%= form.text_field :number, id: :contract_number %></div>
+      <div class="col-sm-2 text-sm-right" > <%= form.label :from_date, 'Від (дата): ' %></div>
+      <div class="col-sm-2">
+        <%= form.date_select :from_date, id: :contract_from_date %>
+      </div>
+      <div class="col-sm-8">        
+        <%= form.label :to_date, "Діє до дати: " %>
+        <%= form.date_select :to_date, id: :contract_to_date %>
+      </div>
     </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right" > <%= form.label :sum, 'Сума договору: ' %></div>
-      <div class="col-sm-3"><%= form.text_field :sum, id: :contract_sum %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :from_date, 'від (дата): ' %></div>
-      <div class="col-sm-3"><%= form.date_select :from_date, id: :contract_from_date %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :to_date, "діє до дати: " %></div>
-      <div class="col-sm-3"><%= form.date_select :to_date, id: :contract_to_date %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"> <%= form.label :till, "діє до (умови): " %></div>
-      <div class="col-sm-3"><%= form.text_field :till, id: :contract_till %></div>
+      <div class="col-sm-6"><%= form.text_field :sum, id: :contract_sum %></div>
     </div>
 
 
+<!--     <div class="field row">
+      <div class="col-sm-2 text-sm-right"> <%= form.label :till, "Діє до (умови): " %></div>
+      <div class="col-sm-6"><%= form.text_field :till, id: :contract_till %></div>
+    </div> -->
+
+
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :payer_id, 'Платник' %></div>
-      <div class="col-sm-3"><%= form.collection_select :payer_id, @companies, :id, :name %></div>
+      <div class="col-sm-2 text-sm-right"><%= form.label :payer_id, 'Платник:' %></div>
+      <div class="col-sm-6"><%= form.collection_select :payer_id, @companies, :id, :name %></div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :recipient_id, "Отримувач" %></div>
-      <div class="col-sm-3"><%= form.collection_select :recipient_id, @companies, :id, :name %></div>
+      <div class="col-sm-2 text-sm-right"><%= form.label :recipient_id, "Отримувач:" %></div>
+      <div class="col-sm-6"><%= form.collection_select :recipient_id, @companies, :id, :name %></div>
     </div>
 
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_signed, "Підписаний?" %></div>
-      <div class="col-sm-3"><%= form.check_box :is_signed, id: :contract_is_signed %></div>
+      <div class="col-sm-2 text-sm-right"><%= form.label :is_signed, "Підписаний?:" %></div>
+      <div class="col-sm-6"><%= form.check_box :is_signed, id: :contract_is_signed %></div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_active, "Активний?" %></div>
-      <div class="col-sm-3"><%= form.check_box :is_active, id: :contract_is_active %></div>
+      <div class="col-sm-2 text-sm-right"><%= form.label :is_active, "Активний?:" %></div>
+      <div class="col-sm-6"><%= form.check_box :is_active, id: :contract_is_active %></div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_deleted, "Видалений?" %></div>
-      <div class="col-sm-3"><%= form.check_box :is_deleted, id: :contract_is_deleted %></div>
+      <div class="col-sm-2 text-sm-right"><%= form.label :is_deleted, "Видалений?:" %></div>
+      <div class="col-sm-6"><%= form.check_box :is_deleted, id: :contract_is_deleted %></div>
     </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :responsible_user_id, "Відповідальна особа:" %></div>
-      <div class="col-sm-3"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name %></div>      
+      <div class="col-sm-6"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name %></div>      
     </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :creator_user_id, "Хто зареєстрував:" %></div>
-      <div class="col-sm-3"><%= form.collection_select :creator_user_id, @creator_users, :id, :name %></div>      
+      <div class="col-sm-6"><%= form.collection_select :creator_user_id, @creator_users, :id, :name %></div>      
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :scanfiles, "Сканокопія:" %></div>
+      <div class="col-sm-2 text-sm-right">
+        <%= form.label :scanfiles do  %>
+           Сканокопія:
+        <% end %>
+      </div>
       <div class="col-sm-5">
         <% if @contract.scanfiles %>      
           <% @contract.scanfiles.each do |sf| %>
             <%= link_to "file: #{ sf.file.filename} ", sf.url %>
           <% end %>
         <% end %> 
-        <%= form.file_field :scanfiles, title: 'Замінити', class: 'btn-info', multiple: true %></div>
+        <%= form.file_field :scanfiles, title: 'Замінити', class: 'btn-info', multiple: true %>
+        <br/> <%= form.check_box :remove_scanfiles %> Очистити (видалити) всі скани  
+      </div>
+
     </div>
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :textfiles, "Шаблон/текст:" %></div>
@@ -106,7 +119,9 @@
         <% else %>
           <%= 'Інформації немає' %>
         <% end %> 
-        <%= form.file_field :textfiles, title: 'Замінити', class: 'btn-info', multiple: true %></div>
+        <%= form.file_field :textfiles, title: 'Замінити', class: 'btn-info', multiple: true %>
+        <br/> <%= form.check_box :remove_textfiles %> Очистити (видалити) всі шаблони/тексти
+      </div>
     </div>
 
   </div>

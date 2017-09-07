@@ -3,7 +3,7 @@
     <tr>
       <th>ID</th>
 
-      <th>Тип, нйменування, номер, сума, від дати, до дати (дісний до)</th>
+      <th>Тип, нйменування, номер, сума, від дати, до дати</th>
 
       <th>Платник, 
       отримувач</th>
@@ -30,8 +30,8 @@
         № <%= contract.number %>, 
         на <%= contract.sum %> грн., 
         від <%= contract.from_date.strftime("%d.%m.%Y") %>, 
-        до <%= contract.to_date.strftime("%d.%m.%Y") %>, 
-        (<%= contract.till %>)</td>
+        до <%= contract.to_date.strftime("%d.%m.%Y") %>
+        </td>
 
         <td> 
           <p> <b>платник:</b> <%= contract.payer.name %> </p>
