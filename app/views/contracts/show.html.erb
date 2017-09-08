@@ -27,12 +27,12 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'від (дата): ' %></div>
-        <div class="col-sm-7"><%= @contract.from_date %></div>
+        <div class="col-sm-7"><%= @contract.from_date.strftime("%d.%m.%Y") %></div>
       </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label "діє до дати: " %></div>
-        <div class="col-sm-7"><%= @contract.to_date %></div>
+        <div class="col-sm-7"><%= @contract.to_date.strftime("%d.%m.%Y") %></div>
       </div>
 
 <!--       <div class="field row">

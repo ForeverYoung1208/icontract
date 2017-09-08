@@ -129,6 +129,8 @@ class ContractsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
       @contract = Contract.find(params[:id])
+      @contract.from_date = @contract.from_date.strftime("%d.%m.%Y")
+      @contract.to_date = @contract.to_date.strftime("%d.%m.%Y")
       
     end
 
