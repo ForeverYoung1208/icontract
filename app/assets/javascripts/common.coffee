@@ -12,3 +12,12 @@ $(document).on 'turbolinks:load', ->
 	$('[data-toggle="tooltip"]').tooltip()
 	$('input[type=file]').bootstrapFileInput();
 	$('.file-inputs').bootstrapFileInput();
+	$('.datepicker').datepicker({
+		format: "dd.mm.yyyy",
+		todayBtn: "linked",
+		clearBtn: true,
+		autoclose: true,
+		todayHighlight: true,		
+		language: "ua",
+		orientation: "bottom right"
+	});

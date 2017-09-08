@@ -38,11 +38,11 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :from_date, 'Від (дата): ' %></div>
       <div class="col-sm-2">
-        <%= form.text_field :from_date, id: :contract_from_date, class: "form-control" %>
+        <%= form.text_field :from_date, id: :contract_from_date, class: "form-control datepicker" %>
       </div>
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :to_date, "Діє до дати: " %></div>
       <div class="col-sm-2">
-        <%= form.text_field :to_date, id: :contract_to_date, class: "form-control" %>
+        <%= form.text_field :to_date, id: :contract_to_date, class: "form-control datepicker" %>
       </div>
     </div>
 
