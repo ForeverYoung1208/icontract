@@ -113,10 +113,15 @@ class ContractsController < ApplicationController
   # DELETE /contracts/1
   # DELETE /contracts/1.json
   def destroy
-    @contract.destroy
     respond_to do |format|
-      format.html { redirect_to contracts_url, notice: 'Contract was successfully destroyed.' }
-      format.json { head :no_content }
+      if @contract.update(deleted_at: DateTime.now)
+      # @contract.destroy
+        format.html { redirect_to contracts_url, notice: 'Договір видалений' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to contracts_url, notice: "Помилка видляння. Договір не видалений #{@contract.errors}" }
+        format.json { render json: @contract.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -129,7 +134,7 @@ class ContractsController < ApplicationController
 
     def set_contracts
       # @contracts = Contract.all.includes(:type)
-      @contracts = Contract.where(id: @current_user.allowed_users_ids)
+      @contracts = Contract.where(responsible_user_id: @current_user.allowed_users_ids)
         .includes(:type)
         .includes(:responsible_user)
         .includes(:creator_user)
@@ -148,7 +153,7 @@ class ContractsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def contract_params
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
-        :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active, :is_deleted, 
+        :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active,
         :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles)
     end
 

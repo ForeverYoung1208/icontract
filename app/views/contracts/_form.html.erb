@@ -11,42 +11,44 @@
     </div>
   <% end %>
 
-  <div class="container-fluid">
+  <div class="container-fluid contract-form">
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :type_id, 'Тип договору: ' %></div>
+      <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :type_id, 'Тип договору: ' %></div>
       <div class="col-sm-2">
-        <%= form.collection_select :type_id, @types, :id, :name %>
+        <%= form.collection_select :type_id, @types, :id, :name, {}, {class: "form-control"} %>
       </div>
     </div>
 
     <div class="field row">
       
-      <div class="col-sm-2 text-sm-right" ><%= form.label :name, 'Назва договору: ' %></div>
-      <div class="col-sm-8">
-        <%= form.text_field :name, id: :contract_name %>
-
-        <%= form.label :number, 'Номер: ' %>
-        <%= form.text_field :number, id: :contract_number %>
-          
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :name, 'Назва договору: ' %></div>
+      <div class="col-sm-3">
+        <%= form.text_field :name, id: :contract_name, class: "form-control" %>
       </div>
-    </div>
 
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :from_date, 'Від (дата): ' %></div>
+      <div class="col-sm-1 text-sm-right col-form-label" >  <%= form.label :number, 'Номер: ' %></div>
       <div class="col-sm-2">
-        <%= form.date_select :from_date, id: :contract_from_date %>
+        <%= form.text_field :number, id: :contract_number, class: "form-control" %>
       </div>
-      <div class="col-sm-8">        
-        <%= form.label :to_date, "Діє до дати: " %>
-        <%= form.date_select :to_date, id: :contract_to_date %>
+      </div>
+    </div>
+
+
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :from_date, 'Від (дата): ' %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :from_date, id: :contract_from_date, class: "form-control" %>
+      </div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :to_date, "Діє до дати: " %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :to_date, id: :contract_to_date, class: "form-control" %>
       </div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right" > <%= form.label :sum, 'Сума договору: ' %></div>
-      <div class="col-sm-6"><%= form.text_field :sum, id: :contract_sum %></div>
+      <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :sum, 'Сума договору: ' %></div>
+      <div class="col-sm-2"><%= form.text_field :sum, id: :contract_sum, class: "form-control" %></div>
     </div>
 
 
@@ -75,11 +77,6 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :is_active, "Активний?:" %></div>
       <div class="col-sm-6"><%= form.check_box :is_active, id: :contract_is_active %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_deleted, "Видалений?:" %></div>
-      <div class="col-sm-6"><%= form.check_box :is_deleted, id: :contract_is_deleted %></div>
     </div>
 
     <div class="field row">

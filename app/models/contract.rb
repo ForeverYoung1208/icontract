@@ -15,12 +15,18 @@ class Contract < ApplicationRecord
   mount_uploaders :textfiles, TextContractUploader
   serialize :textfiles, JSON
 
+  default_scope { where("deleted_at IS NULL")}
+
   def doctype 
   	'Договір'
   end
 
   def check_reminders( given_date )
     reminders.each { |r| r.generate_next_event(given_date) }
+  end
+
+  def is_deleted
+    return deleted_at != nil
   end
 
 

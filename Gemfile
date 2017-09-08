@@ -42,6 +42,7 @@ gem 'tether-rails'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass'
 gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
 
 ###
 

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = @current_user.id
 
     else
-      msg = @current_user ? "Невірний IP. Має бути #{ user.ip_address }, отримано #{ request.remote_ip }" :  "невірне ім’я або пароль"
+      msg = @current_user ? "Невірний IP. Має бути #{ @current_user.ip_address }, отримано #{ request.remote_ip }" :  "невірне ім’я або пароль"
       destroy msg
     end
   end
