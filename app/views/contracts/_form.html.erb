@@ -59,8 +59,8 @@
 
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :payer_id, 'Платник:' %></div>
-      <div class="col-sm-6"><%= form.collection_select :payer_id, @companies, :id, :name %></div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :payer_id, 'Платник:' %></div>
+      <div class="col-sm-2"><%= form.collection_select :payer_id, @companies, :id, :name, {}, {class: "form-control"} %></div>
     </div>
 
     <div class="field row">
