@@ -2,6 +2,9 @@ class Reminder < ApplicationRecord
   belongs_to :reminder_type
   belongs_to :reminderable, polymorphic: true, optional: true
   has_many :events
+  has_many :akts
+
+  default_scope { where("deleted_at IS NULL")}
 
   def check
   end

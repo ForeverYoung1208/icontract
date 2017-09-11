@@ -1,29 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Reminders</h1>
+<h1>Нагадування</h1>
 
 <table class="table">
   <thead class="thead-default">
     <tr>
       <th>ID</th>
-      <th>Type</th>
-      <th>Message</th>
-      <th>Dd</th>
-      <th>Mm</th>
-      <th>Yyyy</th>
-      <th>Dofw</th>
-      <th>Moq</th>
-      <th>Begins</th>
-      <th>Ends</th>
-      <th>Is active</th>
-      <th colspan="3"></th>
+      <th>Документ (тип, номер, ID)</th>
+      <th>Відповідальний</th>
+      <th>Тип</th>
+      <th>Повідомлення</th>
+      <th>День</th>
+      <th>Місяць</th>
+      <th>Рік</th>
+      <th>День тижня</th>
+      <th>Місяць кварталу</th>
+      <th>Початок</th>
+      <th>Кінець</th>
+      <th>Чи активне?</th>
+      <th>Керування</th>
     </tr>
   </thead>
 
   <tbody>
     <% @reminders.each do |reminder| %>
       <tr>
-        <td><%= reminder.id %></td>
+        <td>
+          <%= reminder.id %>
+        </td>
+
+        <% if reminder.reminderable %>
+          <td><%= reminder.reminderable.doctype %></td>
+          <td><%= reminder.reminderable.responsible_user.name %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
+
         <td><%= reminder.reminder_type.name %></td>
         <td><%= reminder.message%></td>
         <td><%= reminder.dd %></td>
@@ -34,9 +47,7 @@
         <td><%= reminder.begins %></td>
         <td><%= reminder.ends %></td>
         <td><%= reminder.is_active %></td>
-        <td><%= link_to 'Show', reminder %></td>
-        <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
-        <td><%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= management_links(reminder) %></td>
       </tr>
     <% end %>
   </tbody>

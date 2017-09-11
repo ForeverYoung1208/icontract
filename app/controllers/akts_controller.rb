@@ -28,6 +28,9 @@ class AktsController < ApplicationController
   end
 
   def mine
+
+    #I think in future akt will have its own responsible user    
+    #look also at akt.rb
     @akts = @akts.where(:'contracts.responsible_user_id' => session[:current_user_id])
 
     session[:akts_list_type] = {"mine" => true}

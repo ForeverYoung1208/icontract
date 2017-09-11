@@ -93,6 +93,21 @@
           <% end %>        
         </div>
       </div>
+
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні нагадування:" %></div>
+        <div class="col-sm-7">
+          <% if @contract.reminders %>      
+            <% @contract.reminders.each do |r| %>
+              <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
+
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+
+
       <div class="col-sm-12 text-sm-center">
         <%= link_to 'Редагувати', edit_contract_path(@contract) %> |
         <%= link_to 'Список договорів', contracts_path %>   
@@ -105,7 +120,8 @@
         <% @contract.scanfiles.each do |sf| %>
           <object data=" <%=  sf.url %>" type="application/pdf" width="750px" height="750px">
             <embed src="<%=  sf.url %>" type="application/pdf">
-                <p>This browser does not support PDFs. Please download the PDF to view it: <%= link_to sf.url%> Download PDF</a>.</p>
+                Не можу відобразити файл  <%= link_to sf.url%>
+                Або цьго файлу не існує в архиві, або браузер не підтримує відображення pdf
             </embed>
           </object>
         <% end %>

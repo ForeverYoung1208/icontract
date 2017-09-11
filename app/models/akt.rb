@@ -7,4 +7,8 @@ class Akt < ApplicationRecord
   	'Акт'
   end
 
+  #I think in future akt will have its own responsible user
+  #look also at akts_controller#mine
+  delegate :responsible_user, to: :contract
+  
 end

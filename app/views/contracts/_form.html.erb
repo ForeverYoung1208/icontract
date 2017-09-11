@@ -14,7 +14,7 @@
   <div class="container-fluid contract-form">
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :type_id, 'Тип договору: ' %></div>
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :type_id, 'Тип договору: ' %></div>
       <div class="col-sm-2">
         <%= form.collection_select :type_id, @types, :id, :name, {}, {class: "form-control"} %>
       </div>
@@ -27,16 +27,15 @@
         <%= form.text_field :name, id: :contract_name, class: "form-control" %>
       </div>
 
-      <div class="col-sm-1 text-sm-right col-form-label" >  <%= form.label :number, 'Номер: ' %></div>
+      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :number, 'Номер: ' %></div>
       <div class="col-sm-2">
         <%= form.text_field :number, id: :contract_number, class: "form-control" %>
-      </div>
       </div>
     </div>
 
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :from_date, 'Від (дата): ' %></div>
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :from_date, 'Від (дата): ' %></div>
       <div class="col-sm-2">
         <%= form.text_field :from_date, id: :contract_from_date, class: "form-control datepicker" %>
       </div>
@@ -61,32 +60,30 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :payer_id, 'Платник:' %></div>
       <div class="col-sm-2"><%= form.collection_select :payer_id, @companies, :id, :name, {}, {class: "form-control"} %></div>
-    </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :recipient_id, "Отримувач:" %></div>
-      <div class="col-sm-6"><%= form.collection_select :recipient_id, @companies, :id, :name %></div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :recipient_id, "Отримувач:" %></div>
+      <div class="col-sm-2"><%= form.collection_select :recipient_id, @companies, :id, :name, {}, {class: "form-control"}  %></div>
     </div>
 
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_signed, "Підписаний?:" %></div>
-      <div class="col-sm-6"><%= form.check_box :is_signed, id: :contract_is_signed %></div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_signed, "Підписаний?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_signed, id: :contract_is_signed %></div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :is_active, "Активний?:" %></div>
-      <div class="col-sm-6"><%= form.check_box :is_active, id: :contract_is_active %></div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_active, "Активний?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_active, id: :contract_is_active %></div>
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :responsible_user_id, "Відповідальна особа:" %></div>
-      <div class="col-sm-6"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name %></div>      
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :responsible_user_id, "Відповідальна особа:" %></div>
+      <div class="col-sm-3"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name, {}, {class: "form-control"} %></div>      
     </div>
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right"><%= form.label :creator_user_id, "Хто зареєстрував:" %></div>
-      <div class="col-sm-6"><%= form.collection_select :creator_user_id, @creator_users, :id, :name %></div>      
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :creator_user_id, "Хто зареєстрував:" %></div>
+      <div class="col-sm-3"><%= form.collection_select :creator_user_id, @creator_users, :id, :name, {}, {class: "form-control"} %></div>      
     </div>
 
     <div class="field row">
@@ -113,12 +110,22 @@
           <% @contract.textfiles.each do |sf| %>
             <%= link_to "file: #{ sf.file.filename} ", sf.url %>
           <% end %>
-        <% else %>
-          <%= 'Інформації немає' %>
         <% end %> 
         <%= form.file_field :textfiles, title: 'Замінити', class: 'btn-info', multiple: true %>
         <br/> <%= form.check_box :remove_textfiles %> Очистити (видалити) всі шаблони/тексти
       </div>
+    </div>
+
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right">  <%= form.label :reminders, "Пов’язані нагадування: "%> </div>
+      <% if @contract.reminders %>
+        <% @contract.reminders.each do |r| %>
+          <div class="col-sm-1">
+            <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
+            <%= management_links( r )%>
+          </div>
+        <% end %>
+      <% end %>
     </div>
 
   </div>

@@ -1,4 +1,10 @@
-<h1>Редагування договору</h1>
+<div class="container-fluid contract-form">
+	<div class="field row">
+		<div class="col-sm-2 text-sm-right">arrow_left</div>
+		<div class="col-sm-3 text-sm-center"><h2> Редагування договору (<%= @contract.id %>)</h2></div>
+		<div class="col-sm-2 text-sm-left">arrow_right</div>
+	</div>
+</div>
 
 <%= render 'form', contract: @contract %>
 

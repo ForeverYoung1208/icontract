@@ -60,10 +60,16 @@ class RemindersController < ApplicationController
   # DELETE /reminders/1
   # DELETE /reminders/1.json
   def destroy
-    @reminder.destroy
+    # @reminder.destroy
+
     respond_to do |format|
-      format.html { redirect_to reminders_url, notice: 'Reminder was successfully destroyed.' }
-      format.json { head :no_content }
+      if @reminder.update(deleted_at: DateTime.now)      
+        format.html { redirect_back(fallback_location: reminders_url, notice: 'Нагадування видалено') }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to reminders_url, notice: "Помилка видляння. Нагадування не видалено #{@contract.errors}" }
+        format.json { render json: @reminder.errors, status: :unprocessable_entity }
+      end      
     end
   end
 
