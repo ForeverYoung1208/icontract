@@ -1,58 +1,36 @@
 <p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row justify-content-start align-items-end">
+    <div class="col-sm-4 text-sm-right">
+      
+      <h1>Нагадування</h1>
+    </div> <!-- col -->
 
-<h1>Нагадування</h1>
+    <div class="col-sm-4">
 
-<table class="table">
-  <thead class="thead-default">
-    <tr>
-      <th>ID</th>
-      <th>Документ (тип, номер, ID)</th>
-      <th>Відповідальний</th>
-      <th>Тип</th>
-      <th>Повідомлення</th>
-      <th>День</th>
-      <th>Місяць</th>
-      <th>Рік</th>
-      <th>День тижня</th>
-      <th>Місяць кварталу</th>
-      <th>Початок</th>
-      <th>Кінець</th>
-      <th>Чи активне?</th>
-      <th>Керування</th>
-    </tr>
-  </thead>
+      <%= 
+        # debugger
+        list_change_buttons( "listChange('#{all_reminders_path}')",
+                               "listChange('#{mine_reminders_path}')", 
+                               @list_type["all"] ) 
+      %>
 
-  <tbody>
-    <% @reminders.each do |reminder| %>
-      <tr>
-        <td>
-          <%= reminder.id %>
-        </td>
+    </div> <!-- col -->
+  </div> <!-- row -->
 
-        <% if reminder.reminderable %>
-          <td><%= reminder.reminderable.doctype %></td>
-          <td><%= reminder.reminderable.responsible_user.name %></td>
-        <% else %>
-          <td></td>
-          <td></td>
-        <% end %>
+  <div class="row">
+    <div class="col-sm-12" id="data-container">
 
-        <td><%= reminder.reminder_type.name %></td>
-        <td><%= reminder.message%></td>
-        <td><%= reminder.dd %></td>
-        <td><%= reminder.mm %></td>
-        <td><%= reminder.yyyy %></td>
-        <td><%= reminder.dofw %></td>
-        <td><%= reminder.moq %></td>
-        <td><%= reminder.begins %></td>
-        <td><%= reminder.ends %></td>
-        <td><%= reminder.is_active %></td>
-        <td><%= management_links(reminder) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%= render 'reminders_table' %>
+      
+    </div> <!-- col -->
+  </div> <!-- row -->
 
-<br>
 
-<%= link_to 'New Reminder', new_reminder_path %>
+  <div class="row">
+    <div class="col-sm-12">
+      <pre> Нагадування можна додавати через інтерфейс договора</pre>
+    </div> <!-- col -->
+  </div> <!-- row -->
+
+</div>

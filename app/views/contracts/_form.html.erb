@@ -126,6 +126,11 @@
           </div>
         <% end %>
       <% end %>
+
+      <div class="col-sm-2">  
+        <%= fa_link_to('-plus fa-2x', new_reminder_path(contract_id: @contract.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} %> 
+      </div>
+
     </div>
 
   </div>

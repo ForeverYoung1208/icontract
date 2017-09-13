@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :reminder_types
-  resources :reminders
+  resources :reminders do 
+    get 'all', on: :collection
+    get 'mine', on: :collection
+  end
   resources :companies
   resources :types
 

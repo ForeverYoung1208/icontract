@@ -1,10 +1,20 @@
 class RemindersController < ApplicationController
   before_action :set_reminder, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_reminders, only: [:index, :all, :mine]
+
   # GET /reminders
   # GET /reminders.json
   def index
-    @reminders = Reminder.all
+    session[:reminders_list_type]||= {"all" => true}
+    if session[:reminders_list_type]["mine"]
+      redirect_to mine_reminders_path and return
+    elsif session[:reminders_list_type]["all"] 
+      redirect_to all_reminders_path and return
+    else
+      raise Exception.new('Error with reminders list')
+    end
+
   end
 
   # GET /reminders/1
@@ -17,7 +27,7 @@ class RemindersController < ApplicationController
     @reminder_types = ReminderType.all
     contract = Contract.find( params[:contract_id] )
 
-    @reminder = Reminder.new( reminderable: contract)
+    @reminder = Reminder.new( reminderable: contract, user: contract.responsible_user)
 
   end
 
@@ -73,11 +83,32 @@ class RemindersController < ApplicationController
     end
   end
 
+
+  def all
+    session[:reminders_list_type] = {"all" => true}
+    @list_type = session[:reminders_list_type]
+    render 'index'
+  end
+
+  def mine
+    @reminders = @reminders.where("user_id = ?", session[:current_user_id])
+    session[:reminders_list_type] = {"mine" => true}
+    @list_type = session[:reminders_list_type]
+    render 'index'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_reminders
+      @reminders = Reminder.all.where(:'user_id' => @current_user.allowed_users_ids)
+    end
+
+
     def set_reminder
       @reminder = Reminder.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
