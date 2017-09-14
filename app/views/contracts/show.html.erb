@@ -1,4 +1,16 @@
 <div class="container-fluid">
+  <div class="field row">
+    <div class="col-sm-2 text-sm-right">
+      <%= fa_link_to('-arrow-left', contract_path(@contract.previous), class: "management-button") {"Попередній"} if @contract.previous %>
+    </div>
+    <div class="col-sm-3 text-sm-center"><h2> Перегляд договору ( id: <%= @contract.id %>)</h2></div>
+    <div class="col-sm-2 text-sm-left">
+      <%= fa_link_to('-arrow-right', contract_path(@contract.next), class: "management-button") {"Наступний"} if @contract.next%>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
 
   <div class="row">
     <div class="col-sm-5">

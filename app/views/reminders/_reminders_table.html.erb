@@ -26,8 +26,13 @@
         </td>
 
         <% if reminder.reminderable %>
-          <td><%= reminder.reminderable.doctype %></td>
-          <td><%= reminder.reminderable.responsible_user.name %></td>
+          <td>
+            <%= reminder.reminderable.doctype %>,
+            №<%= reminder.reminderable.number %> 
+            (id: <%= reminder.reminderable.id %>)
+            
+          </td>
+          <td><%= reminder.user.name %></td>
         <% else %>
           <td></td>
           <td></td>

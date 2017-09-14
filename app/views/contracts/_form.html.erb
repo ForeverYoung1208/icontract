@@ -47,7 +47,13 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :sum, 'Сума договору: ' %></div>
-      <div class="col-sm-2"><%= form.text_field :sum, id: :contract_sum, class: "form-control" %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :sum, id: :contract_sum, class: "form-control" %>
+      </div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :sum_detail, "грн. разово/ на рік/ на місяць/ інше: " %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :sum_detail, id: :contract_sum_detail, class: "form-control" %>
+      </div>      
     </div>
 
 
@@ -128,7 +134,13 @@
       <% end %>
 
       <div class="col-sm-2">  
-        <%= fa_link_to('-plus fa-2x', new_reminder_path(contract_id: @contract.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} %> 
+        <%= 
+          if @contract.id
+            fa_link_to('-plus fa-2x', new_reminder_path(contract_id: @contract.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} 
+          else
+            "Для створення нагадування спочатку збережіть договір"
+          end
+        %> 
       </div>
 
     </div>

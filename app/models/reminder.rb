@@ -5,7 +5,7 @@ class Reminder < ApplicationRecord
   has_many :events
 
   # wtf???
-  has_many :akts
+  # has_many :akts
 
   default_scope { where("deleted_at IS NULL")}
 
@@ -42,7 +42,7 @@ class Reminder < ApplicationRecord
         is_sent: false,
         to_send: true,
         email_address: user.email,
-        email_text: "Нагадування: #{message} для#{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")}, #{self.reminder_type.name} ",
+        email_text: "Нагадування: #{message} для #{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")} (id: #{reminderable.id}), #{self.reminder_type.name} ",
         on_date: needed_date
       )  
     rescue ActiveRecord::RecordInvalid => err

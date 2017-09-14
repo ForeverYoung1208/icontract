@@ -1,8 +1,12 @@
 <div class="container-fluid contract-form">
 	<div class="field row">
-		<div class="col-sm-2 text-sm-right">arrow_left</div>
-		<div class="col-sm-3 text-sm-center"><h2> Редагування договору (<%= @contract.id %>)</h2></div>
-		<div class="col-sm-2 text-sm-left">arrow_right</div>
+		<div class="col-sm-2 text-sm-right">
+			<%= fa_link_to('-arrow-left', edit_contract_path(@contract.previous), class: "management-button") {"Попередній"} if @contract.previous %>
+		</div>
+		<div class="col-sm-3 text-sm-center"><h2> Редагування договору ( id: <%= @contract.id %>)</h2></div>
+		<div class="col-sm-2 text-sm-left">
+			<%= fa_link_to('-arrow-right', edit_contract_path(@contract.next), class: "management-button") {"Наступний"} if @contract.next%>
+		</div>
 	</div>
 </div>
 
