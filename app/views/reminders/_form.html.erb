@@ -11,70 +11,83 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= form.label :reminder_type_id %>
-    <%= form.collection_select :reminder_type_id, @reminder_types, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_area :message, id: :reminder_message %>
-  </div>
+  <div class="container-fluid remnder-form">
 
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :reminder_type_id, 'Тип нагадування: ' %></div>
+      <div class="col-sm-2">
+        <%= form.collection_select :reminder_type_id, @reminder_types, :id, :name, {}, {class: "form-control"} %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :dd %>
-    <%= form.text_field :dd, id: :reminder_dd %>
-  </div>
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :message, 'Зміст нагадування: ' %></div>
+      <div class="col-sm-3">
+        <%= form.text_area :message, id: :reminder_message, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :mm %>
-    <%= form.text_field :mm, id: :reminder_mm %>
-  </div>
-
-  <div class="field">
-    <%= form.label :yyyy %>
-    <%= form.text_field :yyyy, id: :reminder_yyyy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dofw %>
-    <%= form.text_field :dofw, id: :reminder_dofw %>
-  </div>
-
-  <div class="field">
-    <%= form.label :moq %>
-    <%= form.text_field :moq, id: :reminder_moq %>
-  </div>
-
-  <div class="field">
-    <%= form.label :begins %>
-    <%= form.date_select :begins, id: :reminder_begins %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ends %>
-    <%= form.date_select :ends, id: :reminder_ends %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active, id: :reminder_is_active %>
-  </div>
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :dd, 'день: ' %></div>
+      <div class="col-sm-1">
+        <%= form.text_field :dd, id: :reminder_dd, class: "form-control" %>
+      </div>
 
 
-  <div class="field">
-    <%= form.label :reminderable_id %>
-    <%= form.text_field :reminderable_id, id: :reminder_reminderable_type %>
-  </div>
-  <div class="field">
-    <%= form.label :reminderable_type %>
-    <%= form.text_field :reminderable_type, id: :reminder_reminderable_type %>
-  </div>
+      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :mm, 'місяць: ' %></div>
+      <div class="col-sm-1">
+        <%= form.text_field :mm, id: :reminder_mm, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+
+      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :yyyy, 'рік: ' %></div>
+      <div class="col-sm-1">
+        <%= form.text_field :yyyy, id: :reminder_yyyy, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field row">
+
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :dofw, 'день тижня: ' %></div>
+      <div class="col-sm-1">
+        <%= form.text_field :dofw, id: :reminder_dofw, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :begins, 'Діє від (дата): ' %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :begins, id: :reminder_begins, class: "form-control datepicker" %>
+      </div>
+
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :ends, "Діє до дати: " %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :ends, id: :reminder_ends, class: "form-control datepicker" %>
+      </div>
+    </div>
+
+
+
+    <div class="field">
+      <%= form.label :is_active %>
+      <%= form.check_box :is_active, id: :reminder_is_active %>
+    </div>
+
+
+    <div class="field">
+      <%= form.label :reminderable_id %>
+      <%= form.text_field :reminderable_id, id: :reminder_reminderable_type %>
+    </div>
+    <div class="field">
+      <%= form.label :reminderable_type %>
+      <%= form.text_field :reminderable_type, id: :reminder_reminderable_type %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
+
