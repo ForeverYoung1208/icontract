@@ -91,13 +91,13 @@ ActiveRecord::Schema.define(version: 20170914111948) do
     t.decimal "mm", precision: 2
     t.decimal "yyyy", precision: 4
     t.decimal "dofw", precision: 2
-    t.decimal "moq", precision: 1
+    t.decimal "moq", precision: 1 #drop it!!
     t.date "begins"
     t.date "ends"
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "reminderable_type"
+    t.string "reminderable_type" #drop it!!
     t.bigint "reminderable_id"
     t.string "message"
     t.datetime "deleted_at"

@@ -27,6 +27,9 @@ class RemindersController < ApplicationController
     @reminder_types = ReminderType.all
     contract = Contract.find( params[:contract_id] )
 
+    @contracts = Contract.all
+    @akts = Akt.all
+
     @reminder = Reminder.new( reminderable: contract, user: contract.responsible_user)
 
   end
@@ -112,7 +115,7 @@ class RemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
-      params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, :ends, :is_active, :reminderable_id, :reminderable_type)
+      params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, :ends, :is_active, :reminderable_id, :reminderable_type_id)
     end
     # def new_reminder_params
     #   params.permit(:contract_id)

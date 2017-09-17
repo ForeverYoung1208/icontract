@@ -68,22 +68,59 @@
       </div>
     </div>
 
-
-
-    <div class="field">
-      <%= form.label :is_active %>
-      <%= form.check_box :is_active, id: :reminder_is_active %>
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_active, "Активний?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_active, id: :reminder_is_active %></div>
     </div>
 
 
-    <div class="field">
-      <%= form.label :reminderable_id %>
-      <%= form.text_field :reminderable_id, id: :reminder_reminderable_type %>
+
+
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label">
+        <%= form.label :select_contract_akt, 'Нагадування до:' %>
+      </div>
+
+      <div class="col-sm-1">
+
+        <%= form.radio_button :reminderable_type, 'contract' %>
+        <%= form.label :reminderable_type_contract , 'Договору' %>
+      </div>
+
+      <div class="col-sm-1">
+        <%= form.radio_button :reminderable_type, 'akt' %>
+        <%= form.label :reminderable_type_akt, 'Акту' %>
+
+
+      </div>
+
     </div>
-    <div class="field">
-      <%= form.label :reminderable_type %>
-      <%= form.text_field :reminderable_type, id: :reminder_reminderable_type %>
+
+
+
+
+    <div class="field row" id="row-contracts">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :contract_id, "Догогвір:" %></div>
+      <div class="col-sm-2">
+        <%= 
+          form.collection_select :contract_id, @contracts, :id, :name, {}, {class: "form-control"}  
+        %>
+        
+      </div>
     </div>
+
+    <div class="field row" id="row-akts">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :akt_id, "Акт:" %></div>
+      <div class="col-sm-2">
+        <%= 
+          form.collection_select :akt_id, @akts, :id, :number , {}, {class: "form-control"}  
+        %>
+      </div>
+    </div>
+
+
+
+
 
     <div class="actions">
       <%= form.submit %>
