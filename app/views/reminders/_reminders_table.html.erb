@@ -27,9 +27,14 @@
 
         <% if reminder.reminderable %>
           <td>
-            <%= reminder.reminderable.doctype %>,
-            №<%= reminder.reminderable.number %> 
+            <%= reminder.reminderable.doctype %> 
+            <%= reminder.reminderable.try(:name)%> 
+            №<%= reminder.reminderable.number %>
+            від <%= reminder.reminderable.from_date %>
             (id: <%= reminder.reminderable.id %>)
+            <%= "до договору #{reminder.reminderable.contract.name}" if reminder.reminderable_type=='Akt' %>
+
+
             
           </td>
           <td><%= reminder.user.name %></td>

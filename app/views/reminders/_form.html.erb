@@ -83,12 +83,12 @@
 
       <div class="col-sm-1">
 
-        <%= form.radio_button :reminderable_type, 'contract' %>
+        <%= form.radio_button :reminderable_type, 'Contract', :checked => !!(reminder.reminderable_type == 'Contract'), class: "reminderable-type-rb"  %>
         <%= form.label :reminderable_type_contract , 'Договору' %>
       </div>
 
       <div class="col-sm-1">
-        <%= form.radio_button :reminderable_type, 'akt' %>
+        <%= form.radio_button :reminderable_type, 'Akt', :checked => !!(reminder.reminderable_type == 'Akt'), class: "reminderable-type-rb" %>
         <%= form.label :reminderable_type_akt, 'Акту' %>
 
 
@@ -101,9 +101,9 @@
 
     <div class="field row" id="row-contracts">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :contract_id, "Догогвір:" %></div>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= 
-          form.collection_select :contract_id, @contracts, :id, :name, {}, {class: "form-control"}  
+          form.collection_select :contract_id, @contracts, :id, :extended_info, {:selected => reminder.reminderable_id}, {class: "form-control"}  
         %>
         
       </div>
@@ -111,9 +111,9 @@
 
     <div class="field row" id="row-akts">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :akt_id, "Акт:" %></div>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= 
-          form.collection_select :akt_id, @akts, :id, :number , {}, {class: "form-control"}  
+          form.collection_select :akt_id, @akts, :id, :extended_info , {:selected => reminder.reminderable_id}, {class: "form-control"}  
         %>
       </div>
     </div>
@@ -122,9 +122,12 @@
 
 
 
-    <div class="actions">
-      <%= form.submit %>
-    </div>
   </div>
+
+  <div class="actions">
+    <div class="col-sm-2 text-sm-right">
+      <%= form.submit 'Зберегти', class: 'btn btn-primary' %>
+    </div>
+  </div>  
 <% end %>
 

@@ -32,11 +32,16 @@ class RemindersController < ApplicationController
 
     @reminder = Reminder.new( reminderable: contract, user: contract.responsible_user)
 
+
   end
 
   # GET /reminders/1/edit
   def edit
     @reminder_types = ReminderType.all
+
+    @contracts = Contract.all
+    @akts = Akt.all
+        
   end
 
   # POST /reminders
@@ -44,9 +49,11 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
 
+    debugger
+
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
+        format.html { redirect_to edit_reminder_path, notice: 'Reminder was successfully created.' }
         format.json { render :show, status: :created, location: @reminder }
       else
         @reminder_types = ReminderType.all
@@ -61,7 +68,7 @@ class RemindersController < ApplicationController
   def update
     respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to edit_reminder_path, notice: 'Reminder was successfully updated.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
         format.html { render :edit }
@@ -115,9 +122,17 @@ class RemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
-      params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, :ends, :is_active, :reminderable_id, :reminderable_type_id)
+      case params[:reminder][:reminderable_type]
+      when 'Akt'
+        params[:reminder][:reminderable_id] = params[:reminder][:akt_id]
+      when 'Contract'
+        params[:reminder][:reminderable_id] = params[:reminder][:contract_id]
+      else
+        raise Exception.new(' Помилка із типом надаування (договір/акт)')
+      end
+
+      params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, 
+          :ends, :is_active, :reminderable_id, :reminderable_type)
     end
-    # def new_reminder_params
-    #   params.permit(:contract_id)
-    # end
+    
 end

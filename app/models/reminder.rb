@@ -57,6 +57,4 @@ class Reminder < ApplicationRecord
   end
 
 
-
-
 end

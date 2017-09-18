@@ -29,6 +29,8 @@ class Contract < ApplicationRecord
     return deleted_at != nil
   end
 
-
+  def extended_info
+    res = name + ' № ' + number.to_s + " від " + from_date.strftime("%d.%m.%Y")
+  end
 
 end
