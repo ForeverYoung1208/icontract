@@ -8,9 +8,9 @@
       <th>Повідомлення</th>
       <th>День</th>
       <th>Місяць</th>
-      <th>Рік</th>
+<!--      <th>Рік</th> -->
       <th>День тижня</th>
-      <th>Місяць кварталу</th>
+<!--      <th>Місяць кварталу</th> -->
       <th>Початок</th>
       <th>Кінець</th>
       <th>Чи активне?</th>
@@ -45,11 +45,11 @@
 
         <td><%= reminder.reminder_type.name %></td>
         <td><%= reminder.message%></td>
-        <td><%= reminder.dd %></td>
-        <td><%= reminder.mm %></td>
-        <td><%= reminder.yyyy %></td>
-        <td><%= reminder.dofw %></td>
-        <td><%= reminder.moq %></td>
+        <td><%= reminder.dd if [2,3].include?(reminder.reminder_type_id) %></td>
+        <td><%= reminder.mm if [2,3].include?(reminder.reminder_type_id) %></td>
+<!--        <td><%= reminder.yyyy %></td> -->
+        <td><%= reminder.dofw if [1].include?(reminder.reminder_type_id) %></td>
+<!--        <td><%= reminder.moq if reminder.reminder_type_id == 1 %></td> -->
         <td><%= reminder.begins %></td>
         <td><%= reminder.ends %></td>
         <td><%= reminder.is_active %></td>

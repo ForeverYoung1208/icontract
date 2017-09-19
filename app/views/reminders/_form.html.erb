@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div class="container-fluid remnder-form">
+  <div class="container-fluid reminder-form">
 
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :reminder_type_id, 'Тип нагадування: ' %></div>
       <div class="col-sm-2">
-        <%= form.collection_select :reminder_type_id, @reminder_types, :id, :name, {}, {class: "form-control"} %>
+        <%= form.collection_select :reminder_type_id, @reminder_types, :id, :name, {}, {class: "form-control", id: "reminder-types"} %>
       </div>
     </div>
 
@@ -31,28 +31,30 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :dd, 'день: ' %></div>
       <div class="col-sm-1">
-        <%= form.text_field :dd, id: :reminder_dd, class: "form-control" %>
+        <%= form.text_field :dd, id: :reminder_dd, class: "form-control reminder-dates" %>
       </div>
 
 
       <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :mm, 'місяць: ' %></div>
       <div class="col-sm-1">
-        <%= form.text_field :mm, id: :reminder_mm, class: "form-control" %>
+        <%= form.text_field :mm, id: :reminder_mm, class: "form-control reminder-dates" %>
       </div>
 
 
-
-      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :yyyy, 'рік: ' %></div>
+<!--
+      <div class="col-sm-1 text-sm-right col-form-label" ><%=  form.label :yyyy, 'рік: ' %></div>
       <div class="col-sm-1">
-        <%= form.text_field :yyyy, id: :reminder_yyyy, class: "form-control" %>
+        <%= form.text_field :yyyy, id: :reminder_yyyy, class: "form-control reminder-dates" %>
       </div>
+-->
+
     </div>
 
     <div class="field row">
 
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :dofw, 'день тижня: ' %></div>
       <div class="col-sm-1">
-        <%= form.text_field :dofw, id: :reminder_dofw, class: "form-control" %>
+        <%= form.text_field :dofw, id: :reminder_dofw, class: "form-control reminder-dates" %>
       </div>
     </div>
 
@@ -101,7 +103,7 @@
 
     <div class="field row" id="row-contracts">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :contract_id, "Догогвір:" %></div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <%= 
           form.collection_select :contract_id, @contracts, :id, :extended_info, {:selected => reminder.reminderable_id}, {class: "form-control"}  
         %>
@@ -111,7 +113,7 @@
 
     <div class="field row" id="row-akts">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :akt_id, "Акт:" %></div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <%= 
           form.collection_select :akt_id, @akts, :id, :extended_info , {:selected => reminder.reminderable_id}, {class: "form-control"}  
         %>

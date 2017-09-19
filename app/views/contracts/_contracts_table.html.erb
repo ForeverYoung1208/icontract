@@ -2,13 +2,10 @@
   <thead class="thead-default">
     <tr>
       <th>ID</th>
-
-      <th>Тип, нйменування, номер, сума, від дати, до дати</th>
-
-      <th>Платник, 
-      отримувач</th>
+      <th>Договір (реквізити)</th>
+      <th>Платник, отримувач</th>
       <th>Стан</th>
-      <!-- <th>Is deleted</th> -->
+
       <th>Відповідальний користувач</th>
       <th>Ким створено</th>
 
@@ -18,14 +15,29 @@
       <th>Текст</th>
       <th>Керування</th>
     </tr>
+    <tr data-toggle="tooltip" title="Активним може бути тільки один фільтр (його підсвічено). Для буь-якого значення використовуэться символ '.'">
+      <th><input type="text" class="filters" data-filter-on="contract-id"></th>
+      <th><input type="text" class="filters" data-filter-on="contract-type-name"></th>
+      <th><input type="text" class="filters" data-filter-on="contract-payer-name"></th>
+      <th></th>
+
+      <th><input type="text" class="filters" data-filter-on="contract-responsible-user-name"></th>
+      <th><input type="text" class="filters" data-filter-on="contract-creator-user-name"></th>
+
+      <th><input type="text" class="filters" data-filter-on="reminder-type-name"></th>
+
+      <th><input type="text" class="filters" data-filter-on="sf-file-filename"></th>
+      <th><input type="text" class="filters" data-filter-on="tf-file-filename"></th>
+      <th></th>      
+    </tr>
   </thead>
 
   <tbody>
     <% @contracts.each do |contract| %>
       <tr data-contractId="<%= contract.id %>">
-        <td><%= contract.id %></td>
+        <td class="contract-id" ><%= contract.id %></td>
         
-        <td><%= contract.type.name %>, 
+        <td class="contract-type-name" ><%= contract.type.name %>, 
         <%= contract.name %>, 
         № <%= contract.number %>, 
         на <%= contract.sum %> грн., 
@@ -33,21 +45,21 @@
         до <%= contract.to_date.strftime("%d.%m.%Y") %>
         </td>
 
-        <td> 
+        <td class="contract-payer-name" > 
           <p> <b>платник:</b> <%= contract.payer.name %> </p>
           <p> <b>отримувач:</b> <%= contract.recipient.name %> </p>
         </td> 
-        <td>
+        <td class="contract-is-active" >
 
           <p> <b>Активний?:</b> <%= contract.is_active %> </p>
           <p> <b>Підписаний?:</b> <%= contract.is_signed %> </p>
 
          </td>
         <!-- <td><%= contract.is_deleted %></td> -->
-        <td><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
-        <td><%= link_to contract.creator_user.name, user_path(contract.creator_user.id) %></td>
+        <td class="contract-responsible-user-name" ><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
+        <td class="contract-creator-user-name" ><%= link_to contract.creator_user.name, user_path(contract.creator_user.id) %></td>
         
-        <td>
+        <td class="reminder-type-name" >
           <% contract.reminders.each do |r| %>
             <%= link_to r.reminder_type.name, reminder_path(r) %>
           <% end %>
@@ -56,14 +68,14 @@
         </td>
 
 
-        <td>
+        <td class="sf-file-filename" >
           <% if contract.scanfiles %>
             <% contract.scanfiles.each do |sf| %>
                <%= link_to sf.file.filename, sf.url %> <br/>
             <% end %>
           <% end %>
         </td>
-        <td> 
+        <td class="tf-file-filename" > 
           <% if contract.textfiles %>
             <% contract.textfiles.each do |tf| %>
                <%= link_to tf.file.filename, tf.url %> <br/>
@@ -71,11 +83,11 @@
           <% end %>
         </td>
 
-        <td>
+        <td class="contract_id" >
 
           <%= management_links( contract ) %>
 
-          <%= button_to "Check reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
+          <%= button_to "C r #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
 
         </td>
       </tr>
