@@ -49,14 +49,14 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
 
-    debugger
-
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to edit_reminder_path, notice: 'Reminder was successfully created.' }
+        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Reminder was successfully created.' }
         format.json { render :show, status: :created, location: @reminder }
       else
         @reminder_types = ReminderType.all
+        @contracts = Contract.all
+        @akts = Akt.all
         format.html { render :new }
         format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end
@@ -68,7 +68,7 @@ class RemindersController < ApplicationController
   def update
     respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to edit_reminder_path, notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Reminder was successfully updated.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
         format.html { render :edit }
@@ -132,7 +132,7 @@ class RemindersController < ApplicationController
       end
 
       params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, 
-          :ends, :is_active, :reminderable_id, :reminderable_type)
+          :ends, :is_active, :reminderable_id, :reminderable_type, :user_id, :message)
     end
     
 end
