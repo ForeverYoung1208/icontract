@@ -1,8 +1,17 @@
 class Akt < ApplicationRecord
+
+  include Reminderable  
+
   belongs_to :contract
   
   has_many :reminders, as: :reminderable
 
+
+  # look at Reminderable concern
+  # def check_reminders( given_date )
+  #   reminders.each { |r| r.generate_next_event(given_date) }
+  # end
+  
   def doctype 
   	'Акт'
   end

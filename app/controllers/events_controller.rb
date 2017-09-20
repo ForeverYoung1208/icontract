@@ -73,7 +73,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Подію оновлено.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -85,10 +85,17 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
+    # @event.destroy
+
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+      if @event.update(deleted_at: DateTime.now)    
+        format.html { redirect_to events_url, notice: 'Подію видалено.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to events_url, notice: "Помилка видляння. Подію не видалено #{@event.errors}" }
+        format.json { render json: @contract.errors, status: :unprocessable_entity }
+      end
+
     end
   end
 

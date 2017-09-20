@@ -1,4 +1,7 @@
 class Contract < ApplicationRecord
+
+  include Reminderable
+
   belongs_to :type
   belongs_to :payer, class_name: :Company, foreign_key: :payer_id
   belongs_to :recipient, class_name: :Company, foreign_key: :recipient_id
@@ -21,9 +24,10 @@ class Contract < ApplicationRecord
   	'Договір'
   end
 
-  def check_reminders( given_date )
-    reminders.each { |r| r.generate_next_event(given_date) }
-  end
+  # look at Reminderable concern
+  # def check_reminders( given_date )
+  #   reminders.each { |r| r.generate_next_event(given_date) }
+  # end
 
   def is_deleted
     return deleted_at != nil

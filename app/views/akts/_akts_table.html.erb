@@ -1,7 +1,8 @@
 <table class="table" id="akts_table">
   <thead class="thead-default">
     <tr>
-      <th>Договір</th>
+      <th>ID</th>
+      <th>До Договору</th>
       <th>Дата акту</th>
       <th>Сума акту</th>
       <th>Скан, текст</th>
@@ -15,7 +16,8 @@
   <tbody>
     <% @akts.each do |akt| %>
       <tr>
-        <td><%= akt.contract.name %> від <%= akt.contract.from_date %></td>
+        <td><%= akt.id %></td>
+        <td><%= akt.contract.name %> від <%= akt.contract.from_date %> <%="(ID: #{akt.contract_id})" %></td>
         <td><%= akt.from_date %></td>
         <td><%= akt.sum %></td>
         <td><%= akt.scan_path %>

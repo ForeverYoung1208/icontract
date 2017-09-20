@@ -3,6 +3,7 @@ class ContractsController < ApplicationController
 
   before_action :set_contracts, only: [:index, :all, :mine]
 
+
   # GET /contracts
   # GET /contracts.json
   def index

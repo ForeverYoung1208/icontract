@@ -1,5 +1,5 @@
 class AktsController < ApplicationController
-  before_action :set_akt, only: [:show, :edit, :update, :destroy]
+  before_action :set_akt, only: [:show, :edit, :update, :destroy, :check_reminders]
   before_action :set_akts, only: [:index, :all, :mine]
 
   # GET /akts
@@ -67,6 +67,26 @@ class AktsController < ApplicationController
         format.json { render json: @akt.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST  /contract/1/check_reminders
+  def check_reminders
+    @akt.check_reminders(params[:date])
+    redirect_to events_path, notice: "events for akt.id = #{@akt.id} created"
+
+  end
+
+  def check_all_reminders
+    scanned_akts_ids = ''
+
+    Akt.all.each_with_index do |akt,i|
+      akt.check_reminders(params[:date])
+
+      i==0 ? scanned_akts_ids+=akt.id.to_s : scanned_akts_ids+=', '+akt.id.to_s
+      
+    end
+    redirect_to events_path, notice: "events for akt.id = #{scanned_akts_ids} created (or already exists)"
+
   end
 
   # PATCH/PUT /akts/1

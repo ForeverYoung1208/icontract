@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   post 'users', to: "users#update_roles", as: "update_roles"
 
   resources :akts do
+    member do
+      post 'check_reminders'
+    end
+    post 'check_all_reminders', on: :collection
     get 'all', on: :collection
     get 'mine', on: :collection
   end
