@@ -4,11 +4,12 @@
       <th>ID</th>
       <th>Повідомлення нагадування, (ID)</th>
       <th>Для користувача</th>
-      <th>Відправляти емейл?</th>
-      <th>Відправлений ? </th>
+      <th>Відпр-ти емейл?</th>
+      <th>Відпр-но разів</th>
       <th>Емейл адреса</th>
       <th>Текст емейл-листа</th>
       <th>Дата нагадування</th>
+      <th>Ким виконано</th>
       <th>Керування</th>
     </tr>
 
@@ -22,10 +23,11 @@
 
         <td><%= event.user.name %></td>
         <td><%= event.to_send.to_s%></td>
-        <td><%= event.is_sent.to_s %></td>
+        <td><%= event.sent_times.to_s %></td>
         <td><%= event.email_address %></td>
         <td><%= event.email_text %></td>
         <td><%= event.on_date %></td>
+        <td><%= event.done_by%></td>
 
         <td> <%= management_links( event ) %> </td>
       </tr>

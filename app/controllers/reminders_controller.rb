@@ -14,6 +14,13 @@ class RemindersController < ApplicationController
     else
       raise Exception.new('Error with reminders list')
     end
+  end
+
+  #POST check_all
+  def all_generate_events
+    created_events_ids = Reminder.all_generate_events(params[:date])
+
+    redirect_to events_path, notice: "events  id = #{created_events_ids} created, 0 for already existed"
 
   end
 
@@ -132,7 +139,7 @@ class RemindersController < ApplicationController
       end
 
       params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, 
-          :ends, :is_active, :reminderable_id, :reminderable_type, :user_id, :message)
+          :ends, :is_active, :reminderable_id, :reminderable_type, :user_id, :message, :date)
     end
     
 end

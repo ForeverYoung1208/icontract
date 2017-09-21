@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914111948) do
+ActiveRecord::Schema.define(version: 20170921120153) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20170914111948) do
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "reminder_id"
     t.bigint "user_id"
-    t.boolean "is_sent"
     t.boolean "to_send"
     t.string "email_address"
     t.text "email_text"
@@ -74,6 +73,8 @@ ActiveRecord::Schema.define(version: 20170914111948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "sent_times"
+    t.string "done_by"
     t.index ["reminder_id"], name: "index_events_on_reminder_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end

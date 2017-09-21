@@ -9,7 +9,13 @@ class Reminder < ApplicationRecord
 
   default_scope { where("deleted_at IS NULL")}
 
-  def check
+  def self.all_generate_events(given_date_string)
+    created_events_ids = []
+    Reminder.all.each do |r|
+      created_event = r.generate_next_event(given_date_string)
+      created_event ? created_events_ids << created_event.id : created_events_ids << 0
+    end
+    return created_events_ids
   end
 
   def generate_next_event(given_date_string)
@@ -39,7 +45,7 @@ class Reminder < ApplicationRecord
       event = Event.create!(
         reminder: self,
         user: user,
-        is_sent: false,
+        sent_times: 0,
         to_send: true,
         email_address: user.email,
         email_text: "Нагадування: #{message} для #{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")} (id: #{reminderable.id}), #{self.reminder_type.name} ",

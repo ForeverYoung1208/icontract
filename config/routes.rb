@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :reminder_types
   resources :reminders do 
+    post 'all_generate_events', on: :collection    
     get 'all', on: :collection
     get 'mine', on: :collection
   end
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   ### post '/contract/:id/check_reminders', to: "contracts#check_reminders", as: "check_reminders"
 
   resources :events do    
+    post 'all_send_emails', on: :collection
     get 'all', on: :collection
     get 'mine', on: :collection
   end

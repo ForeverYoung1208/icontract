@@ -12,10 +12,15 @@
   <%= button_to "Check contract reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_all_reminders_contracts_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	  
 
   <%= button_to "Check akt reminders on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_all_reminders_akts_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	
+
+	<%= button_to "Check all reminders #{ DateTime.now.strftime("%d.%m.%Y") }", all_generate_events_reminders_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	  
 </pre>
+
+
 
 <pre> Запустити перевірку подій - розіслати нагадування на е-мейли по подіях, якщо до них залишилось 1 тиждень щабо 1 день або сьогодні і події активні (тобто не відпрацьовані)
 
-  <%= button_to "Check events  on date #{ DateTime.now.strftime("%d.%m.%Y") }", check_all_reminders_contracts_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	
+  <%= button_to "Check events  on date #{ DateTime.now.strftime("%d.%m.%Y") }", all_send_emails_events_path(date: DateTime.now.strftime("%d.%m.%Y")) %>	
 
 </pre>
+

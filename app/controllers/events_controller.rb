@@ -36,6 +36,12 @@ class EventsController < ApplicationController
     render 'index'
   end
 
+  def all_send_emails
+    res = Event.all_send_emails(params[:date])
+
+    redirect_to sessions_path, notice: res
+  end
+
 
 
   # GET /events/1
@@ -111,7 +117,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:reminderable_id)
+      params.require(:reminderable_id).permit(:date)
     end
 end
 
