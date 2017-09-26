@@ -36,6 +36,7 @@ class EventsController < ApplicationController
     render 'index'
   end
 
+
   def all_send_emails
     res = Event.all_send_emails(params[:date])
 
