@@ -3,3 +3,11 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 25,
   :openssl_verify_mode => 'none'
 }
+
+ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |exception|
+  # unless ['501 Command parsing failed'].include?(exception.message.strip)
+  #   raise exception
+  # end
+  logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + exception.message)
+
+end

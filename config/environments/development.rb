@@ -32,6 +32,9 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 ###
 
+### enable requests from any url
+  config.action_cable.disable_request_forgery_protection = true
+###
 
   config.action_mailer.perform_caching = false
 

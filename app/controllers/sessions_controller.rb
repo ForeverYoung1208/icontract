@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
 
     if @current_user && @current_user.ip_check( request.remote_ip )
       session[:current_user_id] = @current_user.id
+      cookies.signed[:current_user_id] = @current_user.id
 
     else
       msg = @current_user ? "Невірний IP. Має бути #{ @current_user.ip_address }, отримано #{ request.remote_ip }" :  "невірне ім’я або пароль"
@@ -22,7 +23,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy(msg="Сеанс завершено.")
-    session[:current_user] = nil
+    session[:current_user_id] = nil
+    cookies.signed[:current_user_id] = nil
     reset_session
     flash[:notice] = msg
     redirect_to root_url

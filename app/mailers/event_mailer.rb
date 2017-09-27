@@ -5,7 +5,7 @@ class EventMailer < ApplicationMailer
 		@event = event
 		@reminderable = event.reminder.reminderable
 
-    mail(:to => event.user.email, :subject => "icontract: #{@reminderable.doctype}, № #{@reminderable.number}, від #{@reminderable.from_date}")
+    mail(:to => event.email_address, :subject => "icontract: #{@reminderable.doctype}, № #{@reminderable.number}, від #{@reminderable.from_date}")
 	end
 
 end

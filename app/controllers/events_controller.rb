@@ -38,9 +38,16 @@ class EventsController < ApplicationController
 
 
   def all_send_emails
-    res = Event.all_send_emails(params[:date])
+    res = Event.all_send_emails(params[:date], @current_user.id)
 
-    redirect_to sessions_path, notice: res
+    # NotificationChannel.broadcast_to(
+    #   @current_user.id,
+    #   title: 'New things!',
+    #   body: 'All the news fit to print'
+    # )  
+
+
+    # redirect_to sessions_path, notice: res
   end
 
 
