@@ -21,3 +21,21 @@ $(document).on 'turbolinks:load', ->
 		language: "ua",
 		orientation: "bottom right"
 	});
+
+	$("#dialog-mail-delivery-failed").dialog
+		resizable: false
+		autoOpen: false
+		height: "auto"
+		width: 400
+		modal: true
+		dialogClass: "no-close"
+		hide: 
+			effect: "fade"
+			duration: 500
+		show: 
+			effect: "fade"
+			duration: 500
+		buttons:
+			"Ok": ()->
+				$( this ).dialog( "close" );
+
