@@ -1,19 +1,24 @@
+::ADMIN_ID = 4 #for mailing and system notification purposes
+
 ActionMailer::Base.smtp_settings = {
   :address              => "10.23.200.12",
   :port                 => 25,
   :openssl_verify_mode => 'none'
 }
 
-ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |exception|
-  # unless ['501 Command parsing failed'].include?(exception.message.strip)
-  #   raise exception
-  # end
-  logger.debug("AAAAAAAAAAAAAAAAAAAAXXXXXXXXXXXXxxxxxxxxxxxxxxAAAAAAAAAAAAAAAAA" + exception.message)
+ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |e|
 
+  event = arguments[3]
   NotificationChannel.broadcast_to(
-    notify_user_id,
+    ::ADMIN_ID,
     title: 'sending email failed:',
-    body: exception.message
-  )  
+    body: "Event id: #{event.id}, user_id: #{event.user_id}, email:#{event.email_address}"
+  )
+
+
+  email_to=User.find(::ADMIN_ID).email
+
+
+  res = EventMailer.mail_failed_notification(email_to,event).deliver_later
 
 end

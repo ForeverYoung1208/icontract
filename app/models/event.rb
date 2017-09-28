@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
   validates :reminder, uniqueness: {scope: [:on_date, :user_id, :deleted_at]}
 
+  attr_accessor :notify_user_id
+
 
   def self.all_send_emails(given_date_string, notify_user_id)
   	events = Event
@@ -13,9 +15,10 @@ class Event < ApplicationRecord
   		.where(to_send: true)
   		.where("done_by ='' OR done_by IS NULL")
 
-		sent_messages = []
+		sent_messages = ''
   	events.each do |event|
-  		sent_messages << event.send_email
+      event.notify_user_id = notify_user_id
+  		sent_messages =+ event.send_email
   	end
     NotificationChannel.broadcast_to(
       notify_user_id,
@@ -27,8 +30,9 @@ class Event < ApplicationRecord
 
 
   def send_email
-    res = "try id=#{ id } email=#{email_address};"
+    res = "id=#{ id } email=#{email_address};"
     EventMailer.event_notification(self).deliver_later
+    # EventMailer.email_failed_notification('igor.sherbina@invest-co.com',self).deliver_now
   	return res
   end
 
