@@ -1,6 +1,6 @@
 # Icontract
 
-Icontract is the system to maintain corporative contracts and to remind users to do actions according contracts.
+Icontract is the system to maintain corporative contracts and to remind users to do actions according to contracts.
 
 
 
