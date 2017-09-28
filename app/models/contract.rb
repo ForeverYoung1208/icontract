@@ -1,16 +1,16 @@
-class Contract < ApplicationRecord
+class Contract < Reminderable
 
-  include Reminderable
+  # include Reminderable
 
   belongs_to :type
   belongs_to :payer, class_name: :Company, foreign_key: :payer_id
   belongs_to :recipient, class_name: :Company, foreign_key: :recipient_id
   belongs_to :responsible_user, class_name: :User, foreign_key: :responsible_user_id
   belongs_to :creator_user, class_name: :User, foreign_key: :creator_user_id
+  # has_many :reminders, as: :reminderable
+  has_many :akts, -> { unscope(:where) }
 
-  has_many :reminders, as: :reminderable
-
-  has_many :akts
+  # default_scope { where("#{table_name}.deleted_at IS NULL")}
 
   mount_uploaders :scanfiles, ScanContractUploader
   serialize :scanfiles, JSON
@@ -18,20 +18,12 @@ class Contract < ApplicationRecord
   mount_uploaders :textfiles, TextContractUploader
   serialize :textfiles, JSON
 
-  default_scope { where("deleted_at IS NULL")}
+  
 
   def doctype 
   	'Договір'
   end
 
-  # look at Reminderable concern
-  # def check_reminders( given_date )
-  #   reminders.each { |r| r.generate_next_event(given_date) }
-  # end
-
-  def is_deleted
-    return deleted_at != nil
-  end
 
   def extended_info
     res = name + ' № ' + number.to_s + " від " + from_date.strftime("%d.%m.%Y")

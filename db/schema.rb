@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921120153) do
+ActiveRecord::Schema.define(version: 20170928153735) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20170921120153) do
     t.string "scan_path"
     t.string "text_path"
     t.boolean "is_signed"
-    t.boolean "is_deleted"
     t.boolean "is_taken_as_original"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "number"
+    t.datetime "deleted_at"
     t.index ["contract_id"], name: "index_akts_on_contract_id"
   end
 

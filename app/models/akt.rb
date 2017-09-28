@@ -1,16 +1,12 @@
-class Akt < ApplicationRecord
+class Akt < Reminderable
 
-  include Reminderable  
+  # include Reminderable  
 
-  belongs_to :contract
+  belongs_to :contract, -> { unscope(:where) }
+
   
-  has_many :reminders, as: :reminderable
-
-
-  # look at Reminderable concern
-  # def check_reminders( given_date )
-  #   reminders.each { |r| r.generate_next_event(given_date) }
-  # end
+  # has_many :reminders, as: :reminderable
+  # default_scope { where("deleted_at IS NULL")}  
   
   def doctype 
   	'Акт'
