@@ -24,6 +24,9 @@ class Contract < Reminderable
   	'Договір'
   end
 
+  def name
+    is_deleted ? "!Удалён #{deleted_at.strftime("%d.%m.%Y")}! #{ super }" : super
+  end
 
   def extended_info
     res = name + ' № ' + number.to_s + " від " + from_date.strftime("%d.%m.%Y")

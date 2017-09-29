@@ -1,14 +1,30 @@
-$(document).on 'turbolinks:load', ->
-	window.listChange = (path)->
-		window.location.href = path;
-		# fuck the ajax here
-		# $.ajax({
-		# 	type : "GET",
-		# 	url : path,
-		# 	complete: ( response, status)->
-		# 		$("#data-container").html(response.responseText)
+window.doFilter = (f, rows)->
+	if f.val() != ''
+		$('.filters').removeClass('glowing')
+		f.addClass('glowing')
+		filterRegex =  new RegExp( f.val() )
+		filterField = f.data("filterOn")
+		rowsToFilter = rows
+		rowsToFilter.each (index, row)->
+			field = $(row).find('.'+filterField)
+			if filterRegex.test(field.text())
+				$(row).show()
+			else
+				$(row).hide()
 				
-		# });
+window.listChange = (path)->
+	window.location.href = path;
+# fuck the ajax here
+# $.ajax({
+# 	type : "GET",
+# 	url : path,
+# 	complete: ( response, status)->
+# 		$("#data-container").html(response.responseText)
+		
+# });
+
+
+$(document).on 'turbolinks:load', ->
 	$('[data-toggle="tooltip"]').tooltip()
 	$('input[type=file]').bootstrapFileInput();
 	$('.file-inputs').bootstrapFileInput();
@@ -38,4 +54,6 @@ $(document).on 'turbolinks:load', ->
 		buttons:
 			"Ok": ()->
 				$( this ).dialog( "close" );
+
+
 

@@ -1,44 +1,123 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="field row">
+    <div class="col-sm-2 text-sm-right">
+      <%= fa_link_to('-arrow-left', akt_path(@akt.previous), class: "management-button") {"Попередній"} if @akt.previous %>
+    </div>
+    <div class="col-sm-3 text-sm-center"><h2> Перегляд акту ( id: <%= @akt.id %>)</h2></div>
+    <div class="col-sm-2 text-sm-left">
+      <%= fa_link_to('-arrow-right', akt_path(@akt.next), class: "management-button") {"Наступний"} if @akt.next%>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Contract:</strong>
-  <%= @akt.contract %>
-</p>
+<div class="container-fluid">
 
-<p>
-  <strong>From date:</strong>
-  <%= @akt.from_date %>
-</p>
+  <div class="row">
+    <div class="col-sm-5">
 
-<p>
-  <strong>Sum:</strong>
-  <%= @akt.sum %>
-</p>
 
-<p>
-  <strong>Scan path:</strong>
-  <%= @akt.scan_path %>
-</p>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'до договору: ' %></div>
+        <div class="col-sm-7"><%= @akt.contract.name %></div>
+      </div>
 
-<p>
-  <strong>Text path:</strong>
-  <%= @akt.text_path %>
-</p>
 
-<p>
-  <strong>Is signed:</strong>
-  <%= @akt.is_signed %>
-</p>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Номер: ' %></div>
+        <div class="col-sm-7"><%= @akt.number %></div>
+      </div>
 
-<p>
-  <strong>Is deleted:</strong>
-  <%= @akt.is_deleted %>
-</p>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Сума' %></div>
+        <div class="col-sm-7"><%= @akt.sum %></div>
+      </div>
 
-<p>
-  <strong>Is taken as original:</strong>
-  <%= @akt.is_taken_as_original %>
-</p>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'від (дата): ' %></div>
+        <div class="col-sm-7"><%= @akt.from_date.strftime("%d.%m.%Y") %></div>
+      </div>
 
-<%= link_to 'Edit', edit_akt_path(@akt) %> |
-<%= link_to 'Back', akts_path %>
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label 'Платник' %></div>
+        <div class="col-sm-7"><%= @akt.contract.payer.name %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Отримувач" %></div>
+        <div class="col-sm-7"><%= @akt.contract.recipient.name %></div>
+      </div>
+
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Підписаний?" %></div>
+        <div class="col-sm-7"><%= @akt.is_signed %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Прийнято бухгалтером" %></div>
+        <div class="col-sm-7"><%= @akt.is_taken_as_original %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Відповідальна особа:" %></div>
+        <div class="col-sm-7"><%= @akt.responsible_user.name %></div>      
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Сканокопія:" %></div>
+        <div class="col-sm-7">
+          <% if @akt.scanfiles %>      
+            <% @akt.scanfiles.each do |sf| %>
+              <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Шаблон/текст:" %></div>
+        <div class="col-sm-7">
+          <% if @akt.textfiles %>      
+            <% @akt.textfiles.each do |sf| %>
+              <%= link_to "file: #{ sf.file.filename}, ", sf.url %>
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні нагадування:" %></div>
+        <div class="col-sm-7">
+          <% if @akt.reminders %>      
+            <% @akt.reminders.each do |r| %>
+              <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
+
+            <% end %>
+          <% end %>        
+        </div>
+      </div>
+
+
+      <div class="col-sm-12 text-sm-center">
+        <%= link_to 'Редагувати', edit_akt_path(@akt) %> |
+        <%= link_to 'Список договорів', akt_path %>   
+      </div>
+    </div>
+
+    <div class="col-sm-7 pdf-area">
+
+      <% if @akt.scanfiles %>      
+        <% @akt.scanfiles.each do |sf| %>
+          <object data=" <%=  sf.url %>" type="application/pdf" width="750px" height="750px">
+            <embed src="<%=  sf.url %>" type="application/pdf">
+                Не можу відобразити файл  <%= link_to sf.url%>
+                Або цьго файлу не існує в архиві, або браузер не підтримує відображення pdf
+            </embed>
+          </object>
+        <% end %>
+      <% end %>  
+
+    </div>
+  </div>
+</div>   

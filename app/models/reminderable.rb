@@ -17,6 +17,8 @@ class Reminderable < ApplicationRecord
     return deleted_at != nil
   end
 
+
+  
   mount_uploaders :scanfiles, ScanReminderableUploader
   serialize :scanfiles, JSON
 
