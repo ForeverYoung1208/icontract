@@ -137,7 +137,7 @@ class ContractsController < ApplicationController
 
     def set_contracts
       # @contracts = Contract.all.includes(:type)
-      @contracts = Contract.where(responsible_user_id: @current_user.allowed_users_ids)
+      @contracts = Contract.notdeleted.where(responsible_user_id: @current_user.allowed_users_ids)
         .includes(:type)
         .includes(:responsible_user)
         .includes(:creator_user)

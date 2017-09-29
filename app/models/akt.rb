@@ -1,12 +1,6 @@
 class Akt < Reminderable
 
-  # include Reminderable  
-
-  belongs_to :contract, -> { unscope(:where) }
-
-  
-  # has_many :reminders, as: :reminderable
-  # default_scope { where("deleted_at IS NULL")}  
+  belongs_to :contract
   
   def doctype 
   	'Акт'
@@ -20,5 +14,6 @@ class Akt < Reminderable
   #I think in future akt will have its own responsible user
   #look also at akts_controller#mine
   delegate :responsible_user, to: :contract
+
   
 end

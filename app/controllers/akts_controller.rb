@@ -120,7 +120,8 @@ class AktsController < ApplicationController
     end
 
     def set_akts
-      @akts = Akt.all.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
+      @akts = Akt.notdeleted.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
