@@ -18,6 +18,10 @@ class Reminder < ApplicationRecord
     return created_events_ids
   end
 
+  def activeness
+    is_active ? (return "") : (return "(Неактивно)")
+  end
+
   def generate_next_event(given_date_string)
     given_date = given_date_string.to_date
 

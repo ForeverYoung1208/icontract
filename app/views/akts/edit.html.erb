@@ -1,6 +1,16 @@
-<h1>Editing Akt</h1>
+<div class="container-fluid contract-form">
+	<div class="field row">
+		<div class="col-sm-2 text-sm-right">
+			<%= fa_link_to('-arrow-left', edit_akt_path(@akt.previous), class: "management-button") {"Попередній"} if @akt.previous %>
+		</div>
+		<div class="col-sm-3 text-sm-center"><h2> Редагування акту ( id: <%= @akt.id %>)</h2></div>
+		<div class="col-sm-2 text-sm-left">
+			<%= fa_link_to('-arrow-right', edit_akt_path(@akt.next), class: "management-button") {"Наступний"} if @akt.next%>
+		</div>
+	</div>
+</div>
 
 <%= render 'form', akt: @akt %>
 
-<%= link_to 'Show', @akt %> |
-<%= link_to 'Back', akts_path %>
+<%= link_to 'Показати деталі', @akt %> |
+<%= link_to 'Список актів', akts_path %>

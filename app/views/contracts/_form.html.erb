@@ -92,56 +92,24 @@
       <div class="col-sm-3"><%= form.collection_select :creator_user_id, @creator_users, :id, :name, {}, {class: "form-control"} %></div>      
     </div>
 
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right">
-        <%= form.label :scanfiles do  %>
-           Сканокопія:
-        <% end %>
-      </div>
-      <div class="col-sm-5">
-        <% if @contract.scanfiles %>      
-          <% @contract.scanfiles.each do |sf| %>
-            <%= link_to "file: #{ sf.file.filename} ", sf.url %>
-          <% end %>
-        <% end %> 
-        <%= form.file_field :scanfiles, title: 'Замінити', class: 'btn-info', multiple: true %>
-        <br/> <%= form.check_box :remove_scanfiles %> Очистити (видалити) всі скани  
-      </div>
 
+
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right"><%= form.label :scanfiles, "Сканокопія:"%></div>
+      <%= files_fields(form, @contract, "col-sm-5", :scanfiles) %>
     </div>
+
+
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :textfiles, "Шаблон/текст:" %></div>
-      <div class="col-sm-5">
-        <% if @contract.textfiles %>      
-          <% @contract.textfiles.each do |sf| %>
-            <%= link_to "file: #{ sf.file.filename} ", sf.url %>
-          <% end %>
-        <% end %> 
-        <%= form.file_field :textfiles, title: 'Замінити', class: 'btn-info', multiple: true %>
-        <br/> <%= form.check_box :remove_textfiles %> Очистити (видалити) всі шаблони/тексти
-      </div>
+      <%= files_fields(form, @contract, "col-sm-5", :textfiles) %>
     </div>
+
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right">  <%= form.label :reminders, "Пов’язані нагадування: "%> </div>
-      <% if @contract.reminders %>
-        <% @contract.reminders.each do |r| %>
-          <div class="col-sm-1">
-            <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
-            <%= management_links( r )%>
-          </div>
-        <% end %>
-      <% end %>
 
-      <div class="col-sm-2">  
-        <%= 
-          if @contract.id
-            fa_link_to('-plus fa-2x', new_reminder_path(contract_id: @contract.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} 
-          else
-            "Для створення нагадування спочатку збережіть договір"
-          end
-        %> 
-      </div>
+      <%= render 'reminderable/reminders_management', reminderable: @contract %>
 
     </div>
 

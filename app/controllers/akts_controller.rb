@@ -51,6 +51,7 @@ class AktsController < ApplicationController
 
   # GET /akts/1/edit
   def edit
+    @contracts = Contract.notdeleted.where(:responsible_user_id => @current_user.allowed_users_ids)
   end
 
   # POST /akts
@@ -94,7 +95,7 @@ class AktsController < ApplicationController
   def update
     respond_to do |format|
       if @akt.update(akt_params)
-        format.html { redirect_to @akt, notice: 'Akt was successfully updated.' }
+        format.html { redirect_to edit_akt_path(@akt), notice: 'Akt was successfully updated.' }
         format.json { render :show, status: :ok, location: @akt }
       else
         format.html { render :edit }
@@ -126,6 +127,9 @@ class AktsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def akt_params
-      params.require(:akt).permit(:contract_id, :from_date, :sum, :scan_path, :doc_path, :is_signed, :is_deleted, :is_taken_as_original)
+      params.require(:akt).permit(:contract_id, :from_date, :sum,
+        :scan_path, :doc_path, :is_signed, :is_deleted,
+        :is_taken_as_original, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles, :sum_detail
+      )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929125408) do
+ActiveRecord::Schema.define(version: 20171003150441) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170929125408) do
     t.datetime "deleted_at"
     t.text "scanfiles"
     t.text "textfiles"
+    t.string "sum_detail"
     t.index ["contract_id"], name: "index_akts_on_contract_id"
   end
 

@@ -1,0 +1,18 @@
+<% if reminderable.reminders %>
+  <% reminderable.reminders.each do |r| %>
+    <div class="col-sm-1">
+      <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
+      <%= management_links( r )%>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="col-sm-2">  
+  <%= 
+    if reminderable.id
+      fa_link_to('-plus fa-2x', new_reminder_path(contract_id: reminderable.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} 
+    else
+      "Для створення нагадування спочатку збережіть договір"
+    end
+  %> 
+</div>
