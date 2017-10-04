@@ -13,37 +13,46 @@
 
   <div class="container-fluid contract-form">
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :number, 'Номер: ' %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :number, id: :akt_number, class: "form-control" %>
+      </div>      
+
+      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :from_date, 'Від (дата): ' %></div>
+      <div class="col-sm-2">
+        <%= form.text_field :from_date, id: :akt_from_date, class: "form-control datepicker" %>
+      </div>
+
+    </div>
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :contract_id, 'До договору: ' %></div>
       <div class="col-sm-2">
-        <%= form.collection_select :contract_id, @contracts, :id, :name, {}, {class: "form-control"} %>
+        <%= form.collection_select :contract_id, @contracts, :id, :extended_info, {}, {class: "form-control"} %>
       </div>
     </div>
-
-
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :from_date, 'Від (дата): ' %></div>
-      <div class="col-sm-2">
-        <%= form.text_field :from_date, id: :akt_from_date, class: "form-control datepicker" %>
-      </div>
-    </div>
-
-
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" > <%= form.label :sum, 'Сума акту: ' %></div>
       <div class="col-sm-2">
         <%= form.text_field :sum, id: :akt_sum, class: "form-control" %>
       </div>
-      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :sum_detail, "за період/інше: " %></div>
+      <div class="col-sm-1 text-sm-right col-form-label"><%= form.label :sum_detail, "за період/інше: " %></div>
       <div class="col-sm-2">
         <%= form.text_field :sum_detail, id: :akt_sum_detail, class: "form-control" %>
       </div>      
     </div>
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_signed, "Активний?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_signed, id: :akt_is_signed %></div>
+    </div>
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_taken_as_original, "Прийнято бухгалтером?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_taken_as_original, id: :akt_is_taken_as_original %></div>
+    </div>  
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= form.label :scanfiles, "Сканокопія:"%></div>
@@ -55,17 +64,7 @@
       <div class="col-sm-2 text-sm-right"><%= form.label :textfiles, "Шаблон/текст:" %></div>
       <%= files_fields(form, @akt, "col-sm-5", :textfiles) %>
     </div>
-
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_signed, "Активний?:" %></div>
-      <div class="col-sm-1"><%= form.check_box :is_signed, id: :akt_is_signed %></div>
-    </div>
-
-    <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_taken_as_original, "Прийнято бухгалтером?:" %></div>
-      <div class="col-sm-1"><%= form.check_box :is_taken_as_original, id: :akt_is_taken_as_original %></div>
-    </div>    
+ 
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right">  <%= form.label :reminders, "Пов’язані нагадування: "%> </div>
@@ -77,9 +76,10 @@
 
 
 
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-
   </div>
+  <div class="actions">
+    <div class="col-sm-2 text-sm-right">
+      <%= form.submit 'Зберегти', class: 'btn btn-primary' %>
+    </div>
+  </div>  
 <% end %>

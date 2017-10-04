@@ -5,22 +5,24 @@
       <th>До Договору</th>
       <th>Дата акту</th>
       <th>Сума акту</th>
+      <th>Нагадування</th>      
       <th>Скан, текст</th>
       <th>Підписаний?</th>
       <th>Прийнято бухгалтером?</th>
       <th>Відповідальний</th>
       <th>Керування</th>
     </tr>
-    <tr data-toggle="tooltip" title="Активним може бути тільки один фільтр (його підсвічено). Для буь-якого значення використовується символ '.'">
+    <tr>
       <th><input type="text" class="filters" data-filter-on="akt-id"></th>
       <th><input type="text" class="filters" data-filter-on="akt-contract"></th>
       <th><input type="text" class="filters" data-filter-on="akt-date"></th>
       <th><input type="text" class="filters" data-filter-on="akt-sum"></th>
+      <th><input type="text" class="filters" data-filter-on="akt-reminder-type-name"></th>
       <th><input type="text" class="filters" data-filter-on="akt-file-filename"></th>
       <th><input type="text" class="filters" data-filter-on="akt-is-signed"></th>
       <th><input type="text" class="filters" data-filter-on="akt-is-accepted"></th>      
       <th><input type="text" class="filters" data-filter-on="akt-responsible-user-name"></th>
-      <th><i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i><i class="fa fa-info-circle fa-2x" aria-hidden="true" data-toggle="tooltip" title="Активним може бути тільки один фільтр (його підсвічено). Для буь-якого значення використовуэться символ '.'"></i></th> 
+      <th><i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i><i class="fa fa-info-circle fa-2x" aria-hidden="true" data-toggle="tooltip" title="Активним може бути тільки один фільтр (його підсвічено). Для буь-якого значення використовується символ '.'"></i></th> 
     </tr>    
   </thead>
 
@@ -28,10 +30,18 @@
     <% @akts.each do |akt| %>
       <tr>
         <td class="akt-id"><%= akt.id %></td>
-        <td class="akt-contract"><%= akt.contract.name %> від <%= akt.contract.from_date %> <%="(ID: #{akt.contract_id})" %></td>
-        <td class="akt-date"><%= akt.from_date %></td>
+        <td class="akt-contract"><%= akt.contract.name %> від <%= akt.contract.from_date.strftime("%d.%m.%Y") %> <%="(ID: #{akt.contract_id})" %></td>
+        <td class="akt-date"><%= akt.from_date.strftime("%d.%m.%Y") %></td>
         <td class="akt-sum"><%= akt.sum %></td>
         
+        <td class="akt-reminder-type-name" >
+          <% akt.reminders.each do |r| %>
+            <%= link_to "#{r.reminder_type.name} #{r.activeness}", reminder_path(r) %>
+          <% end %>
+          
+          <%= tag.pre link_to "Додати", new_reminder_path(akt_id: akt.id) %>
+        </td>
+
 
         <td class="akt-file-filename">
           <% if akt.scanfiles %>

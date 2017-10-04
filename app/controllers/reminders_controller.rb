@@ -32,12 +32,13 @@ class RemindersController < ApplicationController
   # GET /reminders/new
   def new
     @reminder_types = ReminderType.all
-    contract = Contract.find( params[:contract_id] )
+    reminderable = Contract.find( params[:contract_id] ) if params[:contract_id]
+    reminderable = Akt.find( params[:akt_id] ) if params[:akt_id]
 
     @contracts = Contract.all
     @akts = Akt.all
 
-    @reminder = Reminder.new( reminderable: contract, user: contract.responsible_user)
+    @reminder = Reminder.new( reminderable: reminderable, user: reminderable.responsible_user)
 
 
   end
@@ -58,7 +59,7 @@ class RemindersController < ApplicationController
 
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Reminder was successfully created.' }
+        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Нагадування створено.' }
         format.json { render :show, status: :created, location: @reminder }
       else
         @reminder_types = ReminderType.all
@@ -73,9 +74,10 @@ class RemindersController < ApplicationController
   # PATCH/PUT /reminders/1
   # PATCH/PUT /reminders/1.json
   def update
+
     respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to edit_reminder_path(@reminder), notice: 'Нагадування збережено.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
         format.html { render :edit }
@@ -138,8 +140,13 @@ class RemindersController < ApplicationController
         raise Exception.new(' Помилка із типом надаування (договір/акт)')
       end
 
+      # params.delete('contract_id')
+      # params.delete('akt_id')
+
       params.require(:reminder).permit(:reminder_type_id, :dd, :mm, :yyyy, :dofw, :moq, :begins, 
-          :ends, :is_active, :reminderable_id, :reminderable_type, :user_id, :message, :date)
+          :ends, :is_active, :reminderable_id, :reminderable_type, :user_id, :message, :date
+          # , :contract_id, :akt_id
+          )
     end
     
 end

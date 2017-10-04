@@ -62,7 +62,7 @@ class ContractsController < ApplicationController
 
     respond_to do |format|
       if @contract.save
-        format.html { redirect_to edit_contract_path(@contract), notice: 'Contract was successfully created.' }
+        format.html { redirect_to edit_contract_path(@contract), notice: 'Договір створено.' }
         format.json { render :show, status: :created, location: @contract }
       else
         format.html do
@@ -99,7 +99,7 @@ class ContractsController < ApplicationController
   def update
     respond_to do |format|
       if @contract.update(contract_params)
-        format.html { redirect_to edit_contract_path(@contract), notice: 'Зміни збережено' }
+        format.html { redirect_to edit_contract_path(@contract), notice: 'Договір збережено' }
         format.json { render :show, status: :ok, location: @contract }
       else
         format.html do
@@ -157,7 +157,8 @@ class ContractsController < ApplicationController
     def contract_params
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
         :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active,
-        :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles, :sum_detail
+        :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []},
+        :remove_scanfiles, :remove_textfiles, :sum_detail, :preferences
       )
     end
 

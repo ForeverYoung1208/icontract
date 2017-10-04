@@ -47,11 +47,12 @@ class AktsController < ApplicationController
   # GET /akts/new
   def new
     @akt = Akt.new
+    prepare_form_data
   end
 
   # GET /akts/1/edit
   def edit
-    @contracts = Contract.notdeleted.where(:responsible_user_id => @current_user.allowed_users_ids)
+    prepare_form_data
   end
 
   # POST /akts
@@ -61,7 +62,7 @@ class AktsController < ApplicationController
 
     respond_to do |format|
       if @akt.save
-        format.html { redirect_to @akt, notice: 'Akt was successfully created.' }
+        format.html { redirect_to @akt, notice: 'Акт створено.' }
         format.json { render :show, status: :created, location: @akt }
       else
         format.html { render :new }
@@ -95,7 +96,7 @@ class AktsController < ApplicationController
   def update
     respond_to do |format|
       if @akt.update(akt_params)
-        format.html { redirect_to edit_akt_path(@akt), notice: 'Akt was successfully updated.' }
+        format.html { redirect_to edit_akt_path(@akt), notice: 'Акт оновлено' }
         format.json { render :show, status: :ok, location: @akt }
       else
         format.html { render :edit }
@@ -109,7 +110,7 @@ class AktsController < ApplicationController
   def destroy
     @akt.destroy
     respond_to do |format|
-      format.html { redirect_to akts_url, notice: 'Akt was successfully destroyed.' }
+      format.html { redirect_to akts_url, notice: 'Акт видалено' }
       format.json { head :no_content }
     end
   end
@@ -118,16 +119,20 @@ class AktsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_akt
       @akt = Akt.find(params[:id])
+      @akt.from_date = @akt.from_date.strftime("%d.%m.%Y")
     end
 
     def set_akts
       @akts = Akt.notdeleted.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
+    end
 
+    def prepare_form_data
+      @contracts = Contract.notdeleted.where(:responsible_user_id => @current_user.allowed_users_ids)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def akt_params
-      params.require(:akt).permit(:contract_id, :from_date, :sum,
+      params.require(:akt).permit(:contract_id, :from_date, :sum, :number,
         :scan_path, :doc_path, :is_signed, :is_deleted,
         :is_taken_as_original, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles, :sum_detail
       )

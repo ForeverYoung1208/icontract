@@ -26,7 +26,7 @@
         <td><%= event.sent_times.to_s %></td>
         <td><%= event.email_address %></td>
         <td><%= event.email_text %></td>
-        <td><%= event.on_date %></td>
+        <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
         <td><%= event.done_by%></td>
 
         <td> <%= management_links( event ) %> </td>

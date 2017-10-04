@@ -1,6 +1,16 @@
-<h1>Editing Reminder Type</h1>
+<div class="container-fluid reminder-form">
+	<div class="field row">
+		<div class="col-sm-2 text-sm-right">
+			<%= fa_link_to('-arrow-left', edit_reminder_path(@reminder.previous), class: "management-button") {"Попередній"} if @reminder.previous %>
+		</div>
+		<div class="col-sm-3 text-sm-center"><h2> Редагування Нагадування ( id: <%= @reminder.id %>)</h2></div>
+		<div class="col-sm-2 text-sm-left">
+			<%= fa_link_to('-arrow-right', edit_reminder_path(@reminder.next), class: "management-button") {"Наступний"} if @reminder.next%>
+		</div>
+	</div>
+</div>
 
 <%= render 'form', reminder_type: @reminder_type %>
 
-<%= link_to 'Show', @reminder_type %> |
-<%= link_to 'Back', reminder_types_path %>
+<%= link_to 'Показати деталі', @reminder_type %> |
+<%= link_to 'Список договорів', reminder_types_path %>

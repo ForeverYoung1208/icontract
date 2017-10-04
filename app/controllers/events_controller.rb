@@ -73,7 +73,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Подію створено.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -117,6 +117,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      @event.on_date = @event.on_date.strftime("%d.%m.%Y")
+
+      # @event.from_date = @event.from_date.strftime("%d.%m.%Y")
+      # @event.to_date = @event.to_date.strftime("%d.%m.%Y")      
     end
 
     def set_events

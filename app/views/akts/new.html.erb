@@ -1,5 +1,14 @@
-<h1>New Akt</h1>
+<div class="container-fluid contract-form">
+	<div class="field row">
+		<div class="col-sm-2 text-sm-right">
+		</div>
+		<div class="col-sm-3 text-sm-center"><h2> Новий акт</h2></div>
+		<div class="col-sm-2 text-sm-left">
+		</div>		
+	</div>
+</div>
 
 <%= render 'form', akt: @akt %>
 
-<%= link_to 'Back', akts_path %>
+<%= link_to 'Показати деталі', @akt %> |
+<%= link_to 'Список актів', akts_path %>

@@ -1,5 +1,14 @@
-<h1>Зареєструвати новий договір</h1>
+<div class="container-fluid contract-form">
+	<div class="field row">
+		<div class="col-sm-2 text-sm-right">
+		</div>
+		<div class="col-sm-3 text-sm-center"><h2> Новий договір</h2></div>
+		<div class="col-sm-2 text-sm-left">
+		</div>
+	</div>
+</div>
 
 <%= render 'form', contract: @contract %>
 
+<%= link_to 'Показати деталі', @contract %> |
 <%= link_to 'Список договорів', contracts_path %>
