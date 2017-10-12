@@ -6,7 +6,8 @@ ActionMailer::Base.smtp_settings = {
   :openssl_verify_mode => 'none'
 }
 
-ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |e|
+# ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |e|
+ActionMailer::DeliveryJob.rescue_from(StandardError) do |e|
 
   event = arguments[3]
   NotificationChannel.broadcast_to(
