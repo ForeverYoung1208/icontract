@@ -64,6 +64,38 @@ class User < ApplicationRecord
 
   end
 
+#================
+  def can_access_akts
+    true
+  end
+
+  def can_access_events
+    true
+  end
+
+  def can_access_reminders
+    true
+  end
+
+  def can_access_companies
+    true
+  end
+
+  def can_access_roles
+    true
+  end    
+
+  def can_access_types
+    false
+  end    
+
+  def can_access_reminder_types
+    true
+  end    
+
+
+#===========
+
   # attr_readonly :email, :name, :password_hash, :password_salt, :userlevel_id, :created_at, :updated_at, :company_id, :is_ip_controlled, :ip_address
 
 
