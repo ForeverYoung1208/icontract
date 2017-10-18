@@ -30,7 +30,10 @@
     vertical-align: middle;
 }
 
-
+.dropdown-item.disabled {
+  color: #dddddd;
+  line-height: 3em;
+}
 
 .container{
   min-width: 960px;
