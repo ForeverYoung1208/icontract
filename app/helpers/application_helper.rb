@@ -27,7 +27,7 @@ module ApplicationHelper
 
   def mainmenu_dropdown( p, &block)
     paths = []
-    p[:menuitems].each { |name, path| paths<<path }
+    p[:menuitems].each { |name, path| paths<<path[0] }
 
     args = {class: "nav-item dropdown"}
     args[:class] += " active" if paths.include?( p[:current] )

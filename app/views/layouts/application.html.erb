@@ -30,11 +30,11 @@
 
           <%= mainmenu_dropdown( {
             current: request.path, 
-            menuitems: {'Компанії' => companies_path,
-                          'Користувачі' => users_path,
-                          'Ролі' => roles_path,
-                          'Типи договорів' => types_path, 
-                          'Типи нагадувань' => reminder_types_path
+            menuitems: {'Компанії' => [companies_path, true],
+                          'Користувачі' => [users_path, true],
+                          'Ролі' => [roles_path, true],
+                          'Типи договорів' => [types_path, true], 
+                          'Типи нагадувань' => [reminder_types_path, true]
                         }
           }) {"Налаштування"}  %>
 
