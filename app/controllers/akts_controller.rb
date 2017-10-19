@@ -123,7 +123,11 @@ class AktsController < ApplicationController
     end
 
     def set_akts
-      @akts = Akt.notdeleted.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
+      if @current_user.can_see_all_akts?
+        @akts = Akt.notdeleted
+      else
+        @akts = Akt.notdeleted.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
+      end
     end
 
     def prepare_form_data

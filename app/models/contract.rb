@@ -29,7 +29,7 @@ class Contract < Reminderable
   end
 
   def extended_info
-    res = name + ' № ' + number.to_s + " від " + from_date.strftime("%d.%m.%Y")
+    res = name + ' № ' + number.to_s + " від " + from_date.strftime("%d.%m.%Y") + " (#{responsible_user.name})"
   end
 
 end

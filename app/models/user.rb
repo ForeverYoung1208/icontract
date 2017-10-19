@@ -54,7 +54,8 @@ class User < ApplicationRecord
   end
 
   def is_admin
-    self.roles.active.pluck(:id).include?( ::ADMIN_ROLE_ID )
+    # self.roles.active.pluck(:id).include?( ::ADMIN_ROLE_ID )
+    self.roles.active.where(id: ::ADMIN_ROLE_ID).count >= 1
   end
 
   def self.all_with_any_role
@@ -65,41 +66,45 @@ class User < ApplicationRecord
   end
 
 #================
-  def can_access_contracts
+  def can_access_contracts?
     true
   end
 
-  def can_access_akts
+  def can_access_akts?
     true
   end
 
-  def can_access_events
+  def can_access_events?
     true
   end
 
-  def can_access_reminders
+  def can_access_reminders?
     true
   end
 
-  def can_access_companies
+  def can_access_companies?
     true
   end
 
-  def can_access_users
+  def can_access_users?
     true
   end  
 
-  def can_access_roles
+  def can_access_roles?
+    is_admin
+  end    
+
+  def can_access_types?
     true
   end    
 
-  def can_access_types
-    false
-  end    
+  def can_access_reminder_types?
+    is_admin
+  end
 
-  def can_access_reminder_types
-    true
-  end    
+  def can_see_all_akts?
+    self.roles.active.where(id: ::ACCOUNTANT_ROLE_ID).count >= 1
+  end
 
 
 #===========
