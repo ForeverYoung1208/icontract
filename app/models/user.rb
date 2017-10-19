@@ -65,6 +65,10 @@ class User < ApplicationRecord
   end
 
 #================
+  def can_access_contracts
+    true
+  end
+
   def can_access_akts
     true
   end
@@ -80,6 +84,10 @@ class User < ApplicationRecord
   def can_access_companies
     true
   end
+
+  def can_access_users
+    true
+  end  
 
   def can_access_roles
     true

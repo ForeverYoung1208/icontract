@@ -5,8 +5,12 @@ class SessionsController < ApplicationController
 
   skip_before_action :get_current_user, only: [:new, :create]
 
+  layout "login"
+
+
 
   def new
+
   end
 
   def create
@@ -15,6 +19,7 @@ class SessionsController < ApplicationController
     if @current_user && @current_user.ip_check( request.remote_ip )
       session[:current_user_id] = @current_user.id
       cookies.signed[:current_user_id] = @current_user.id
+      render layout: "application"      
 
     else
       msg = @current_user ? "Невірний IP. Має бути #{ @current_user.ip_address }, отримано #{ request.remote_ip }" :  "невірне ім’я або пароль"
@@ -31,6 +36,8 @@ class SessionsController < ApplicationController
   end
 
   def index
+    render layout: "application"
+
 
   end
 
