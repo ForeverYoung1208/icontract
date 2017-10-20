@@ -1,5 +1,5 @@
 class AktsController < ApplicationController
-  before_action :set_akt, only: [:show, :edit, :update, :destroy, :check_reminders]
+  before_action :set_akt, only: [:show, :edit, :update, :destroy, :check_reminders, :approve_by_accountant]
   before_action :set_akts, only: [:index, :all, :mine]
 
   # GET /akts
@@ -113,6 +113,11 @@ class AktsController < ApplicationController
       format.html { redirect_to akts_url, notice: 'Акт видалено' }
       format.json { head :no_content }
     end
+  end
+
+  def approve_by_accountant
+    @akt.take_untake! if @current_user.can_take_documents?
+
   end
 
   private

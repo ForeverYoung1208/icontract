@@ -106,6 +106,10 @@ class User < ApplicationRecord
     self.roles.active.where(id: ::ACCOUNTANT_ROLE_ID).count >= 1
   end
 
+  def can_take_documents?
+    self.roles.active.where(id: ::ACCOUNTANT_ROLE_ID).count >= 1
+  end
+
 
 #===========
 
