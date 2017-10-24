@@ -25,7 +25,7 @@ class Contract < Reminderable
   end
 
   def name
-    is_deleted ? "!Удалён #{deleted_at.strftime("%d.%m.%Y")}! #{ super }" : super
+    is_deleted ? "!Видалений #{deleted_at.strftime("%d.%m.%Y")}! #{ super }" : super
   end
 
   def extended_info

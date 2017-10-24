@@ -32,7 +32,9 @@ class Event < ApplicationRecord
   def send_email
     res = "id=#{ id } email=#{email_address};"
     EventMailer.event_notification(self).deliver_later
-    # EventMailer.email_failed_notification('igor.sherbina@invest-co.com',self).deliver_now
+
+    self.increment!(:sent_times, 1)
+
   	return res
   end
 
