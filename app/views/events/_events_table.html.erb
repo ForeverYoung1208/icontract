@@ -29,7 +29,7 @@
         <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
         <td><%= event.done_by%></td>
 
-        <td> <%= management_links( event ) %> </td>
+        <td> <%= management_delete( event ) %> </td>
       </tr>
     <% end %>
   </tbody>
