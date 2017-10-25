@@ -77,11 +77,17 @@
       <div class="col-sm-1"><%= form.check_box :is_signed, id: :contract_is_signed %></div>
     </div>
 
+
     <div class="field row">
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_taken_as_original, "Прийнято бухгалтером?:" %></div>
+      <div class="col-sm-1"><%= form.check_box :is_taken_as_original, id: :contract_is_taken_as_original %></div>
+    </div>  
+
+<!--     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_active, "Активний?:" %></div>
       <div class="col-sm-1"><%= form.check_box :is_active, id: :contract_is_active %></div>
     </div>
-
+ -->
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :responsible_user_id, "Відповідальна особа:" %></div>
       <div class="col-sm-2"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name, {}, {class: "form-control"} %></div>      

@@ -8,11 +8,5 @@ class ApplicationController < ActionController::Base
 
 
 
-  ::SUPERUSERS = ['ForeverYoung','admin']  
-
-  ::ADMIN_ROLE_ID = 1
-  ::USER_ROLE_ID = 2
-  ::ACCOUNTANT_ROLE_ID = 3
-
   
 end

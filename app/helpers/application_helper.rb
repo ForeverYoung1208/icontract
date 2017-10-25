@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def yn(bool_var)
+    bool_var ? "Так" : "Ні"
+  end
+
   def fa_link_to(icon, *args, &block)
 
   	link_to(*args) do

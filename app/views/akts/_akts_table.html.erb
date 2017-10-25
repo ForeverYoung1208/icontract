@@ -59,8 +59,8 @@
         </td>
 
 
-        <td class="akt-is-signed"><%= akt.is_signed %></td>
-        <td class="akt-is-accepted"><%= akt.is_taken_as_original %></td>
+        <td class="akt-is-signed"><%= yn akt.is_signed %></td>
+        <td class="akt-is-accepted"><%= yn akt.is_taken_as_original %></td>
         <td class="akt-responsible-user-name"><%= link_to akt.responsible_user.name, user_path(akt.responsible_user.id) %></td>
         <td class="akt-"><%= management_links( akt ) %>
 

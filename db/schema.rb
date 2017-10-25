@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003150441) do
+ActiveRecord::Schema.define(version: 20171025102910) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171003150441) do
     t.text "textfiles"
     t.datetime "deleted_at"
     t.string "sum_detail"
+    t.boolean "is_taken_as_original"
     t.index ["payer_id"], name: "index_contracts_on_payer_id"
     t.index ["recipient_id"], name: "index_contracts_on_recipient_id"
     t.index ["type_id"], name: "index_contracts_on_type_id"

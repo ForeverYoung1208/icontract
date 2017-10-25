@@ -158,7 +158,7 @@ class ContractsController < ApplicationController
       params.require(:contract).permit(:type_id, :name, :number, :sum, :from_date, 
         :to_date, :till, :payer_id, :recipient_id, :is_signed, :is_active,
         :responsible_user_id, :creator_user_id, {scanfiles: []}, {textfiles: []},
-        :remove_scanfiles, :remove_textfiles, :sum_detail, :preferences
+        :remove_scanfiles, :remove_textfiles, :sum_detail, :preferences, :is_taken_as_original
       )
     end
 

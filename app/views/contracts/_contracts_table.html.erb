@@ -4,7 +4,8 @@
       <th>ID</th>
       <th>Договір (реквізити)</th>
       <th>Платник, отримувач</th>
-      <th>Стан</th>
+      <th class="small-header">Підписаний?</th>
+      <th class="small-header">Прийнятий?</th>
 
       <th>Відповідальний користувач</th>
       <th>Ким створено</th>
@@ -18,7 +19,8 @@
       <th><input type="text" class="filters" data-filter-on="contract-id"></th>
       <th><input type="text" class="filters" data-filter-on="contract-type-name"></th>
       <th><input type="text" class="filters" data-filter-on="contract-payer-name"></th>
-      <th></th>
+      <th><input type="text" class="filters" data-filter-on="contract-is-active"></th>
+      <th><input type="text" class="filters" data-filter-on="contract-is-taken"></th>
 
       <th><input type="text" class="filters" data-filter-on="contract-responsible-user-name"></th>
       <th><input type="text" class="filters" data-filter-on="contract-creator-user-name"></th>
@@ -47,12 +49,15 @@
           <p> <b>платник:</b> <%= contract.payer.name %> </p>
           <p> <b>отримувач:</b> <%= contract.recipient.name %> </p>
         </td> 
+
         <td class="contract-is-active" >
+          <p> <%= yn contract.is_signed %> </p>
+        </td>
 
-          <p> <b>Активний?:</b> <%= contract.is_active %> </p>
-          <p> <b>Підписаний?:</b> <%= contract.is_signed %> </p>
+        <td class="contract-is-taken" >
+          <p> <%= yn contract.is_taken_as_original %> </p>
+        </td>
 
-         </td>
         <!-- <td><%= contract.is_deleted %></td> -->
         <td class="contract-responsible-user-name" ><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
         <td class="contract-creator-user-name" ><%= link_to contract.creator_user.name, user_path(contract.creator_user.id) %></td>
