@@ -95,6 +95,7 @@ class AktsController < ApplicationController
   # PATCH/PUT /akts/1.json
   def update
     respond_to do |format|
+      prepare_form_data
       if @akt.update(akt_params)
         format.html { redirect_to edit_akt_path(@akt), notice: 'Акт оновлено' }
         format.json { render :show, status: :ok, location: @akt }
