@@ -34,17 +34,17 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'Сума договору: ' %></div>
-        <div class="col-sm-7"><%= @contract.sum %>, <%= @contract.sum_detail %></div>
+        <div class="col-sm-7"><%= @contract.sum %> <%= @contract.sum_detail %></div>
       </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'від (дата): ' %></div>
-        <div class="col-sm-7"><%= @contract.from_date.strftime("%d.%m.%Y") %></div>
+        <div class="col-sm-7"><%= @contract.from_date.try(:strftime, "%d.%m.%Y") %></div>
       </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label "діє до дати: " %></div>
-        <div class="col-sm-7"><%= @contract.to_date.strftime("%d.%m.%Y") %></div>
+        <div class="col-sm-7"><%= @contract.to_date.try(:strftime, "%d.%m.%Y") %></div>
       </div>
 
 <!--       <div class="field row">
@@ -66,12 +66,12 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Підписаний?" %></div>
-        <div class="col-sm-7"><%= @contract.is_signed %></div>
+        <div class="col-sm-7"><%= yn @contract.is_signed %></div>
       </div>
 
       <div class="field row">
-        <div class="col-sm-5 text-sm-right"><%= tag.label "Активний?" %></div>
-        <div class="col-sm-7"><%= @contract.is_active %></div>
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Прийнято бухгалтером?" %></div>
+        <div class="col-sm-7"><%= yn @contract.is_taken_as_original %></div>
       </div>
 
       <div class="field row">
@@ -111,19 +111,38 @@
         <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні нагадування:" %></div>
         <div class="col-sm-7">
           <% if @contract.reminders %>      
-            <% @contract.reminders.each do |r| %>
-              <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
 
-            <% end %>
+              <% @contract.reminders.each do |r| %>
+                <li>
+                  <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id) , class: "management-button" %><br/>
+                </li>
+              <% end %>
+
           <% end %>        
         </div>
       </div>
 
 
-      <div class="col-sm-12 text-sm-center">
-        <%= link_to 'Редагувати', edit_contract_path(@contract) %> |
-        <%= link_to 'Список договорів', contracts_path %>   
+      <%= render 'bottom_navigation_area', entity:@contract, links: {edit: true} %>
+      <hr> <h3>Додаткова інформація</h3>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні акти:" %></div>
+        <div class="col-sm-7">
+          <% if @contract.akts && @contract.akts.count>0 %>      
+            <% @contract.akts.each do |a| %>
+              <li>
+                <%= link_to " #{a.extended_info} (id:#{a.id.to_s})", akt_path(a.id) , class: "management-button" %>
+              </li>
+            <% end %>
+          <% else %>
+            Немає
+          <% end %>
+
+        </div>
       </div>
+
+
     </div>
 
     <div class="col-sm-7 pdf-area">

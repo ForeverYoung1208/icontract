@@ -18,7 +18,7 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'до договору: ' %></div>
-        <div class="col-sm-7"><%= @akt.contract.name %></div>
+        <div class="col-sm-7"><%= link_to @akt.contract.name, @akt.contract, class: "management-button" %></div>
       </div>
 
 
@@ -89,20 +89,23 @@
       <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні нагадування:" %></div>
         <div class="col-sm-7">
-          <% if @akt.reminders %>      
-            <% @akt.reminders.each do |r| %>
-              <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
+          <% if @akt.reminders %>
 
-            <% end %>
+              <% @akt.reminders.each do |r| %>
+                <li>
+                  <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id), class: "management-button"%><br/>
+                </li>
+
+              <% end %>
+
           <% end %>        
         </div>
       </div>
 
 
-      <div class="col-sm-12 text-sm-center">
-        <%= link_to 'Редагувати', edit_akt_path(@akt) %> |
-        <%= link_to 'Список договорів', akt_path %>   
-      </div>
+
+      <%= render 'bottom_navigation_area', entity:@akt, links: {edit: true} %>      
+
     </div>
 
     <div class="col-sm-7 pdf-area">

@@ -46,15 +46,18 @@ class Reminder < ApplicationRecord
     end
 
     begin
-      event = Event.create!(
-        reminder: self,
-        user: user,
-        sent_times: 0,
-        to_send: true,
-        email_address: user.email,
-        email_text: "Нагадування: #{message} для #{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")} (id: #{reminderable.id}), #{self.reminder_type.name} ",
-        on_date: needed_date
-      )  
+      if needed_date <= ends
+        event = Event.create!(
+          reminder: self,
+          user: user,
+          sent_times: 0,
+          to_send: true,
+          email_address: user.email,
+          email_text: "Нагадування: #{message} для #{reminderable.responsible_user.name}, #{reminderable.doctype} від #{reminderable.from_date.strftime("%d.%m.%Y")} (id: #{reminderable.id}), #{self.reminder_type.name} ",
+          on_date: needed_date
+        ) 
+        event.send_email
+      end
     rescue ActiveRecord::RecordInvalid => err
       # if err.message =~ /Validation failed.*/
         

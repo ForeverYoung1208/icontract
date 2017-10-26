@@ -10,5 +10,5 @@
 
 <%= render 'form', akt: @akt %>
 
-<%= link_to 'Показати деталі', @akt %> |
-<%= link_to 'Список актів', akts_path %>
+
+<%= render 'bottom_navigation_area', entity: @akt, links: {} %>

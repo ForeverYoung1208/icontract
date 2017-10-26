@@ -1,0 +1,5 @@
+| <%= link_to('Показати деталі', entity, class: "management-button") if links[:details] %>
+
+| <%= link_to('Редагувати', polymorphic_path(entity, {action: :edit}), class: "management-button") if links[:edit] %>
+
+| <%= link_to 'Назад', :back, class: "management-button" %> |

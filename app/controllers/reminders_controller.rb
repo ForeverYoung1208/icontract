@@ -120,12 +120,12 @@ class RemindersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_reminders
-      @reminders = Reminder.all.where(:'user_id' => @current_user.allowed_users_ids)
+      @reminders = Reminder.where(:'user_id' => @current_user.allowed_users_ids)
     end
 
 
     def set_reminder
-      @reminder = Reminder.find(params[:id])
+      @reminder = Reminder.where(id: params[:id]).includes(:reminderable).first
     end
 
 

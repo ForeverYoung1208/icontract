@@ -2,4 +2,4 @@
 
 <%= render 'form', reminder: @reminder %>
 
-<%= link_to 'Список нагадувань', reminders_path %>
+<%= render 'bottom_navigation_area', entity: @reminder, links: {} %>

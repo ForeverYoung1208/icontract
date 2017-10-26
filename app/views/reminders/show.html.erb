@@ -3,7 +3,7 @@
     <div class="col-sm-2 text-sm-right">
       <%= fa_link_to('-arrow-left', reminder_path(@reminder.previous), class: "management-button") {"Попередній"} if @reminder.previous %>
     </div>
-    <div class="col-sm-3 text-sm-center"><h2> Перегляд договору ( id: <%= @reminder.id %>)</h2></div>
+    <div class="col-sm-3 text-sm-center"><h2> Перегляд нагадування ( id: <%= @reminder.id %>)</h2></div>
     <div class="col-sm-2 text-sm-left">
       <%= fa_link_to('-arrow-right', reminder_path(@reminder.next), class: "management-button") {"Наступний"} if @reminder.next%>
     </div>
@@ -36,122 +36,46 @@
 
 
       <div class="field row">
-        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Рік: ' %></div>
-        <div class="col-sm-7"><%= @reminder.yyyy %></div>
-      </div>
-
-      <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'День тижня: ' %></div>
         <div class="col-sm-7"><%= @reminder.dofw %></div>
       </div>
 
 
       <div class="field row">
-        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Початок: ' %></div>
-        <div class="col-sm-7"><%= @reminder.begins %></div>
-      </div>
-
-      <div class="field row">
-        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Кінець: ' %></div>
-        <div class="col-sm-7"><%= @reminder.ends %></div>
-      </div>
-
-
-      <div class="field row">
-        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Початок: ' %></div>
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Діє від: ' %></div>
         <div class="col-sm-7"><%= @reminder.begins.strftime("%d.%m.%Y") %></div>
       </div>
 
 
       <div class="field row">
-        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Сума договору: ' %></div>
-        <div class="col-sm-7"><%= @reminder.sum %>, <%= @reminder.sum_detail %></div>
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Діє до: ' %></div>
+        <div class="col-sm-7"><%= @reminder.ends.strftime("%d.%m.%Y") %></div>
       </div>
 
 
-      <div class="field row">
-        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язані документи:" %></div>
-        <div class="col-sm-7">
-          <% if @reminder.reminders %>      
-            <% @reminder.reminders.each do |r| %>
-              <%= link_to r.reminder_type.name+" (id:#{r.id.to_s})", reminder_path(r.id)%><br/>
 
-            <% end %>
-          <% end %>        
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Активний? ' %></div>
+        <div class="col-sm-7"><%= yn @reminder.is_active %></div>
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Накадування до документа' %></div>
+        <div class="col-sm-7">
+          <%= link_to @reminder.reminderable, class: "management-button" do  %>
+
+            <%= @reminder.reminderable.doctype %> 
+            на <%= @reminder.reminderable.sum %> грн. <%= "(#{@reminder.reminderable.sum_detail})" if (@reminder.reminderable.sum_detail and @reminder.reminderable.sum_detail!="")  %>
+            від <%= @reminder.reminderable.from_date %>
+            id: <%= @reminder.reminderable_id %>
+          <% end %>
+
         </div>
       </div>
 
 
-      <div class="col-sm-12 text-sm-center">
-        <%= link_to 'Редагувати', edit_reminder_path(@reminder) %> |
-        <%= link_to 'Список нагадувань', reminders_path %>   
-      </div>
-    </div>
+      <%= render 'bottom_navigation_area', entity:@reminder, links: {edit: true} %>          </div>
 
     </div>
   </div>
-</div>    
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Type:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Dd:</strong>
-  <%= %>
-</p>
-
-<p>
-  <strong>Mm:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Yyyy:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Dofw:</strong>
-  <%= %>
-</p>
-
-<p>
-  <strong>Moq:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Begins:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Ends:</strong>
-  <%= @reminder.ends %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @reminder.is_active %>
-</p>
-
-<p>
-  <strong>Reminderable_type:</strong>
-  <%= @reminder.reminderable_type %>
-</p>
-<p>
-  <strong>Reminderable_id:</strong>
-  <%= @reminder.reminderable_id %>
-</p>
-
-<%= link_to 'Редагувати', edit_reminder_path(@reminder) %> |
-<%= link_to 'Назад', :back %>
+</div>

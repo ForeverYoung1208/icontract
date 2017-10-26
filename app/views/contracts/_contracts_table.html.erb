@@ -1,7 +1,7 @@
 <table class="table" id="contracts-table">
   <thead class="thead-default">
     <tr>
-      <th>ID</th>
+      <th class="small-header">ID</th>
       <th>Договір (реквізити)</th>
       <th>Платник, отримувач</th>
       <th class="small-header">Підписаний?</th>
@@ -41,8 +41,8 @@
         <%= contract.name %>, 
         № <%= contract.number %>, 
         на <%= contract.sum %> грн., 
-        від <%= contract.from_date.strftime("%d.%m.%Y") %>, 
-        до <%= contract.to_date.strftime("%d.%m.%Y") %>
+        від <%= contract.from_date.strftime("%d.%m.%Y") if contract.from_date %>, 
+        до <%= contract.to_date.strftime("%d.%m.%Y") if contract.to_date %>
         </td>
 
         <td class="contract-payer-name" > 

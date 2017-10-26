@@ -58,6 +58,8 @@ class ContractsController < ApplicationController
   # POST /contracts.json
   def create
     @contract = Contract.new(contract_params)
+    @contract.creator_user = @current_user
+    @contract.creator_user_name = @current_user.name
 
 
     respond_to do |format|
@@ -130,8 +132,8 @@ class ContractsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
       @contract = Contract.find(params[:id])
-      @contract.from_date = @contract.from_date.strftime("%d.%m.%Y")
-      @contract.to_date = @contract.to_date.strftime("%d.%m.%Y")
+      @contract.from_date = @contract.from_date.strftime("%d.%m.%Y") if @contract.from_date
+      @contract.to_date = @contract.to_date.strftime("%d.%m.%Y") if @contract.to_date
       
     end
 
@@ -150,7 +152,7 @@ class ContractsController < ApplicationController
       @types = Type.all
       @companies = Company.all
       @responsible_users = User.all_with_any_role
-      @creator_users = [ @current_user ]
+      @creator_user = @current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

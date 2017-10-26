@@ -1,13 +1,20 @@
 class Akt < Reminderable
 
   belongs_to :contract
+
+
+  validates :from_date, presence: true
+  validates :sum, presence: true
+  validates :number, presence: true
   
   def doctype 
   	'Акт'
   end
 
   def extended_info
-    res = ' № ' +number.to_s + " від " + from_date.strftime("%d.%m.%Y") + ' до дог. ' + contract.name + " від " + contract.from_date.strftime("%d.%m.%Y")
+    from_date ? from_date_str = " від "+from_date.strftime("%d.%m.%Y") : from_date_str = " без дати "
+
+    res = ' № ' +number.to_s + from_date_str + ' до дог. ' + contract.name + " від " + contract.from_date.strftime("%d.%m.%Y")
   end
 
   def name

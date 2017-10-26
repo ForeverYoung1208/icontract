@@ -1,1 +1,12 @@
-text version: test event_notification for user id <%= @user.id %> name <%= @user.name %>
+Нагадування для користувача <%= @event.user.name %>:
+
+На дату <%= @event.on_date %> в системі icontract зареєстровано подію з id= <%= @event.id %>,
+яку створено нагадуванням з id= <%= @event.reminder_id%> до документу <%= "#{@reminderable.doctype}, 
+№ #{@reminderable.number} від #{@reminderable.from_date}" %>
+
+Текст нагадування:<br/>
+<%= @event.reminder.message %>
+
+Будь-ласка, вчасно відпрацюйте та відзначте подію як відпрацьовану.
+
+Не відповідайте на цей лист, його відправлено автоматично.

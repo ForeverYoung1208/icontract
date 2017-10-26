@@ -2,12 +2,12 @@ window.doFilter = (f, rows)->
 	if f.val() != ''
 		$('.filters').removeClass('glowing')
 		f.addClass('glowing')
-		filterRegex =  new RegExp( f.val() )
+		filterRegex =  new RegExp( f.val().toUpperCase() )
 		filterField = f.data("filterOn")
 		rowsToFilter = rows
 		rowsToFilter.each (index, row)->
 			field = $(row).find('.'+filterField)
-			if filterRegex.test(field.text())
+			if filterRegex.test(field.text().toUpperCase()) or filterRegex==""
 				$(row).show()
 			else
 				$(row).hide()

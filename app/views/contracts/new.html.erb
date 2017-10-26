@@ -10,5 +10,4 @@
 
 <%= render 'form', contract: @contract %>
 
-<%= link_to 'Показати деталі', @contract %> |
-<%= link_to 'Список договорів', contracts_path %>
+<%= render 'bottom_navigation_area', entity: @contract, links: {} %>

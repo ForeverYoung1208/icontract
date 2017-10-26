@@ -13,5 +13,5 @@
 
 <%= render 'form', reminder: @reminder %>
 
-<%= link_to 'Деталі', @reminder %> |
-<%= link_to 'Назад', :back %>
+<%= render 'bottom_navigation_area', entity:@reminder, links: {details: true} %>
+

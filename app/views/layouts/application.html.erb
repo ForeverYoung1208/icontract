@@ -37,15 +37,15 @@
 
           <%= mainmenu_item( {
             current: request.path, 
-            menuitem: events_path,
-            active: @current_user.can_access_events?,
-          }) {'Події'} %>
-
-          <%= mainmenu_item( {
-            current: request.path, 
             menuitem: reminders_path,
             active: @current_user.can_access_events?,
           }) {'Нагадування'} %>
+          
+          <%= mainmenu_item( {
+            current: request.path, 
+            menuitem: events_path,
+            active: @current_user.can_access_events?,
+          }) {'Події'} %>
 
           <%= mainmenu_dropdown( {
             current: request.path, 

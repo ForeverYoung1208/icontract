@@ -1,19 +1,21 @@
 <table class="table" id="akts-table">
   <thead class="thead-default">
     <tr>
-      <th>ID</th>
+      <th class="small-header">ID</th>
+      <th>Номер</th>
       <th>До Договору</th>
       <th>Дата акту</th>
       <th>Сума акту</th>
       <th>Нагадування</th>      
       <th>Скан, текст</th>
-      <th>Підписаний?</th>
-      <th>Прийнято бухгалтером?</th>
+      <th class="small-header">Підписаний?</th>
+      <th class="small-header">Прийнято бухгалтером?</th>
       <th>Відповідальний</th>
       <th>Керування</th>
     </tr>
     <tr>
       <th><input type="text" class="filters" data-filter-on="akt-id"></th>
+      <th><input type="text" class="filters" data-filter-on="akt-number"></th>
       <th><input type="text" class="filters" data-filter-on="akt-contract"></th>
       <th><input type="text" class="filters" data-filter-on="akt-date"></th>
       <th><input type="text" class="filters" data-filter-on="akt-sum"></th>
@@ -30,7 +32,15 @@
     <% @akts.each do |akt| %>
       <tr>
         <td class="akt-id"><%= akt.id %></td>
-        <td class="akt-contract"><%= akt.contract.name %> від <%= akt.contract.from_date.strftime("%d.%m.%Y") %> <%="(ID: #{akt.contract_id})" %></td>
+        <td class="akt-number"><%= akt.number %></td>
+        <td class="akt-contract"> 
+          <%= link_to akt.contract, class: "management-button" do %>
+
+            <%= akt.contract.name %> № <%=akt.contract.number %> від <%= akt.contract.from_date.strftime("%d.%m.%Y") %> <%="(ID: #{akt.contract_id})" %>
+          <% end %>
+            
+
+        </td>
         <td class="akt-date"><%= akt.from_date.strftime("%d.%m.%Y") %></td>
         <td class="akt-sum"><%= akt.sum %></td>
         

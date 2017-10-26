@@ -93,7 +93,7 @@
       <div class="col-sm-2"><%= form.collection_select :responsible_user_id, @responsible_users, :id, :name, {}, {class: "form-control"} %></div>      
 
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :creator_user_id, "Хто зареєстрував:" %></div>
-      <div class="col-sm-2"><%= form.collection_select :creator_user_id, @creator_users, :id, :name, {}, {class: "form-control"} %></div>      
+      <div class="col-sm-2"><span class="form-control"><%= @creator_user.name %> ( id: <%= @creator_user.id %>)</span></div>      
     </div>
 
 
