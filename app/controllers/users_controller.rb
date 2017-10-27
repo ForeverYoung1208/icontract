@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action ->{ 
+    redirect_to(root_path, notice: "Немає прав") unless @current_user.can_access_users? 
+  }, except: [:update_roles]
+
+
   def index
   	@users = User.all
 
@@ -18,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def update_roles
+
     # logger.debug('=========================================================================')
     # logger.debug( params["_json"][0][:name] )
     # logger.debug('=========================================================================')

@@ -110,6 +110,14 @@ class User < ApplicationRecord
     self.roles.active.where(id: ::ACCOUNTANT_ROLE_ID).count >= 1
   end
 
+  def can_check_reminders?
+    is_admin
+  end
+
+  def can_send_events?
+    is_admin
+  end
+
 
 #===========
 
