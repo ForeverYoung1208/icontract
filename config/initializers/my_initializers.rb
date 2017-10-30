@@ -20,3 +20,9 @@ class FalseClass
     "Ні"
   end
 end
+
+#System jobs setup
+# MorningCheckJob.set(wait: 5.seconds).perform_later("xxx")
+
+MorningCheckJob.set(wail_until: Date.tomorrow.beginning_of_day).perform_later
+
