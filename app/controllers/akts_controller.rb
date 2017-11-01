@@ -116,7 +116,7 @@ class AktsController < ApplicationController
     end
   end
 
-  def approve_by_accountant
+  def take
     @akt.take_untake! if @current_user.can_take_documents?
 
   end

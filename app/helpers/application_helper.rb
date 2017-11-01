@@ -102,4 +102,11 @@ module ApplicationHelper
     management_delete(entity)
   end
 
+
+  def take_button( entity )
+    if @current_user.can_take_documents? && !entity.is_taken_as_original
+      tag.button(onclick: "take('#{ polymorphic_path(entity, {action: :take}) }')"){ "Take it"} 
+    end
+  end
+
 end

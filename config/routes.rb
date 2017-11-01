@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :akts do
     member do
       post 'check_reminders'
+      post 'take'
     end
     post 'check_all_reminders', on: :collection
     get 'all', on: :collection
