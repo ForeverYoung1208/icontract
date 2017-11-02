@@ -9,17 +9,17 @@
 
 #My service patches
 
-class TrueClass
-  def yesno
-    "Так"
-  end
-end
+# class TrueClass
+#   def yesno
+#     "Так"
+#   end
+# end
 
-class FalseClass
-  def yesno
-    "Ні"
-  end
-end
+# class FalseClass
+#   def yesno
+#     "Ні"
+#   end
+# end
 
 #System jobs setup
 # MorningCheckJob.set(wait: 5.seconds).perform_later("xxx")

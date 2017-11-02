@@ -23,6 +23,10 @@ window.listChange = (path)->
 		
 # });
 
+window.takeDocument = (path,id) ->
+	alert(path+id)
+
+
 
 $(document).on 'turbolinks:load', ->
 	$('[data-toggle="tooltip"]').tooltip()
