@@ -21,11 +21,6 @@ class Akt < Reminderable
     is_deleted ? "Удалён #{deleted_at.strftime("%d.%m.%Y")}! #{ doctype } от #{from_date.strftime("%d.%m.%Y")}" : "#{ doctype } от #{from_date.strftime("%d.%m.%Y")}"
   end  
 
-  def take_untake!
-    is_taken_as_original = !is_taken_as_original;
-    save!
-  end
-
 
   #I think in future akt will have its own responsible user
   #look also at akts_controller#mine

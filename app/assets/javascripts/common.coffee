@@ -23,8 +23,19 @@ window.listChange = (path)->
 		
 # });
 
-window.takeDocument = (path,id) ->
-	alert(path+id)
+# window.takeDocument = (path,id) ->
+# 	alert(path+id)
+
+window.takeDocument = (type,id) ->
+	data = {
+		type: type,
+		id: id
+	}
+	App.actionsChannel.takeUntake(data)	
+
+
+
+
 
 
 

@@ -17,6 +17,12 @@ class Reminderable < ApplicationRecord
     return deleted_at != nil
   end
 
+  def take_untake!
+    is_taken_as_original = !is_taken_as_original;
+    save!
+    is_taken_as_original
+  end
+
 
   
   mount_uploaders :scanfiles, ScanReminderableUploader

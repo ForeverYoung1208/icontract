@@ -65,7 +65,10 @@ class AktsController < ApplicationController
         format.html { redirect_to @akt, notice: 'Акт створено.' }
         format.json { render :show, status: :created, location: @akt }
       else
-        format.html { render :new }
+        format.html do
+          prepare_form_data
+          render :new
+        end
         format.json { render json: @akt.errors, status: :unprocessable_entity }
       end
     end
