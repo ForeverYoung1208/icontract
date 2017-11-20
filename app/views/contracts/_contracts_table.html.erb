@@ -34,7 +34,7 @@
 
   <tbody>
     <% @contracts.each do |contract| %>
-      <tr>
+      <tr data-rowId="<%= contract.id %>">
         <td class="contract-id" ><%= contract.id %></td>
         
         <td class="contract-type-name" ><%= contract.type.name %>, 

@@ -3,9 +3,12 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
     # Called when there's incoming data on the websocket for this channel
     # alert(data["title"]+data["body"])
 
+    row = $('tr[data-rowId="'+data["id"]+'"]')
+    row.find('.akt-is-accepted').text('Так')
 
+    # leave button "take"
+    # row.find('.akt-is-accepted').find('span').text('ЖЖЖЖЖЖЖ')
 
-    STOPPED HERE   table = $('#akts-table') ############
 
     console.log "ActionsChannel:"
     console.log data["type"]

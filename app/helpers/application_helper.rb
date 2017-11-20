@@ -103,10 +103,9 @@ module ApplicationHelper
   end
 
 
-  def take_button( entity )
+  def take_button( entity, text )
     if @current_user.can_take_documents? && !entity.is_taken_as_original
-      # tag.button(onclick: "takeDocument('#{ polymorphic_path(entity, {action: :take}) }', #{ entity.id })"){ "Take it"} 
-      tag.button(onclick: "takeDocument('#{ entity.class }', #{ entity.id })"){ "Take it"} 
+      tag.button(onclick: "takeDocument('#{ entity.class }', #{ entity.id })"){ "#{text}"} 
 
     end
   end

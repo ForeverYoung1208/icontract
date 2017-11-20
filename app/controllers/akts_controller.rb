@@ -119,10 +119,10 @@ class AktsController < ApplicationController
     end
   end
 
-  def take
-    @akt.take_untake! if @current_user.can_take_documents?
+  # def take
+  #   @akt.take_untake! if @current_user.can_take_documents?
 
-  end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

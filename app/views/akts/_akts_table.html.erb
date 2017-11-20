@@ -30,7 +30,7 @@
 
   <tbody>
     <% @akts.each do |akt| %>
-      <tr>
+      <tr data-rowId="<%= akt.id%>">
         <td class="akt-id"><%= akt.id %></td>
         <td class="akt-number"><%= akt.number %></td>
         <td class="akt-contract"> 
@@ -71,8 +71,8 @@
 
         <td class="akt-is-signed"><%= yn akt.is_signed %></td>
         <td class="akt-is-accepted">
-          <%= yn akt.is_taken_as_original %>
-            <%= take_button akt %>
+            <span><%= yn akt.is_taken_as_original %></span>
+            <%= take_button akt, "Прийняти" %>
           </td>
         <td class="akt-responsible-user-name"><%= link_to akt.responsible_user.name, user_path(akt.responsible_user.id) %></td>
         <td class="akt-"><%= management_links( akt ) %>

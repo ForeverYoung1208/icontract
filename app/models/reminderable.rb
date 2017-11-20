@@ -18,8 +18,10 @@ class Reminderable < ApplicationRecord
   end
 
   def take_untake!
-    is_taken_as_original = !is_taken_as_original;
-    save!
+    
+    self.is_taken_as_original = !is_taken_as_original;
+    self.save
+
     is_taken_as_original
   end
 
