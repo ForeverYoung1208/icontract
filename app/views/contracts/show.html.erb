@@ -85,6 +85,11 @@
       </div>
 
       <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Примітки:" %></div>
+        <div class="col-sm-7"><%= @contract.preferences %></div>      
+      </div>
+
+      <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Сканокопія:" %></div>
         <div class="col-sm-7">
           <% if @contract.scanfiles %>      

@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="container-fluid contract-form">
+  <div class="container-fluid contract-form" data-entityId="<%= akt.id%>">
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :number, 'Номер: ' %></div>
@@ -45,13 +45,24 @@
     </div>
 
     <div class="field row">
+      <div class="col-sm-2 text-sm-right"><%= tag.label "Відповідальна особа (по договору):" %></div>
+      <div class="col-sm-2"><%= @akt.responsible_user.name %></div>      
+    </div>
+
+    <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_signed, "Підписаний?:" %></div>
       <div class="col-sm-1"><%= form.check_box :is_signed, id: :akt_is_signed %></div>
     </div>
 
-    <div class="field row">
+    <div class="field row entity-is-taken ">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :is_taken_as_original, "Прийнято бухгалтером?:" %></div>
-      <div class="col-sm-1"><%= form.check_box :is_taken_as_original, id: :akt_is_taken_as_original %></div>
+      <div class="col-sm-1">
+        <span><%= yn @akt.is_taken_as_original %></span>
+      </div>
+      <div class="col-sm-3">
+        <%= untake_button @akt, "Відмінити прийняття" %>
+      </div>
+
     </div>  
 
     <div class="field row">
@@ -73,6 +84,10 @@
 
     </div>
 
+    <div class="field row">
+      <div class="col-sm-2 text-sm-right"> <%= form.label :preferences, "Примітки: " %></div>
+      <div class="col-sm-6"><%= form.text_area :preferences, id: :reminderable_preferences, class: "form-control" %></div>
+    </div> 
 
 
 

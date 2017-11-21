@@ -133,7 +133,7 @@ class AktsController < ApplicationController
 
     def set_akts
       if @current_user.can_see_all_akts?
-        @akts = Akt.notdeleted
+        @akts = Akt.notdeleted.includes(:contract)
       else
         @akts = Akt.notdeleted.includes(:contract).where(:'contracts.responsible_user_id' => @current_user.allowed_users_ids)
       end
@@ -146,7 +146,7 @@ class AktsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def akt_params
       params.require(:akt).permit(:contract_id, :from_date, :sum, :number,
-        :scan_path, :doc_path, :is_signed, :is_deleted,
+        :scan_path, :doc_path, :is_signed, :is_deleted, :preferences,
         :is_taken_as_original, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles, :sum_detail
       )
     end

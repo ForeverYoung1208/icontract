@@ -17,10 +17,12 @@ class Reminderable < ApplicationRecord
     return deleted_at != nil
   end
 
-  def take_untake!
+  def take_untake!(by_user)
     
     self.is_taken_as_original = !is_taken_as_original;
+    self.preferences="#{self.preferences} Прийнято "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
     self.save
+
 
     is_taken_as_original
   end

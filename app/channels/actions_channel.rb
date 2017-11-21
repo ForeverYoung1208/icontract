@@ -21,7 +21,7 @@ class ActionsChannel < ApplicationCable::Channel
       reminderable = Contract.find(data['id'])
     end
     if @current_user.can_take_documents?
-      data['is_taken_as_original'] = reminderable.take_untake!
+      data['is_taken_as_original'] = reminderable.take_untake!(@current_user)
       # ActionsChannel.broadcast_to( current_user_id, data)
       ActionCable.server.broadcast("actions_channel", data)      
     else

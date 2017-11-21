@@ -104,10 +104,22 @@ module ApplicationHelper
 
 
   def take_button( entity, text )
-    if @current_user.can_take_documents? && !entity.is_taken_as_original
-      tag.button(onclick: "takeDocument('#{ entity.class }', #{ entity.id })"){ "#{text}"} 
-
+    if @current_user.can_take_documents?
+      tag.button(
+        onclick: "takeUntakeDocument('#{ entity.class }', #{ entity.id })", 
+        class: "take-button #{'hidden' if entity.is_taken_as_original}"
+      ){ "#{text}"} 
     end
   end
+
+  def untake_button( entity, text )
+    if @current_user.can_take_documents?
+      tag.button(
+        onclick: "if(confirm('Відмінити прийняття? (Відміна буде застосована  і збережена одразу)')){ takeUntakeDocument('#{ entity.class }', #{ entity.id }) }",
+         class: "untake-button #{'hidden' if !entity.is_taken_as_original}"
+      ){ "#{text}"} 
+    end
+  end
+
 
 end

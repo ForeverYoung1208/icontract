@@ -50,17 +50,22 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Підписаний?" %></div>
-        <div class="col-sm-7"><%= @akt.is_signed %></div>
+        <div class="col-sm-7"><%= yn @akt.is_signed %></div>
       </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Прийнято бухгалтером" %></div>
-        <div class="col-sm-7"><%= @akt.is_taken_as_original %></div>
+        <div class="col-sm-7"><%= yn @akt.is_taken_as_original %></div>
       </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right"><%= tag.label "Відповідальна особа:" %></div>
         <div class="col-sm-7"><%= @akt.responsible_user.name %></div>      
+      </div>
+
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Примітки:" %></div>
+        <div class="col-sm-7"><%= @akt.preferences %></div>      
       </div>
 
       <div class="field row">

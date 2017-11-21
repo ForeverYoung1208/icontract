@@ -26,7 +26,7 @@ window.listChange = (path)->
 # window.takeDocument = (path,id) ->
 # 	alert(path+id)
 
-window.takeDocument = (type,id) ->
+window.takeUntakeDocument = (type,id) ->
 	data = {
 		type: type,
 		id: id
@@ -34,12 +34,12 @@ window.takeDocument = (type,id) ->
 	App.actionsChannel.takeUntake(data)	
 
 
-
-
-
-
-
 $(document).on 'turbolinks:load', ->
+	$('.untake-button, .take-button').click( 
+		(e)->
+			e.preventDefault();
+	)
+
 	$('[data-toggle="tooltip"]').tooltip()
 	$('input[type=file]').bootstrapFileInput();
 	$('.file-inputs').bootstrapFileInput();
