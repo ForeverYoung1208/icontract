@@ -10,13 +10,13 @@ users = User.all
 
 
 roles_user = [
-    RolesUser.where(id: ::ADMIN_ROLE_ID).first_or_create(
+    Roles.where(id: ::ADMIN_ROLE_ID).first_or_create(
         name: "Адмін"
     ),
-    RolesUser.where(id: ::USER_ROLE_ID).first_or_create(
+    Roles.where(id: ::USER_ROLE_ID).first_or_create(
         name: "Користувач"
     ),
-    RolesUser.where(id: ::ACCOUNTANT_ROLE_ID = 3).first_or_create(
+    Roles.where(id: ::ACCOUNTANT_ROLE_ID = 3).first_or_create(
         name: "Бухгалтер"
     )
 
