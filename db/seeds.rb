@@ -79,7 +79,6 @@ contracts = [
         till: "выполнения сторонами обязательств1",
         is_signed: true,
         is_active: true,
-        is_deleted: false,
         type: types[0],
         payer: companies[0],
         recipient: companies[1],
@@ -98,7 +97,6 @@ contracts = [
         till: "выполнения сторонами обязательств2",
         is_signed: true,
         is_active: true,
-        is_deleted: false,
         type: types[1],
         payer: companies[1],
         recipient: companies[0],
@@ -118,7 +116,6 @@ akts = [
         scan_path: "/akts/scan/contract2.pdf",
         text_path: "/akts/text/contract2.doc",
         is_signed: false,
-        is_deleted: false,
         is_taken_as_original: true
     ), 
     Akt.where(id:2).first_or_create(
@@ -128,7 +125,6 @@ akts = [
         scan_path: "/akts/scan/contract2.pdf",
         text_path: "/akts/text/contract2.doc",
         is_signed: false,
-        is_deleted: false,
         is_taken_as_original: true
     )
 ]
