@@ -113,8 +113,8 @@ akts = [
         contract: contracts[0],
         from_date: "20.05.2017",
         sum: "222.22",
-        scan_path: "/akts/scan/contract2.pdf",
-        text_path: "/akts/text/contract2.doc",
+        scanfiles: "/akts/scan/contract2.pdf",
+        textfiles: "/akts/text/contract2.doc",
         is_signed: false,
         is_taken_as_original: true
     ), 
@@ -122,8 +122,8 @@ akts = [
         contract: contracts[1],
         from_date: "20.05.2017",
         sum: "222.22",
-        scan_path: "/akts/scan/contract2.pdf",
-        text_path: "/akts/text/contract2.doc",
+        scanfiles: "/akts/scan/contract2.pdf",
+        textfiles: "/akts/text/contract2.doc",
         is_signed: false,
         is_taken_as_original: true
     )
