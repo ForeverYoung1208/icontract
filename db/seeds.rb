@@ -84,8 +84,8 @@ contracts = [
         recipient: companies[1],
         responsible_user: users[0],
         responsible_user_name: users[0].name,
-        creator_user: users[1],
-        creator_user_name: users[1].name,
+        creator_user: users[0],
+        creator_user_name: users[0].name,
         preferences: "preferences1"
     ), 
     Contract.where(id:2).first_or_create(
@@ -100,8 +100,8 @@ contracts = [
         type: types[1],
         payer: companies[1],
         recipient: companies[0],
-        responsible_user: users[1],
-        responsible_user_name: users[1].name,
+        responsible_user: users[0],
+        responsible_user_name: users[0].name,
         creator_user: users[0],
         creator_user_name: users[0].name,
         preferences: "preferences2"
