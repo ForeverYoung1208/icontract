@@ -46,7 +46,7 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right"><%= tag.label "Відповідальна особа (по договору):" %></div>
-      <div class="col-sm-2"><%= @akt.responsible_user.name %></div>      
+      <div class="col-sm-2"><%= @akt.responsible_user.name if @akt.contract  %></div>      
     </div>
 
     <div class="field row">
