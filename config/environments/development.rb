@@ -36,6 +36,11 @@ Rails.application.configure do
   config.action_cable.disable_request_forgery_protection = true
 ###
 
+
+####
+  config.log_level = :debug
+####
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

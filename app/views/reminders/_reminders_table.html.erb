@@ -54,7 +54,7 @@
 <!--        <td><%= reminder.moq if reminder.reminder_type_id == 1 %></td> -->
         <td><%= reminder.begins %></td>
         <td><%= reminder.ends %></td>
-        <td><%= reminder.is_active %></td>
+        <td><%= yn reminder.is_active %></td>
         <td><%= management_links(reminder) %></td>
       </tr>
     <% end %>

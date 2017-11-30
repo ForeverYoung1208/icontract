@@ -9,7 +9,7 @@
       <th>Емейл адреса</th>
       <th>Текст емейл-листа</th>
       <th>Дата нагадування</th>
-      <th>Ким виконано</th>
+      <th>Виконано? (Звіт)</th>
       <th>Керування</th>
     </tr>
 
@@ -27,10 +27,30 @@
         <td><%= event.email_address %></td>
         <td><%= event.email_text %></td>
         <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
-        <td><%= event.done_by%></td>
+        <td><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})", class:"", "data-toggle":"modal", "data-target":"#eventDoneByModal"){"Виконати"}%></td>
 
         <td> <%= management_delete( event ) %> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+<div class="modal fade" id="eventDoneByModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="eventReportText" class="form-control-label">Звіт:</label>
+            <textarea class="form-control" id="eventReportText"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Відміна</button>
+        <button type="button" class="btn btn-primary" onclick="submitEventDoneReport()">Ок</button>
+      </div>
+    </div>
+  </div>
+</div>
