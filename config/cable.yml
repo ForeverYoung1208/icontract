@@ -11,4 +11,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://icontract.fyoung.dp.ua:6379/1
+  url: redis://127.0.0.1:6379/1
