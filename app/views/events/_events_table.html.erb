@@ -19,7 +19,14 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.id %></td>
-        <td><%= event.reminder.message+" ("+event.reminder_id.to_s+")"%></td>
+        <td><%= 
+          if event.reminder
+            event.reminder.message+" ("+event.reminder_id.to_s+")"
+          else
+            "Нагадування не знайдено. Скоріш за все, його видалено"
+          end
+          %>
+        </td>
 
         <td><%= event.user.name %></td>
         <td><%= event.to_send.to_s%></td>
