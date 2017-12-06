@@ -16,7 +16,11 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
           entity.find('.take-button').removeClass('hidden')
           entity.find('.untake-button').addClass('hidden')
       when 'do_event_result'
-        alert (data['text'])
+        entity = $('[data-entityId="'+data["eventId"]+'"]').find('.done-by')
+        if data['text']
+          entity.text(data['text'])
+
+
 
     console.log data
 

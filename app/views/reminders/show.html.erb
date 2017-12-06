@@ -43,13 +43,13 @@
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'Діє від: ' %></div>
-        <div class="col-sm-7"><%= @reminder.begins.strftime("%d.%m.%Y") %></div>
+        <div class="col-sm-7"><%= @reminder.begins.strftime("%d.%m.%Y") if @reminder.begins %></div>
       </div>
 
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'Діє до: ' %></div>
-        <div class="col-sm-7"><%= @reminder.ends.strftime("%d.%m.%Y") %></div>
+        <div class="col-sm-7"><%= @reminder.ends.strftime("%d.%m.%Y") if @reminder.ends %></div>
       </div>
 
 

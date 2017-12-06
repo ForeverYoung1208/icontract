@@ -24,25 +24,27 @@ class UsersController < ApplicationController
 
   def update_roles
 
-    # logger.debug('=========================================================================')
-    # logger.debug( params["_json"][0][:name] )
-    # logger.debug('=========================================================================')
 
-    all_roles = {}
-    params["_json"].each do |u|
-      u[:roles].each do |r|
-        all_roles[r] ||= []
-        all_roles[r] << u[:id]
+
+    if @current_user.can_edit_users?
+      all_roles = {}
+      params["_json"].each do |u|
+        u[:roles].each do |r|
+          all_roles[r] ||= []
+          all_roles[r] << u[:id]
+        end
       end
-    end
 
-    RolesUser.update_all( deleted_at: DateTime.now)
-    all_roles.each do |role_id, users_ids|
-      role = Role.find(role_id)
-      role.bind_to_users!(users_ids)
-    end
+      RolesUser.update_all( deleted_at: DateTime.now)
+      all_roles.each do |role_id, users_ids|
+        role = Role.find(role_id)
+        role.bind_to_users!(users_ids)
+      end
 
-    render json: :none, staus: :ok
+      render json: :none, staus: :ok
+    else
+      render json: :none, staus: :error
+    end
 
   end
 

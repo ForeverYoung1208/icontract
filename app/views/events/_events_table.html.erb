@@ -17,7 +17,7 @@
 
   <tbody>
     <% @events.each do |event| %>
-      <tr>
+      <tr data-entityId="<%= event.id%>">
         <td><%= event.id %></td>
         <td><%= 
           if event.reminder
@@ -34,7 +34,7 @@
         <td><%= event.email_address %></td>
         <td><%= event.email_text %></td>
         <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
-        <td><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})"){"Виконати"}%></td>
+        <td class="done-by"><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})"){"Виконати"}%></td>
 
         <td> <%= management_delete( event ) if @current_user.can_delete_events? %> </td>
       </tr>

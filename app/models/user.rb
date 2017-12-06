@@ -94,6 +94,10 @@ class User < ApplicationRecord
     true
   end  
 
+  def can_edit_users?
+    is_admin
+  end  
+
   def can_access_roles?
     is_admin
   end    
