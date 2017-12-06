@@ -78,6 +78,10 @@ class User < ApplicationRecord
     true
   end
 
+  def can_delete_events?
+    is_admin
+  end
+
   def can_access_reminders?
     true
   end

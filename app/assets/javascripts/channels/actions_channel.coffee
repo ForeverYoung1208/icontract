@@ -3,27 +3,23 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
     # Called when there's incoming data on the websocket for this channel
     # alert(data["title"]+data["body"])
 
-    entity = $('[data-entityId="'+data["id"]+'"]').find('.entity-is-taken')
+    switch data['action']
+      when 'take_untake_result' 
+        entity = $('[data-entityId="'+data["id"]+'"]').find('.entity-is-taken')
 
-    if data["is_taken_as_original"]==true
-      entity.find('span').text('Так') 
-      entity.find('.take-button').addClass('hidden')
-      entity.find('.untake-button').removeClass('hidden')
-    else
-      entity.find('span').text('Ні') 
-      entity.find('.take-button').removeClass('hidden')
-      entity.find('.untake-button').addClass('hidden')
+        if data["is_taken_as_original"]==true
+          entity.find('span').text('Так') 
+          entity.find('.take-button').addClass('hidden')
+          entity.find('.untake-button').removeClass('hidden')
+        else
+          entity.find('span').text('Ні') 
+          entity.find('.take-button').removeClass('hidden')
+          entity.find('.untake-button').addClass('hidden')
+      when 'do_event_result'
+        alert (data['text'])
 
+    console.log data
 
-
-    # leave button "take"
-    # row.find('.akt-is-accepted').find('span').text('ЖЖЖЖЖЖЖ')
-
-
-    console.log "ActionsChannel:"
-    console.log data["type"]
-    console.log data["id"]
-    console.log data["is_taken_as_original"]
 
 
   connected: ->
@@ -34,3 +30,6 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
 
   takeUntake: (data)->
     @perform 'take_untake', data
+
+  doEvent: (data)->
+    @perform 'do_event', data

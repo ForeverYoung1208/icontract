@@ -102,7 +102,7 @@ class EventsController < ApplicationController
     # @event.destroy
 
     respond_to do |format|
-      if @event.update(deleted_at: DateTime.now)    
+      if @current_user.can_delete_events? && @event.update(deleted_at: DateTime.now)    
         format.html { redirect_to events_url, notice: 'Подію видалено.' }
         format.json { head :no_content }
       else

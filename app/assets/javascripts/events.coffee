@@ -4,12 +4,23 @@
 
 $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='events' && ["index", "all","mine"].indexOf($('meta[name=psj]').attr('action')) > 0
+
+		# Prepare modal window text
 		window.eventDoneClick = (eventId) ->
-			$('#eventReportText').text('Подію №'+eventId+' виконано шляхом: ')
+			modal = $('#eventDoneByModal')
+			modal.find('#eventReportText').text('Подію №'+eventId+' виконано. Звіт: ')
+			modal.data('eventId', eventId)
+			modal.modal()
 
 		window.submitEventDoneReport = ()->
-			$("#eventDoneByModal").modal('hide')
-			alert( $('#eventReportText').text() )
+			modal = $('#eventDoneByModal')
+			modal.modal('hide')
+			data ={
+				'eventId': modal.data('eventId'),
+				'text': modal.find('#eventReportText').val()
+			}
+			App.actionsChannel.doEvent(data)
+			console.log data
 
 
 	

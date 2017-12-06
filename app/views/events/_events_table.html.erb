@@ -34,9 +34,9 @@
         <td><%= event.email_address %></td>
         <td><%= event.email_text %></td>
         <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
-        <td><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})", class:"", "data-toggle":"modal", "data-target":"#eventDoneByModal"){"Виконати"}%></td>
+        <td><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})"){"Виконати"}%></td>
 
-        <td> <%= management_delete( event ) %> </td>
+        <td> <%= management_delete( event ) if @current_user.can_delete_events? %> </td>
       </tr>
     <% end %>
   </tbody>
