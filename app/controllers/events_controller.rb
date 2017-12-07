@@ -101,7 +101,10 @@ class EventsController < ApplicationController
   def destroy
     # @event.destroy
 
+    
+
     respond_to do |format|
+      # debugger
       if @current_user.can_delete_events? && @event.update(deleted_at: DateTime.now)    
         format.html { redirect_to events_url, notice: 'Подію видалено.' }
         format.json { head :no_content }
