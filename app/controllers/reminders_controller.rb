@@ -126,6 +126,9 @@ class RemindersController < ApplicationController
 
     def set_reminder
       @reminder = Reminder.where(id: params[:id]).includes(:reminderable).first
+      @reminder.begins = @reminder.begins.strftime("%d.%m.%Y") if @reminder.begins
+      @reminder.ends = @reminder.ends.strftime("%d.%m.%Y") if @reminder.ends
+
     end
 
 
