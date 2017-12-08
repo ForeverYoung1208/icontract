@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update]
 
   before_action :set_events, only: [:index, :all, :mine]
 
@@ -104,12 +104,14 @@ class EventsController < ApplicationController
     
 
     respond_to do |format|
-      # debugger
-      if @current_user.can_delete_events? && @event.update(deleted_at: DateTime.now)    
+      event = Event.unscoped.where(id: params[:id]).first
+      event.deleted_at = DateTime.now
+
+      if @current_user.can_delete_events? && event.save(validate: false)
         format.html { redirect_to events_url, notice: 'Подію видалено.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to events_url, notice: "Помилка видляння. Подію не видалено #{@event.errors}" }
+        format.html { redirect_to events_url, notice: "Помилка видлення. Подію не видалено #{@event.errors}" }
         format.json { render json: @contract.errors, status: :unprocessable_entity }
       end
 
