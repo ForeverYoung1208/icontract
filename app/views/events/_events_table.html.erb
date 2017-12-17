@@ -12,14 +12,26 @@
       <th>Виконано? (Звіт)</th>
       <th>Керування</th>
     </tr>
+    <tr>
+      <th><input type="text" class="filters" data-filter-on="event-id"></th>
+      <th><input type="text" class="filters" data-filter-on="reminder-text"></th>
+      <th><input type="text" class="filters" data-filter-on="user-name"></th>
+      <th><input type="text" class="filters" data-filter-on="is-to-send"></th>
+      <th><input type="text" class="filters" data-filter-on="sent-times"></th>
+      <th><input type="text" class="filters" data-filter-on="email-address"></th>
+      <th><input type="text" class="filters" data-filter-on="email-text"></th>
+      <th><input type="text" class="filters" data-filter-on="on-date"></th>
+      <th><input type="text" class="filters" data-filter-on="done-by" id="default-filter"></th>
+      <th><i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i><i class="fa fa-info-circle fa-2x" aria-hidden="true" data-toggle="tooltip" title="Активним може бути тільки один фільтр (його підсвічено). Для буь-якого значення використовується символ '.'"></i></th>
+    </tr>
 
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
       <tr data-entityId="<%= event.id%>">
-        <td><%= event.id %></td>
-        <td><%= 
+        <td class="event-id"><%= event.id %></td>
+        <td class="reminder-text"><%= 
           if event.reminder
             event.reminder.message+" ("+event.reminder_id.to_s+")"
           else
@@ -28,13 +40,21 @@
           %>
         </td>
 
-        <td><%= event.user.name %></td>
-        <td><%= event.to_send.to_s%></td>
-        <td><%= event.sent_times.to_s %></td>
-        <td><%= event.email_address %></td>
-        <td><%= event.email_text %></td>
-        <td><%= event.on_date.strftime("%d.%m.%Y") %></td>
-        <td class="done-by"><%= event.done_by||!event.done_by=='' ? event.done_by : tag.button(onclick:"eventDoneClick(#{event.id})"){"Виконати"}%></td>
+        <td class="user-name"><%= event.user.name %></td>
+        <td class="is-to-send"><%= yn event.to_send%></td>
+        <td class="sent-times"><%= event.sent_times.to_s %></td>
+        <td class="email-address"><%= event.email_address %></td>
+        <td class="email-text"><%= event.email_text %></td>
+        <td class="on-date"><%= event.on_date.strftime("%d.%m.%Y") %></td>
+        <td class="done-by">
+          <% if event.done_by||!event.done_by=='' %>
+            <%= event.done_by %>
+          <% else %>
+            Ні 
+            <%= tag.button(onclick:"eventDoneClick(#{event.id})"){"Виконати"}%>
+          <% end %>
+        </td>
+
 
         <td> <%= management_delete( event ) if @current_user.can_delete_events? %> </td>
       </tr>

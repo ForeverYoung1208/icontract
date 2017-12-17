@@ -4,6 +4,13 @@
 
 $(document).on 'turbolinks:load', ->
 	if $('meta[name=psj]').attr('controller')=='events' && ["index", "all","mine"].indexOf($('meta[name=psj]').attr('action')) > 0
+		# Set filters
+		$('.filters').on 'keyup', ->
+			doFilter( $(this), $('#events-table tbody tr'))
+		# Set default filter
+		df = $('#default-filter')
+		df.val('Ні')
+		doFilter( df, $('#events-table tbody tr'))
 
 		# Prepare modal window text
 		window.eventDoneClick = (eventId) ->

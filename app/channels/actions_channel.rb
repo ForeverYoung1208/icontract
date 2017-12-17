@@ -32,12 +32,15 @@ class ActionsChannel < ApplicationCable::Channel
   end
 
   def do_event(data)
-    event = Event.find(data['eventId'])
+    event = Event.unscoped.find(data['eventId'])
     data['text']=data['text']+" зафіксовано: #{@current_user.name}, (id:#{@current_user.id})."
     event.done_by = data['text']
-    event.save
-    data['action']='do_event_result'
-    ActionCable.server.broadcast("actions_channel", data)
+    if event.save(validate:false)
+      data['action']='do_event_result'
+      ActionCable.server.broadcast("actions_channel", data)
+    else
+      logger.debug event
+    end
   end
 
 end

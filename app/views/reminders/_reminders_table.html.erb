@@ -47,8 +47,8 @@
 
         <td><%= reminder.reminder_type.name %></td>
         <td><%= reminder.message%></td>
-        <td><%= reminder.dd if [2,3].include?(reminder.reminder_type_id) %></td>
-        <td><%= reminder.mm if [2,3].include?(reminder.reminder_type_id) %></td>
+        <td><%= reminder.dd if [2,3,4].include?(reminder.reminder_type_id) %></td>
+        <td><%= reminder.mm if [2,3,4].include?(reminder.reminder_type_id) %></td>
 <!--        <td><%= reminder.yyyy %></td> -->
         <td><%= reminder.dofw if [1].include?(reminder.reminder_type_id) %></td>
 <!--        <td><%= reminder.moq if reminder.reminder_type_id == 1 %></td> -->
