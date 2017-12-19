@@ -22,9 +22,9 @@ roles_user = [
 
 ]
 
-start_admin = User.all.first
+start_admin_ids = User.where(email:"siafin2010@gmail.com").pluck(:id)
 
-roles_user[0].bind_to_users!([start_admin.id])
+roles_user[0].bind_to_users!(start_admin_ids)
 
 
 # Production setup values
