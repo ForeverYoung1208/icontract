@@ -24,7 +24,7 @@ roles_user = [
 
 start_admin = User.all.first
 
-roles_user[0].bind_to_users![start_admin]
+roles_user[0].bind_to_users!([start_admin])
 
 
 # Production setup values
