@@ -1,5 +1,9 @@
+# don't forget to set system environment variable
+# export ICONTRACT_PROTOCOL=HTTPS
+# if you are using https protocol
 
-#System constants
+
+# System constants
 
 ::SUPERUSERS = ['ForeverYoung','admin']  
 ::ADMIN_ROLE_ID = 1
@@ -7,22 +11,11 @@
 ::ACCOUNTANT_ROLE_ID = 3
 ::MAIL_TO_ID = 4 #for mailing and system notification purposes
 
-#My service patches
+# My service patches
 
-# class TrueClass
-#   def yesno
-#     "Так"
-#   end
-# end
 
-# class FalseClass
-#   def yesno
-#     "Ні"
-#   end
-# end
 
-#System jobs setup
-# MorningCheckJob.set(wait: 5.seconds).perform_later("xxx")
+# System jobs setup
 
 MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later
 
