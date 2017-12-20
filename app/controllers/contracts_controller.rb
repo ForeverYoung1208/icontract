@@ -9,9 +9,10 @@ class ContractsController < ApplicationController
   def index
     session[:contracts_list_type]||= {"all" => true}
     if session[:contracts_list_type]["mine"]
-      redirect_to mine_contracts_path and return
+      redirect_to(mine_contracts_path, protocol: request.protocol) and return
     elsif session[:contracts_list_type]["all"] 
-      redirect_to all_contracts_path and return
+      logger.debug request.protocol
+      redirect_to(all_contracts_path, protocol: request.protocol) and return
     else
       raise Exception.new('Error with contracts list')
     end
