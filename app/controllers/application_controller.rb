@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
-	force_ssl if: -> { ENV["ICONTRACT_PROTOCOL"] =='HTTPS'}
+# moved to config/environments/production
+#	force_ssl if: -> { ENV["ICONTRACT_PROTOCOL"] =='HTTPS'}
 
   include Auth
 
