@@ -44,10 +44,6 @@ config.serve_static_assets = true
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-######
-   config.force_ssl = true if ENV['ICONTRACT_PROTOCOL'] == 'HTTPS'
-######   
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -87,6 +83,16 @@ config.serve_static_assets = true
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+########
+# Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true if ENV['ICONTRACT_PROTOCOL'] == 'HTTPS'
+  logger.debug "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+  logger.debug ENV['ICONTRACT_PROTOCOL']
+  logger.debug "config.force_ssl = #{config.force_ssl}"
+  logger.debug "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+#########
+
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
