@@ -5,7 +5,11 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
 
     switch data['action']
       when 'take_untake_result' 
-        entity = $('[data-entityId="'+data["id"]+'"]').find('.entity-is-taken')
+        switch data['type']
+          when 'Akt'
+            entity = $('[data-entityId="'+data["id"]+'"]').find('.akt-is-taken')
+          when 'Contract'
+            entity = $('[data-entityId="'+data["id"]+'"]').find('.contract-is-taken')
 
         if data["is_taken_as_original"]==true
           entity.find('span').text('Так') 

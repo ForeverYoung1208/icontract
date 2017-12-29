@@ -26,7 +26,7 @@ class ActionsChannel < ApplicationCable::Channel
       data['action']='take_untake_result'
       ActionCable.server.broadcast("actions_channel", data)      
     else
-      raise Exeption 'Not enough rights to access akts'
+      raise Exeption 'Not enough rights to access reminderable(akt/contract)'
     end
 
   end

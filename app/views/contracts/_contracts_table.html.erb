@@ -54,9 +54,17 @@
           <p> <%= yn contract.is_signed %> </p>
         </td>
 
-        <td class="contract-is-taken" >
+        <!-- td class="contract-is-taken" >
           <p> <%= yn contract.is_taken_as_original %> </p>
-        </td>
+        </td -->
+
+        <td class="contract-is-taken">
+            <span><%= yn contract.is_taken_as_original %></span>
+            <%= take_button contract, "Прийняти" %>
+            <%= 
+              # untake_button akt, "Відмінити" 
+            %>            
+        </td>        
 
         <!-- <td><%= contract.is_deleted %></td> -->
         <td class="contract-responsible-user-name" ><%= link_to contract.responsible_user.name, user_path(contract.responsible_user.id) %></td>
@@ -84,11 +92,11 @@
           <% end %>
         </td>
 
-        <td class="contract_id" >
+        <td>
 
           <%= management_links( contract ) %>
 
-          <%= button_to "C r #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) %>
+          <!-- %= button_to "C r #{ DateTime.now.strftime("%d.%m.%Y") }", check_reminders_contract_path(id: contract.id, date: DateTime.now.strftime("%d.%m.%Y")) % -->
 
         </td>
       </tr>
