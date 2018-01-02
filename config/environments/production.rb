@@ -25,7 +25,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
 #######  config.assets.compile = false
 
-####### ONLY FOR LOCAL PRODUCTION TESTING!!! XXXXXXXXXXXXX
+####### 
 config.assets.compile = true
 config.serve_static_assets = true
 ########
@@ -92,6 +92,11 @@ config.serve_static_assets = true
   logger.debug "config.force_ssl = #{config.force_ssl}"
   logger.debug "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
 #########
+
+
+#####
+  config.action_dispatch.trusted_proxies = ['127.0.0.1', 'localhost']
+#####
 
 
   # Do not dump schema after migrations.
