@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  db_config = YAML.load_file('config/database.yml')
+  db_config = YAML.load( ERB.new( File.read('config/database.yml')).result )
   establish_connection( db_config['users_'+ Rails.env.downcase] )
 
   before_destroy { |record| raise "ReadOnlyRecord" }
