@@ -45,8 +45,8 @@ users_test:
 
 users_production:
   <<: *users_default  
-  database: tm2018_production
-#  database: <%= ENV['USERS_PRODUCTION_DATABASE'] %>
+#  database: tm2018_production
+  database: <%= ENV["USERS_PRODUCTION_DATABASE"] %>
 
 
 # # SQLite version 3.x
