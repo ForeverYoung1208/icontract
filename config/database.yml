@@ -37,7 +37,7 @@ users_default: &users_default
 
 users_development: 
   <<: *users_default
-  database: tm2t_development
+  database: <%= ENV["USERS_DEVELOPMENT_DATABASE"] %>
 
 users_test:
   <<: *users_default  
