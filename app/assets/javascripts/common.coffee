@@ -33,6 +33,10 @@ window.takeUntakeDocument = (type,id) ->
 	}
 	App.actionsChannel.takeUntake(data)	
 
+window.handleAddCompany = (e, selects_class, dialog_id)->
+	e.preventDefault();
+	$("##{dialog_id}").dialog( "open" )
+
 
 $(document).on 'turbolinks:load', ->
 	$('.untake-button, .take-button').click( 

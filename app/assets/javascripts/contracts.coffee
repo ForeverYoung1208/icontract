@@ -9,3 +9,6 @@ $(document).on 'turbolinks:load', ->
 		$('.filters').on 'keyup', ->
 			doFilter( $(this), $('#contracts-table tbody tr'))
 
+
+
+

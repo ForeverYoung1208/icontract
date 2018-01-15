@@ -65,10 +65,19 @@
 
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :payer_id, 'Платник:' %></div>
-      <div class="col-sm-2"><%= form.collection_select :payer_id, @companies, :id, :name, {}, {class: "form-control"} %></div>
+      <div class="col-sm-2">
+          <%= form.collection_select :payer_id, @companies, :id, :name, {}, {class: "form-control companies-select"} %>
+      </div>
+      <div class="col-sm-1 text-sm-left">
+          <%= new_company_button_and_dialog(add_to_select_class: 'companies-select', dialog_id: 'add-payer')%>
+      </div>
 
-      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :recipient_id, "Отримувач:" %></div>
+      <div class="col-sm-1 text-sm-right col-form-label"><%= form.label :recipient_id, "Отримувач:" %></div>
       <div class="col-sm-2"><%= form.collection_select :recipient_id, @companies, :id, :name, {}, {class: "form-control"}  %></div>
+      <div class="col-sm-1 text-sm-left">
+          <%= new_company_button_and_dialog(add_to_select_class: 'companies-select', dialog_id:'add-recipient')%>
+      </div>
+
     </div>
 
 
