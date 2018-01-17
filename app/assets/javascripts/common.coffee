@@ -35,7 +35,7 @@ window.takeUntakeDocument = (type,id) ->
 
 window.handleAddCompany = (e, selects_class, dialog_id)->
 	e.preventDefault();
-	$("##{dialog_id}").dialog( "open" )
+	$('#'+dialog_id).modal( "hide" )
 
 
 $(document).on 'turbolinks:load', ->

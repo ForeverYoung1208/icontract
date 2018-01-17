@@ -1,5 +1,5 @@
 <button 
-  onclick="handleAddCompany(event, <%="'#{p[:add_to_select_class]}'"%>, <%="'#{p[:dialog_id]}'"%> )"
+  onclick="event.preventDefault();"
   class="btn btn-info management-button" 
   title="Додати нову команію в довідник" 
   data-toggle="modal" 
@@ -45,8 +45,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Скасувати</button>
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          onClick="handleAddCompany(event, '<%= p[:add_to_select_class]%>', '<%= p[:dialog_id]%>' )">Додати компанію</button>
       </div>
     </div>
   </div>
