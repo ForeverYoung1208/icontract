@@ -20,7 +20,11 @@ class Reminderable < ApplicationRecord
   def take_untake!(by_user)
     
     self.is_taken_as_original = !is_taken_as_original;
-    self.preferences="#{self.preferences} Прийнято "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
+    if self.is_taken_as_original   
+      self.preferences="#{self.preferences} Прийнято "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
+    else
+      self.preferences="#{self.preferences} Відмінено прийняття "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
+    end
     self.save
 
 

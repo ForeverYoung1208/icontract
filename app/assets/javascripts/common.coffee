@@ -35,7 +35,19 @@ window.takeUntakeDocument = (type,id) ->
 
 window.handleAddCompany = (e, selects_class, dialog_id)->
 	e.preventDefault();
-	$('#'+dialog_id).modal( "hide" )
+	modal = $('#'+dialog_id)
+	company = {
+		name: modal.find(".input-name").val()
+		address: modal.find(".input-address").val()
+		edrpou: modal.find(".input-edrpou").val()
+	}
+	jqxhr = $.post("/companies.json", {company})
+		.done (res)=>
+			console.log (res)
+			$('.'+selects_class).append("<option selected='selected' value='#{res.id}'>#{res.name} (#{res.edrpou})</option>")
+			$('#'+dialog_id).modal( "hide" )
+		.fail ( jqXHR, textStatus, errorThrown)=>
+			alert ("Помилка: #{jqXHR.statusText} #{jqXHR.responseText}")
 
 
 $(document).on 'turbolinks:load', ->
