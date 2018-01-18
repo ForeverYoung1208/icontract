@@ -21,16 +21,15 @@ class Reminderable < ApplicationRecord
     
     self.is_taken_as_original = !is_taken_as_original;
     if self.is_taken_as_original   
-      self.preferences="#{self.preferences} Прийнято "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
+      self.history="#{self.history} #{DateTime.now.strftime("%d.%m.%Y")}:Прийнято користувачем #{by_user.name}."
     else
-      self.preferences="#{self.preferences} Відмінено прийняття "+ DateTime.now.strftime("%d.%m.%Y")+" користувачем #{by_user.name}."
+      self.history="#{self.history} #{DateTime.now.strftime("%d.%m.%Y")}:Відмінено прийняття користувачем #{by_user.name}."
     end
     self.save
 
 
     is_taken_as_original
   end
-
 
   
   mount_uploaders :scanfiles, ScanReminderableUploader

@@ -59,9 +59,12 @@
       <div class="col-sm-1">
         <span><%= yn @akt.is_taken_as_original %></span>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-1">
         <%= untake_button @akt, "Відмінити прийняття" %>
       </div>
+
+      <div class="col-sm-1 text-sm-right"> <%= form.label :history, "Історія: " %></div>
+      <div class="col-sm-3"><%= form.text_area :history, id: :reminderable_history, class: "form-control history", disabled: "disabled" %></div>
 
     </div>  
 

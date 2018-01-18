@@ -11,6 +11,7 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
           when 'Contract'
             entity = $('[data-entityId="'+data["id"]+'"]').find('.contract-is-taken')
 
+        entity.find('.history').text(data['history'])
         if data["is_taken_as_original"]==true
           entity.find('span').text('Так') 
           entity.find('.take-button').addClass('hidden')
@@ -19,6 +20,7 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
           entity.find('span').text('Ні') 
           entity.find('.take-button').removeClass('hidden')
           entity.find('.untake-button').addClass('hidden')
+
       when 'do_event_result'
         entity = $('[data-entityId="'+data["eventId"]+'"]').find('.done-by')
         if data['text']

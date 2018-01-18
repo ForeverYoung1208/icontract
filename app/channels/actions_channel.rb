@@ -22,6 +22,7 @@ class ActionsChannel < ApplicationCable::Channel
     end
     if @current_user.can_take_documents?
       data['is_taken_as_original'] = reminderable.take_untake!(@current_user)
+      data['history'] = reminderable.history
       # ActionsChannel.broadcast_to( current_user_id, data)
       data['action']='take_untake_result'
       ActionCable.server.broadcast("actions_channel", data)      
