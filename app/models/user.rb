@@ -30,7 +30,9 @@ class User < ApplicationRecord
   end
 
   def ip_check(remote_ip)
-    !self.is_ip_controlled || self.ip_address == remote_ip || ::SUPERUSERS.include?(self.name)
+    #Turn off ip check in icontract
+    #     !self.is_ip_controlled || self.ip_address == remote_ip || ::SUPERUSERS.include?(self.name)
+    true
   end
 
 
