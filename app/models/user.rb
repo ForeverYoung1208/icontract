@@ -106,7 +106,7 @@ class User < ApplicationRecord
   end    
 
   def can_access_types?
-    true
+    is_admin
   end    
 
   def can_access_reminder_types?
