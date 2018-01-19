@@ -16,7 +16,14 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :type_id, 'Тип договору: ' %></div>
       <div class="col-sm-2">
-        <%= form.collection_select :type_id, @types, :id, :name, {}, {class: "form-control"} %>
+        <!-- form.collection_select :type_id, @types, :id, :name, {}, {class: "form-control", onChange: "console.log(this)" } -->
+
+        <%= form.select(:type_id, 
+            options_for_select(@types.map {|t| [t.name, t.id, {'data-contract-name': t.typical_contract_name }]}, contract.type_id),
+            {},
+            {class: "form-control", onChange: "handleTypeChange(this)"})
+         %>
+
       </div>
     </div>
 
