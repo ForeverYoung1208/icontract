@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-	if $('meta[name=psj]').attr('controller')=='events' && ["index", "all","mine"].indexOf($('meta[name=psj]').attr('action')) > 0
+	if $('meta[name=psj]').attr('controller')=='events' && ["index", "all","mine"].indexOf($('meta[name=psj]').attr('action')) >= 0
 		# Set filters
 		$('.filters').on 'keyup', ->
 			doFilter( $(this), $('#events-table tbody tr'))
