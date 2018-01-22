@@ -96,7 +96,7 @@ class RemindersController < ApplicationController
         format.html { redirect_back(fallback_location: reminders_url, notice: 'Нагадування видалено') }
         format.json { head :no_content }
       else
-        format.html { redirect_to reminders_url, notice: "Помилка видляння. Нагадування не видалено #{@contract.errors}" }
+        format.html { redirect_to reminders_url, notice: "Помилка видляння. Нагадування не видалено #{@reminder.errors}" }
         format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end      
     end

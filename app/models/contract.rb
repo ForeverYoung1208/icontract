@@ -15,6 +15,8 @@ class Contract < Reminderable
   validates :name, presence: true
 
 
+
+
   # moved to Reminderable class
   # has_many :reminders, as: :reminderable
   # default_scope { where("#{table_name}.deleted_at IS NULL")}
@@ -38,5 +40,7 @@ class Contract < Reminderable
     from_date ? from_date_str = " від "+from_date.strftime("%d.%m.%Y") : from_date_str = " без дати "
     res = name + ' № ' + number.to_s + from_date_str + " (#{responsible_user.name})"
   end
+
+
 
 end

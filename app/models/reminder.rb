@@ -4,10 +4,30 @@ class Reminder < ApplicationRecord
   belongs_to :user
   has_many :events
 
+  validate :check_presence_of_needed_days, on: [:create, :save, :update]
+
   # wtf???
   # has_many :akts
 
   default_scope { where("deleted_at IS NULL")}
+
+  def check_presence_of_needed_days
+    case reminder_type_id
+    when 1 # weekly
+      errors.add(:dofw, "Вкажіть номер дня тижня") unless dofw.between?(1,7)
+    when 2 # monthly
+      errors.add(:dd, "Вкажіть номер дня місяця") unless dd.between?(1,31)
+    when 3 #quarterly
+      errors.add(:dd, "Вкажіть номер дня місяця") unless dd.between?(1,31)
+      errors.add(:mm, "Вкажіть номер місяця") unless mm.between?(1,12)
+    when 4 #yearly
+      errors.add(:dd, "Вкажіть номер дня місяця") unless dd.between?(1,31)
+      errors.add(:mm, "Вкажіть номер місяця") unless mm.between?(1,12)
+    else
+      raise "Помилка: Невідомий тип події"
+    end    
+
+  end
 
   def self.all_generate_events(given_date_string)
     created_events_ids = []
