@@ -33,7 +33,7 @@ window.takeUntakeDocument = (type,id) ->
 	}
 	App.actionsChannel.takeUntake(data)	
 
-window.handleAddCompany = (e, selects_class, dialog_id)->
+window.handleAddCompany = (e, selects_class, select_id, dialog_id)->
 	e.preventDefault();
 	modal = $('#'+dialog_id)
 	company = {
@@ -44,7 +44,10 @@ window.handleAddCompany = (e, selects_class, dialog_id)->
 	jqxhr = $.post("/companies.json", {company})
 		.done (res)=>
 			console.log (res)
-			$('.'+selects_class).append("<option selected='selected' value='#{res.id}'>#{res.name} (#{res.edrpou})</option>")
+			$('.'+selects_class).append("<option value='#{res.id}'>#{res.name} (#{res.edrpou})</option>")
+			# $('#'+select_id).val("#{res.name} (#{res.edrpou})");
+			$('#'+select_id).find("option[value='#{res.id}']").attr('selected','selected');
+
 			$('#'+dialog_id).modal( "hide" )
 		.fail ( jqXHR, textStatus, errorThrown)=>
 			alert ("Помилка: #{jqXHR.statusText} #{jqXHR.responseText}")

@@ -73,16 +73,24 @@
     <div class="field row">
       <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :payer_id, 'Платник:' %></div>
       <div class="col-sm-2">
-          <%= form.collection_select :payer_id, @companies, :id, :name_edrpou, {}, {class: "form-control companies-select"} %>
+          <%= form.collection_select :payer_id, @companies, :id, :name_edrpou, {}, {class: "form-control companies-select", id: "payer-select"} %>
       </div>
       <div class="col-sm-1 text-sm-left">
-          <%= render 'new_company_modal', p: {add_to_select_class: 'companies-select', dialog_id: 'add-payer'}%>
+          <%= render 'new_company_modal', p: {
+                                              add_to_selects_class: 'companies-select',
+                                              add_to_select_id: 'payer-select', 
+                                              dialog_id: 'add-payer'}
+          %>
       </div>
 
       <div class="col-sm-1 text-sm-right col-form-label"><%= form.label :recipient_id, "Отримувач:" %></div>
-      <div class="col-sm-2"><%= form.collection_select :recipient_id, @companies, :id, :name_edrpou, {}, {class: "form-control companies-select"}  %></div>
+      <div class="col-sm-2"><%= form.collection_select :recipient_id, @companies, :id, :name_edrpou, {}, {class: "form-control companies-select", id: "recipient-select"}  %></div>
       <div class="col-sm-1 text-sm-left">
-          <%= render 'new_company_modal', p: {add_to_select_class: 'companies-select', dialog_id: 'add-recipient'}%>
+          <%= render 'new_company_modal', p: {
+                                              add_to_selects_class: 'companies-select',
+                                              add_to_select_id: 'recipient-select',
+                                              dialog_id: 'add-recipient'}
+          %>
       </div>
 
     </div>
