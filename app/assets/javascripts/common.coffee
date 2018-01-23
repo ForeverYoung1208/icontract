@@ -43,9 +43,7 @@ window.handleAddCompany = (e, selects_class, select_id, dialog_id)->
 	}
 	jqxhr = $.post("/companies.json", {company})
 		.done (res)=>
-			console.log (res)
 			$('.'+selects_class).append("<option value='#{res.id}'>#{res.name} (#{res.edrpou})</option>")
-			# $('#'+select_id).val("#{res.name} (#{res.edrpou})");
 			$('#'+select_id).find("option[value='#{res.id}']").attr('selected','selected');
 
 			$('#'+dialog_id).modal( "hide" )
