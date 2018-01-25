@@ -42,7 +42,7 @@ class ScanReminderableUploader < CarrierWave::Uploader::Base
   #   %w(jpg jpeg gif png)
   # end
   def extension_whitelist
-    %w(pdf)
+    %w(pdf jpg)
   end
 
 
