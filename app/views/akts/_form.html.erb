@@ -14,13 +14,18 @@
   <div class="container-fluid contract-form" data-entityId="<%= akt.id%>">
 
     <div class="field row">
-      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :number, 'Номер: ' %></div>
-      <div class="col-sm-2">
+      <div class="col-sm-2 text-sm-right col-form-label" ><%= form.label :kind, 'Тип: ' %></div>
+      <div class="col-sm-1">
+        <%= form.text_field :kind, id: :akt_kind, class: "form-control" %>
+      </div>      
+
+      <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :number, 'Номер: ' %></div>
+      <div class="col-sm-1">
         <%= form.text_field :number, id: :akt_number, class: "form-control" %>
       </div>      
 
       <div class="col-sm-1 text-sm-right col-form-label" ><%= form.label :from_date, 'Від (дата): ' %></div>
-      <div class="col-sm-2">
+      <div class="col-sm-1">
         <%= form.text_field :from_date, id: :akt_from_date, class: "form-control datepicker" %>
       </div>
 

@@ -2,6 +2,7 @@
   <thead class="thead-default">
     <tr>
       <th class="small-header">ID</th>
+      <th>Тип</th>
       <th>Номер</th>
       <th>До Договору</th>
       <th>Дата акту</th>
@@ -15,6 +16,7 @@
     </tr>
     <tr>
       <th><input type="text" class="filters" data-filter-on="akt-id"></th>
+      <th><input type="text" class="filters" data-filter-on="akt-kind"></th>
       <th><input type="text" class="filters" data-filter-on="akt-number"></th>
       <th><input type="text" class="filters" data-filter-on="akt-contract"></th>
       <th><input type="text" class="filters" data-filter-on="akt-date"></th>
@@ -32,6 +34,7 @@
     <% @akts.each do |akt| %>
       <tr data-entityId="<%= akt.id%>">
         <td class="akt-id"><%= akt.id %></td>
+        <td class="akt-kind"><%= akt.kind %></td>
         <td class="akt-number"><%= akt.number %></td>
         <td class="akt-contract"> 
           <%= link_to akt.contract, class: "management-button" do %>

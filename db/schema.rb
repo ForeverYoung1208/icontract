@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118174353) do
+ActiveRecord::Schema.define(version: 20180125203432) do
 
   create_table "akts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "contract_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180118174353) do
     t.string "sum_detail"
     t.text "preferences"
     t.text "history"
+    t.string "kind"
     t.index ["contract_id"], name: "index_akts_on_contract_id"
   end
 

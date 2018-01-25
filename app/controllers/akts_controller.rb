@@ -46,7 +46,7 @@ class AktsController < ApplicationController
 
   # GET /akts/new
   def new
-    @akt = Akt.new
+    @akt = Akt.new({kind: 'Акт'})
     prepare_form_data
   end
 
@@ -146,7 +146,7 @@ class AktsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def akt_params
       params.require(:akt).permit(:contract_id, :from_date, :sum, :number,
-        :scan_path, :doc_path, :is_signed, :is_deleted, :preferences,
+        :scan_path, :doc_path, :is_signed, :is_deleted, :preferences, :kind,
         :is_taken_as_original, {scanfiles: []}, {textfiles: []}, :remove_scanfiles, :remove_textfiles, :sum_detail
       )
     end
