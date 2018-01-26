@@ -34,7 +34,7 @@
     <% @akts.each do |akt| %>
       <tr data-entityId="<%= akt.id%>">
         <td class="akt-id"><%= akt.id %></td>
-        <td class="akt-kind"><%= akt.kind %></td>
+        <td class="akt-kind"><%=link_to akt.kind, akt_path(akt) %></td>
         <td class="akt-number"><%= akt.number %></td>
         <td class="akt-contract"> 
           <%= link_to akt.contract, class: "management-button" do %>

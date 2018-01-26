@@ -3,6 +3,7 @@ class Akt < Reminderable
   belongs_to :contract
 
 
+  validates :kind, presence: true
   validates :from_date, presence: true
   validates :sum, presence: true
   validates :number, presence: true
