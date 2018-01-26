@@ -132,7 +132,7 @@
       <hr> <h3>Додаткова інформація</h3>
 
       <div class="field row">
-        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні акти:" %></div>
+        <div class="col-sm-5 text-sm-right"><%= tag.label "Пов’язанні акти/документи:" %></div>
         <div class="col-sm-7">
           <% if @contract.akts && @contract.akts.count>0 %>      
             <% @contract.akts.each do |a| %>
@@ -143,6 +143,8 @@
           <% else %>
             Немає
           <% end %>
+
+          <%= fa_link_to( '-plus fa-2x', new_akt_path({akt: {contract_id: @contract.id}}), data: { toggle: "tooltip", placement: "bottom" }, title: "новий акт",  class: "management-button") {"Додати новий акт/документ" } %> 
 
         </div>
       </div>
@@ -157,7 +159,7 @@
           <object data=" <%=  sf.url %>" type="application/pdf" width="750px" height="750px">
             <embed src="<%=  sf.url %>" type="application/pdf">
                 Не можу відобразити файл  <%= link_to sf.url%>
-                Або цьго файлу не існує в архиві, або браузер не підтримує відображення pdf
+                Або цьго файлу не існує в архиві, або браузер не підтримує відображення завантаженого типу файла
             </embed>
           </object>
         <% end %>

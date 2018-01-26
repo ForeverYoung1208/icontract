@@ -46,7 +46,7 @@ class AktsController < ApplicationController
 
   # GET /akts/new
   def new
-    @akt = Akt.new({kind: 'Акт'})
+    @akt = Akt.new(akt_params)
     prepare_form_data
   end
 

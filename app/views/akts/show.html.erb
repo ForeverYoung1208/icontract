@@ -3,7 +3,7 @@
     <div class="col-sm-2 text-sm-right">
       <%= fa_link_to('-arrow-left', akt_path(@akt.previous), class: "management-button") {"Попередній"} if @akt.previous %>
     </div>
-    <div class="col-sm-3 text-sm-center"><h2> Перегляд акту/документ ( id: <%= @akt.id %>)</h2></div>
+    <div class="col-sm-3 text-sm-center"><h3> Перегляд акту/документу ( id: <%= @akt.id %>)</h3></div>
     <div class="col-sm-2 text-sm-left">
       <%= fa_link_to('-arrow-right', akt_path(@akt.next), class: "management-button") {"Наступний"} if @akt.next%>
     </div>
@@ -21,6 +21,10 @@
         <div class="col-sm-7"><%= link_to @akt.contract.name, @akt.contract, class: "management-button" %></div>
       </div>
 
+      <div class="field row">
+        <div class="col-sm-5 text-sm-right" > <%= tag.label 'Тип документу: ' %></div>
+        <div class="col-sm-7"><%= @akt.kind %></div>
+      </div>
 
       <div class="field row">
         <div class="col-sm-5 text-sm-right" > <%= tag.label 'Номер: ' %></div>
