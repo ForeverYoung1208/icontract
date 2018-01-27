@@ -127,8 +127,6 @@
         </div>
       </div>
 
-
-      <%= render 'bottom_navigation_area', entity:@contract, links: {edit: true} %>
       <hr> <h3>Додаткова інформація</h3>
 
       <div class="field row">
@@ -149,6 +147,16 @@
         </div>
       </div>
 
+
+      <div class="field row">      
+        <div class="col-sm-5 text-sm-right"> <%= tag.label"Історія: " %></div>
+        <div class="col-sm-7">
+          <%= tag.text_area @contract.history, class: "form-control history", disabled: "disabled" %>
+        </div>
+      </div>
+
+
+      <%= render 'bottom_navigation_area', entity:@contract, links: {edit: true} %>
 
     </div>
 
