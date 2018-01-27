@@ -57,7 +57,7 @@
       <div class="col-sm-2">
         <%= form.text_field :sum, id: :contract_sum, class: "form-control" %>
       </div>
-      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :sum_detail, "грн. разово/ на рік/ на місяць/ інше: " %></div>
+      <div class="col-sm-2 text-sm-right col-form-label"><%= form.label :sum_detail, "разово/на рік/місяць/інше: " %></div>
       <div class="col-sm-2">
         <%= form.text_field :sum_detail, id: :contract_sum_detail, class: "form-control" %>
       </div>      
@@ -111,9 +111,6 @@
         <%= untake_button @contract, "Відмінити прийняття" %>
       </div>
 
-      <div class="col-sm-1 text-sm-right"> <%= form.label :history, "Історія: " %></div>
-      <div class="col-sm-3"><%= form.text_area :history, id: :reminderable_history, class: "form-control history", disabled: "disabled" %></div>
-
     </div>  
 
 
@@ -164,4 +161,13 @@
       <%= form.submit 'Зберегти', class: 'btn btn-primary' %>
     </div>
   </div>
+
+  
+  <div class="col-sm-1 text-sm-right"> <%= form.label :history, "Історія: " %></div>
+  <div class="col-sm-3"><%= form.text_area :history, id: :reminderable_history, class: "form-control history", disabled: "disabled" %></div>
+  <div class="dummy" style="height: 100px;">
+  </div>
+
+
+
 <% end %>

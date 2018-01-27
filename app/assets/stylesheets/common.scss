@@ -84,3 +84,16 @@ th.small-header{
   display: none !important;
   visibility: hidden !important;
 }
+
+footer {
+    background-color: #f7f7f7;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    pre {
+      height: 60px;
+      margin-bottom: 0;
+    }
+}

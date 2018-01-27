@@ -24,11 +24,10 @@
   </div> <!-- row -->
 
 
-  <div class="row">
-    <div class="col-sm-12">
-      <pre> <%= fa_link_to( '-plus fa-2x', new_akt_path({akt: {kind:'akt'}}), data: { toggle: "tooltip", placement: "bottom" }, title: "новий акт",  class: "management-button") {"Зареєструвати новий акт/документ" } %> </pre>
-
-    </div> <!-- col -->
-  </div> <!-- row -->
-
 </div>
+
+<footer class="footer fixed-bottom">
+  <div type="button" class="btn btn-secondary">
+  <%= fa_link_to( '-plus', new_akt_path({akt: {kind:'akt'}}), data: { toggle: "tooltip", placement: "top" }, title: "новий акт",  class: "management-button") {"Зареєструвати новий акт/документ" } %> 
+  </div>
+</footer>

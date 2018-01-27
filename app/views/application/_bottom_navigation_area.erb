@@ -1,5 +1,25 @@
-| <%= link_to('Показати деталі', entity, class: "management-button") if links[:details] %>
+<footer class="footer fixed-bottom">
+	
+		<%= link_to(:back, class: "management-button") do %>
+			<div type="button" class="btn btn-secondary">	<span class="fa fa-arrow-circle-o-left"></span> Назад </div>
+		<% end %>
+	
 
-| <%= link_to('Редагувати', polymorphic_path(entity, {action: :edit}), class: "management-button") if links[:edit] %>
+	<% if links[:details] %>
+		<%= link_to( entity, class: "management-button") do %>
+		 	<div type="button" class="btn btn-secondary"><span class="fa fa-id-card"></span> Показати деталі </div>
+		<% end %>
+	<% end %>
 
-| <%= link_to 'Назад', :back, class: "management-button" %> |
+
+
+	<% if links[:edit] %>
+		<%= link_to( polymorphic_path(entity, {action: :edit}), class: "management-button") do %>
+		 	<div type="button" class="btn btn-secondary"><span class="fa fa-edit"></span> Редагувати </div>
+		<% end %>
+	<% end %>
+
+
+</footer>
+	 
+	 

@@ -24,10 +24,12 @@
   </div> <!-- row -->
 
 
-  <div class="row">
-    <div class="col-sm-12">
-      <pre> <%= fa_link_to( '-plus fa-2x', new_contract_path, data: { toggle: "tooltip", placement: "bottom" }, title: "новий договір",  class: "management-button") {"Зареєструвати новий договір" } %> </pre>
-    </div> <!-- col -->
-  </div> <!-- row -->
+
 
 </div>
+
+<footer class="footer fixed-bottom">
+  <div type="button" class="btn btn-secondary">
+    <%= fa_link_to( '-plus', new_contract_path, data: { toggle: "tooltip", placement: "top" }, title: "новий договір",  class: "management-button") {"Зареєструвати новий договір" } %> 
+  </div>
+</footer> <!-- row -->
