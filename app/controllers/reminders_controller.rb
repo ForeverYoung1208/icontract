@@ -31,12 +31,11 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
-    @reminder_types = ReminderType.all
+
+    prepare_form_data
+
     reminderable = Contract.find( params[:contract_id] ) if params[:contract_id]
     reminderable = Akt.find( params[:akt_id] ) if params[:akt_id]
-
-    @contracts = Contract.all
-    @akts = Akt.all
 
     @reminder = Reminder.new( reminderable: reminderable, user: reminderable.responsible_user)
 
@@ -45,10 +44,8 @@ class RemindersController < ApplicationController
 
   # GET /reminders/1/edit
   def edit
-    @reminder_types = ReminderType.all
 
-    @contracts = Contract.all
-    @akts = Akt.all
+    prepare_form_data
         
   end
 
@@ -80,6 +77,7 @@ class RemindersController < ApplicationController
         format.html { redirect_to edit_reminder_path(@reminder), notice: 'Нагадування збережено.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
+        prepare_form_data
         format.html { render :edit }
         format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end
@@ -118,6 +116,12 @@ class RemindersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def prepare_form_data
+      @reminder_types = ReminderType.all
+      @contracts = Contract.all
+      @akts = Akt.all
+    end
 
     def set_reminders
       @reminders = Reminder.where(:'user_id' => @current_user.allowed_users_ids)

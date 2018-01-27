@@ -43,7 +43,7 @@ class ContractsController < ApplicationController
 
   # GET /contracts/new
   def new
-    @contract = Contract.new
+    @contract = Contract.new(responsible_user_id: @current_user.id)
 
     prepare_form_data
 
