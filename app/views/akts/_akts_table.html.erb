@@ -41,6 +41,7 @@
 
             <%= akt.contract.name %> № <%=akt.contract.number %> від <%= akt.contract.from_date.strftime("%d.%m.%Y") %> <%="(ID: #{akt.contract_id})" %>
           <% end %>
+          Сторони: <%= akt.contract.payer.name_edrpou %>, <%= akt.contract.recipient.name_edrpou %>
             
 
         </td>
@@ -58,7 +59,9 @@
 
         <td class="akt-file-filename">
           <% if akt.scanfiles %>
+
             <% akt.scanfiles.each do |sf| %>
+
                <%= link_to sf.file.filename, sf.url %> <br/>
             <% end %>
           <% end %>          
