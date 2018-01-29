@@ -15,7 +15,9 @@ class Akt < Reminderable
   def extended_info
     from_date ? from_date_str = " від "+from_date.strftime("%d.%m.%Y") : from_date_str = " без дати "
 
-    kind||=' '
+
+    self.kind ? kind = self.kind : ""
+
     res =kind+ ' № ' +number.to_s + from_date_str + ' до дог. ' + contract.name + " від " + contract.from_date.strftime("%d.%m.%Y")
   end
 
