@@ -6,8 +6,13 @@ class Company < ApplicationRecord
 
   default_scope { where("deleted_at IS NULL")}
 
+  def name
+  	deleted_at ? "(!Удалено!) #{super}" : "#{super}"
+  end
+
   def name_edrpou
   	"#{name} (#{edrpou})"
   end
+
 		
 end

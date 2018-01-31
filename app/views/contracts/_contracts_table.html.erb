@@ -49,8 +49,8 @@
         </td>
 
         <td class="contract-payer-name" > 
-          <p> <b>платник:</b> <%= contract.payer.name %> </p>
-          <p> <b>отримувач:</b> <%= contract.recipient.name %> </p>
+          <p> <b>платник:</b> <%= Company.unscoped.find(contract.payer_id).name %> </p>
+          <p> <b>отримувач:</b> <%= Company.unscoped.find(contract.recipient_id).name %> </p>
         </td> 
 
         <td class="contract-is-active" >
