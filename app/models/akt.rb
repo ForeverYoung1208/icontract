@@ -22,7 +22,7 @@ class Akt < Reminderable
   end
 
   def name
-    is_deleted ? "Удалён #{deleted_at.strftime("%d.%m.%Y")}! #{ doctype } от #{from_date.strftime("%d.%m.%Y")}" : "#{ doctype } от #{from_date.strftime("%d.%m.%Y")}"
+    is_deleted ? "Видалений! #{deleted_at.strftime("%d.%m.%Y")}! #{ doctype } от #{from_date.strftime("%d.%m.%Y")}" : "#{ doctype } от #{from_date.strftime("%d.%m.%Y")}"
   end  
 
 

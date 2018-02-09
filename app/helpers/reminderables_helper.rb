@@ -7,7 +7,7 @@ module ReminderablesHelper
           concat link_to "file: #{ f.file.filename} ", f.url
         end
       end
-      concat form.file_field filestype, title: 'Замінити', class: 'btn-info', multiple: true
+      concat form.file_field filestype, title: 'Додати', class: 'btn-info', multiple: true
       concat tag.br
       concat form.check_box :"remove_#{filestype}"
       concat " Очистити (видалити) файли"

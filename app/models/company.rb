@@ -4,10 +4,12 @@ class Company < ApplicationRecord
 
 	validates :edrpou, uniqueness: {scope: [:deleted_at]}
 
-  default_scope { where("deleted_at IS NULL")}
+  scope :notdeleted,-> { where("#{table_name}.deleted_at IS NULL")}  
+  
+  # default_scope { where("deleted_at IS NULL")}
 
   def name
-  	deleted_at ? "(!Удалено!) #{super}" : "#{super}"
+  	deleted_at ? "Видалений! #{super}" : "#{super}"
   end
 
   def name_edrpou

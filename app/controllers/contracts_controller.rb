@@ -100,8 +100,16 @@ class ContractsController < ApplicationController
   # PATCH/PUT /contracts/1
   # PATCH/PUT /contracts/1.json
   def update
+
+    new_params = contract_params
+    new_params['scanfiles'] += @contract.scanfiles if @contract.scanfiles && new_params['scanfiles']  
+    new_params['textfiles'] += @contract.textfiles if @contract.textfiles && new_params['textfiles']  
+
+    @contract.assign_attributes(new_params)
+
+
     respond_to do |format|
-      if @contract.update(contract_params)
+      if @contract.save
         format.html { redirect_to edit_contract_path(@contract), notice: 'Договір збережено' }
         format.json { render :show, status: :ok, location: @contract }
       else
@@ -151,7 +159,7 @@ class ContractsController < ApplicationController
 
     def prepare_form_data
       @types = Type.all
-      @companies = Company.all
+      @companies = Company.all.notdeleted
       @responsible_users = User.all_with_any_role
       @creator_user = @current_user
     end

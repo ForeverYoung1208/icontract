@@ -97,9 +97,16 @@ class AktsController < ApplicationController
   # PATCH/PUT /akts/1
   # PATCH/PUT /akts/1.json
   def update
+
+    new_params = akt_params
+    new_params['scanfiles'] += @akt.scanfiles if @akt.scanfiles && new_params['scanfiles'] 
+    new_params['textfiles'] += @akt.textfiles if @akt.textfiles && new_params['textfiles'] 
+
+    @akt.assign_attributes(new_params)
+
     respond_to do |format|
       prepare_form_data
-      if @akt.update(akt_params)
+      if @akt.save
         format.html { redirect_to edit_akt_path(@akt), notice: 'Акт оновлено' }
         format.json { render :show, status: :ok, location: @akt }
       else

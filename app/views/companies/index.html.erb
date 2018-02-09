@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @companies.each do |company| %>
+    <% @companies.notdeleted.each do |company| %>
       <tr>
         <td><%= company.id %></td>
         <td><%= company.name %></td>
