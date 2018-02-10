@@ -54,6 +54,7 @@ class Reminder < ApplicationRecord
     when 1 # weekly
       needed_date = given_date
       needed_date += 1.day until (needed_date.wday+1) == dofw
+      needed_date += 1.day
     when 2 # monthly
       needed_date = ("#{dd}.01.2017").to_date
       needed_date += 1.month while needed_date < given_date
