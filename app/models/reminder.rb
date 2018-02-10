@@ -5,6 +5,7 @@ class Reminder < ApplicationRecord
   has_many :events
 
   validate :check_presence_of_needed_days, on: [:create, :save, :update]
+  after_save ->{ generate_next_event( DateTime.now.beginning_of_day ) unless deleted_at}
 
   # wtf???
   # has_many :akts
