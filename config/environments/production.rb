@@ -104,7 +104,7 @@ config.serve_static_assets = true
 #####
   config.action_dispatch.trusted_proxies = ['127.0.0.1', 'localhost']
 
-  config.web_console.development_only = false
+  # config.web_console.development_only = false
 
 #####
 
