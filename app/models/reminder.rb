@@ -5,7 +5,8 @@ class Reminder < ApplicationRecord
   has_many :events
 
   validate :check_presence_of_needed_days, on: [:create, :save, :update]
-  after_save ->{ generate_next_event( DateTime.now.beginning_of_day ) unless deleted_at}
+  after_save ->{ generate_next_event( DateTime.now.beginning_of_day.strftime("%d.%m.%Y") ) unless deleted_at }
+
 
   # wtf???
   # has_many :akts
@@ -52,7 +53,7 @@ class Reminder < ApplicationRecord
 
     when 1 # weekly
       needed_date = given_date
-      needed_date += 1.day until needed_date.wday == dofw
+      needed_date += 1.day until (needed_date.wday+1) == dofw
     when 2 # monthly
       needed_date = ("#{dd}.01.2017").to_date
       needed_date += 1.month while needed_date < given_date
