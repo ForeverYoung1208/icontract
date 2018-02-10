@@ -3,6 +3,8 @@ class ContractsController < ApplicationController
 
   before_action :set_contracts, only: [:index, :all, :mine]
 
+  before_action ->{ redirect_to( new_session_path, notice: 'Недостатньо прав') unless @contract.responsible_user_id == @current_user.id }, only: [:edit, :update, :destroy]
+
 
   # GET /contracts
   # GET /contracts.json
