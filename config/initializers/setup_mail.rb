@@ -12,7 +12,7 @@ ActionMailer::DeliveryJob.rescue_from(StandardError) do |e|
   NotificationChannel.broadcast_to(
     ::MAIL_TO_ID,
     title: 'sending email failed:',
-    body: "Event id: #{event.id}, user_id: #{event.user_id}, email:#{event.email_address}"
+    body: "#{arguments}, Event id: #{event.id if event}, user_id: #{event.user_id if event}, email:#{event.email_address if event}"
   )
 
 

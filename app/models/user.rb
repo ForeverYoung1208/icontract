@@ -51,7 +51,7 @@ class User < ApplicationRecord
     if self.is_admin
       res = User.all.pluck(:id) 
     else
-      res = self.id
+      res = [self.id]
     end
     res
   end
