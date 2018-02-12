@@ -6,20 +6,23 @@ ActionMailer::Base.smtp_settings = {
 }
 
 # ActionMailer::DeliveryJob.rescue_from(Net::SMTPFatalError) do |e|
-ActionMailer::DeliveryJob.rescue_from(StandardError) do |e|
-
-  event = arguments[3]
-  NotificationChannel.broadcast_to(
-    ::MAIL_TO_ID,
-    title: 'sending email failed:',
-    body: "#{arguments}"
-    # , Event id: #{event.id if event}, user_id: #{event.user_id if event}, email:#{event.email_address if event}"
-  )
 
 
-  email_to=User.find(::MAIL_TO_ID).email
+
+# ActionMailer::DeliveryJob.rescue_from(StandardError) do |e|
+
+#   event = arguments[3]
+#   NotificationChannel.broadcast_to(
+#     ::MAIL_TO_ID,
+#     title: 'sending email failed:',
+#     body: "#{arguments}"
+#     # , Event id: #{event.id if event}, user_id: #{event.user_id if event}, email:#{event.email_address if event}"
+#   )
 
 
-  res = EventMailer.mail_failed_notification(email_to,event).deliver_later
+#   email_to=User.find(::MAIL_TO_ID).email
 
-end
+
+#   res = EventMailer.mail_failed_notification(email_to,event).deliver_later
+
+# end
