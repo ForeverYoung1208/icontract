@@ -3,7 +3,7 @@ class AktsController < ApplicationController
   before_action :set_akts, only: [:index, :all, :mine]
 
   before_action ->{ 
-    redirect_to( new_session_path, notice: 'Недостатньо прав') unless @current_user.allowed_users_ids.include?( @akt.responsible_user_id) 
+    redirect_to( new_session_path, notice: 'Недостатньо прав') unless @current_user.allowed_users_ids.include?( @akt.responsible_user.id) 
   }, only: [:edit, :update, :destroy]
 
 
