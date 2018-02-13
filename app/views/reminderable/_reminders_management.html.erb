@@ -9,8 +9,9 @@
 
 <div class="col-sm-2">  
   <%= 
+    reminderable.doctype == 'Договір' ? key= 'contract_id' : key='akt_id'
     if reminderable.id
-      fa_link_to('-plus fa-2x', new_reminder_path(contract_id: reminderable.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} 
+      fa_link_to('-plus fa-2x', new_reminder_path("#{key}": reminderable.id), data: { toggle: "tooltip", placement: "bottom" }, title: "Додати нагадування",  class: "management-button") {"Додати нагадування"} 
     else
       "Для створення нагадування спочатку збережіть документ"
     end

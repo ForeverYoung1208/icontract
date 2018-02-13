@@ -40,6 +40,8 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new( reminderable: reminderable, user: reminderable.responsible_user)
 
 
+
+
   end
 
   # GET /reminders/1/edit
