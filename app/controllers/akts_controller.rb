@@ -2,7 +2,9 @@ class AktsController < ApplicationController
   before_action :set_akt, only: [:show, :edit, :update, :destroy, :check_reminders, :approve_by_accountant]
   before_action :set_akts, only: [:index, :all, :mine]
 
-  before_action ->{ redirect_to( new_session_path, notice: 'Недостатньо прав') unless @akt.responsible_user.id == @current_user.id }, only: [:edit, :update, :destroy]
+  before_action ->{ 
+    redirect_to( new_session_path, notice: 'Недостатньо прав') unless @current_user.allowed_users_ids.include?( @akt.responsible_user_id) 
+  }, only: [:edit, :update, :destroy]
 
 
   # GET /akts
