@@ -91,7 +91,7 @@ class ContractsController < ApplicationController
   def check_all_reminders
     scanned_contracts_ids = ''
 
-    Contract.all.each_with_index do |contract,i|
+    Contract.notdeleted.each_with_index do |contract,i|
       contract.check_reminders(params[:date])
 
       i==0 ? scanned_contracts_ids+=contract.id.to_s : scanned_contracts_ids+=', '+contract.id.to_s
@@ -144,7 +144,7 @@ class ContractsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
-      @contract = Contract.find(params[:id])
+      @contract = Contract.notdeleted.find(params[:id])
       @contract.from_date = @contract.from_date.strftime("%d.%m.%Y") if @contract.from_date
       @contract.to_date = @contract.to_date.strftime("%d.%m.%Y") if @contract.to_date
       

@@ -89,7 +89,7 @@ class AktsController < ApplicationController
   def check_all_reminders
     scanned_akts_ids = ''
 
-    Akt.all.each_with_index do |akt,i|
+    Akt.notdeleted.each_with_index do |akt,i|
       akt.check_reminders(params[:date])
 
       i==0 ? scanned_akts_ids+=akt.id.to_s : scanned_akts_ids+=', '+akt.id.to_s
@@ -139,7 +139,7 @@ class AktsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_akt
-      @akt = Akt.find(params[:id])
+      @akt = Akt.notdeleted.find(params[:id])
       @akt.from_date = @akt.from_date.strftime("%d.%m.%Y")
     end
 

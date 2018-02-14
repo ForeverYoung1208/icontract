@@ -6,7 +6,7 @@ class Reminder < ApplicationRecord
 
   validate :check_presence_of_needed_days, on: [:create, :save, :update]
   after_save ->{ generate_next_event( DateTime.now.beginning_of_day.strftime("%d.%m.%Y") ) unless deleted_at }
-
+  scope :notdeleted,-> { where("#{table_name}.deleted_at IS NULL")}  
 
   # wtf???
   # has_many :akts
@@ -33,8 +33,8 @@ class Reminder < ApplicationRecord
 
   def self.all_generate_events(given_date_string)
     created_events_ids = []
-    Reminder.all.each do |r|
-      created_event = r.generate_next_event(given_date_string)
+    Reminder.notdeleted.each do |r|
+      created_event = r.generate_next_event(given_date_string) if r.is_active
       created_event ? created_events_ids << created_event.id : created_events_ids << 0
     end
     return created_events_ids
