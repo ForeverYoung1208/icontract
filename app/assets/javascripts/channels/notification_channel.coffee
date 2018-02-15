@@ -6,12 +6,12 @@ App.notificationChannel = App.cable.subscriptions.create "NotificationChannel",
     console.log data["body"]
 
     if data["title"] == 'sending email failed:'
-    	$("#dialog-mail-delivery-failed #message").html( data["body"])
-	    $("#dialog-mail-delivery-failed").dialog( "open" )
+    	$("#dialog-information #message").html( data["title"]+', '+data["body"])
+	    $("#dialog-information").dialog( "open" )
 
     if data["title"] == 'Information:'
-      $("#dialog-mail-delivery-failed #message").html( data["body"])
-      $("#dialog-mail-delivery-failed").dialog( "open" )
+      $("#dialog-information #message").html( data["title"]+', '+data["body"])
+      $("#dialog-information").dialog( "open" )
 
   connected: ->
     # Called when the subscription is ready for use on the server
