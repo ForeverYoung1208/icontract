@@ -9,6 +9,9 @@ App.notificationChannel = App.cable.subscriptions.create "NotificationChannel",
     	$("#dialog-mail-delivery-failed #message").html( data["body"])
 	    $("#dialog-mail-delivery-failed").dialog( "open" )
 
+    if data["title"] == 'Information:'
+      $("#dialog-mail-delivery-failed #message").html( data["body"])
+      $("#dialog-mail-delivery-failed").dialog( "open" )
 
   connected: ->
     # Called when the subscription is ready for use on the server
