@@ -70,7 +70,7 @@ $(document).on 'turbolinks:load', ->
 		orientation: "bottom right"
 	});
 
-	$("#dialog-mail-delivery-failed").dialog
+	$("#dialog-information").dialog
 		resizable: false
 		autoOpen: false
 		height: "auto"
