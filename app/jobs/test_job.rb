@@ -2,8 +2,6 @@ class TestJob < ApplicationJob
   queue_as :default
 
   def perform
-		# MorningCheckJob.set(wait: 5.seconds).perform_later("xxx")
-
 
 		logger.debug "VVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
 		logger.debug "Active Job start"
