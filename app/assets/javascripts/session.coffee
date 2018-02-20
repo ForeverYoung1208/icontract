@@ -5,4 +5,8 @@ window.allSendEmailsEvents = (date)->
 	data={ 
 		date: date
 	}
-	App.notificationChannel.checkEvents(data)
+	App.actionsChannel.checkEvents(data)
+
+window.startMorningCheckJob = () ->
+	data={}
+	App.actionsChannel.startMorningCheckJob(data)

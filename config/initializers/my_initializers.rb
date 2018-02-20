@@ -15,9 +15,8 @@
 
 
 
-# System jobs setup
-
-MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later
+### System job setup moved to corresponding button
+### MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later
 
 # Only for testing jobs
 # TestJob.set(wait: 10.seconds ).perform_later

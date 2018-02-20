@@ -44,4 +44,26 @@ class ActionsChannel < ApplicationCable::Channel
     end
   end
 
+  def check_events(data)
+    # data['date'] = DasteTime.now.strftime("%d.%m.%Y") unless data['date']
+
+    Event.all_send_emails( data['date'], current_user_id )
+  end
+
+  def start_morning_check_job(data)
+    res = MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later        
+    data = {
+      'title': "Information:",
+      'body': "MorningCheckJob started: #{res}"
+    }
+
+    # works, but sends to all
+    # ActionCable.server.broadcast("notification_channel", data)
+
+
+    NotificationChannel.broadcast_to(current_user_id, data)
+
+  end
+
+
 end

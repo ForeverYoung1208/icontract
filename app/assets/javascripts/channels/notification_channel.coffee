@@ -19,5 +19,3 @@ App.notificationChannel = App.cable.subscriptions.create "NotificationChannel",
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
-  checkEvents: (data)->
-    @perform 'check_events', data

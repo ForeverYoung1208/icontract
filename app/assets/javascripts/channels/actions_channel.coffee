@@ -41,5 +41,13 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
   takeUntake: (data)->
     @perform 'take_untake', data
 
+    # Mark Event as done
   doEvent: (data)->
     @perform 'do_event', data
+
+  checkEvents: (data)->
+    @perform 'check_events', data
+
+  startMorningCheckJob: (data)->
+    @perform 'start_morning_check_job', data
+
