@@ -5,8 +5,12 @@ window.allSendEmailsEvents = (date)->
 	data={ 
 		date: date
 	}
-	App.actionsChannel.checkEvents(data)
+	App.actionsChannel.checkEvents(data) if confirm("Ви впевнені що треба зараз перевірити всі події на сьогоді і відправити e-mail листи ?")
 
 window.startMorningCheckJob = () ->
 	data={}
-	App.actionsChannel.startMorningCheckJob(data)
+	App.actionsChannel.startMorningCheckJob(data) if confirm("Ви впевнені що треба почати новий процесс щоденних перевірок нагадувань і подій ?")
+
+window.clearResque = () ->
+	data={}
+	App.actionsChannel.clearResque(data) if confirm("Ви впевнені що треба очистити REDIS:RESQUE, скасувати всі відкладені завдання і зупунити всі процеси перевірок?")

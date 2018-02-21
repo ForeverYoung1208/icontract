@@ -65,5 +65,34 @@ class ActionsChannel < ApplicationCable::Channel
 
   end
 
+  def clear_resque(data)
+    res=""
+
+    queues = Resque.queues
+    queues.each do |queue_name|
+      res += "Clearing queue:( #{queue_name} )"
+      Resque.redis.del "queue:#{queue_name} "
+    end
+    
+    res += "Clearing delayed..." # in case of scheduler - doesn't break if no scheduler module is installed
+    Resque.redis.keys("delayed:*").each do |key|
+      res += "Clearing key:( #{key} )"
+      Resque.redis.del "#{key}"
+    end
+    Resque.redis.del "delayed_queue_schedule"
+    
+    res += "Clearing stats..."
+    Resque.redis.set "stat:failed", 0 
+    Resque.redis.set "stat:processed", 0
+
+
+    data = {
+      'title': "Information:",
+      'body': "REDIS:RESQUE очищено: #{res}"
+    }
+    NotificationChannel.broadcast_to(current_user_id, data)
+    
+  end
+
 
 end

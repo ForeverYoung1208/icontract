@@ -35,3 +35,10 @@
 	</pre>
 
 <% end %>
+
+<% if @current_user.is_admin %>
+	<pre> очистити REDIS:RESQUE, скасувати всі відкладені завдання і зупунити всі процеси перевірок.
+	  <button onclick="clearResque()">очистити REDIS:RESQUE</button>
+	</pre>
+
+<% end %>

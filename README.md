@@ -23,7 +23,7 @@ In further, i'll cover next readme totics:
 * Deployment instructions
 
 
-1) before all you need to 
+1) before all you need to :
 install tm2 (at least create development database for tm2 with users table) ....
 install redis server....
 
@@ -34,7 +34,9 @@ rails create database
 rails migrate
 rails seed
 
-3) start rails / passenger server and resque worker
+3) start rails / passenger server and resque worker:
+- check Passengerfile.json
+- check config/local_env.yml
 rvmsudo passenger start
 RAILS_ENV=production PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* rake resque:work
 
