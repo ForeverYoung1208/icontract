@@ -39,6 +39,24 @@
 <% if @current_user.is_admin %>
 	<pre> очистити REDIS:RESQUE, скасувати всі відкладені завдання і зупунити всі процеси перевірок.
 	  <button onclick="clearResque()">очистити REDIS:RESQUE</button>
+	
+		<p>
+			Redis Queues:
+			<% Resque.queues.each do |queue_name| %>
+			  <%=" queue:( #{queue_name} )" %>
+			<%end %>
+		</p>
+		<p>
+
+			Redis deleyed keys:
+			<% Resque.redis.keys("delayed:*").each do |key| %>
+			    Key: <%= key %> Value: <%= Resque.redis.get("delayed:#{key}")  %>    <br/>
+			<%end%>
+		</p>
 	</pre>
 
 <% end %>
+
+
+
+<hr/>
