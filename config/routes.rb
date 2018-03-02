@@ -44,7 +44,10 @@ Rails.application.routes.draw do
     get 'all', on: :collection
     get 'mine', on: :collection
   end
-  resources :sessions
+  
+  resources :sessions do
+    get 'start_morning_check_job', on: :collection
+  end
 
   get 'main', to: "main#show", as: 'main'
 

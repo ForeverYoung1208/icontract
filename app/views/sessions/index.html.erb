@@ -31,7 +31,13 @@
 
 <% if @current_user.is_admin %>
 	<pre> Запустити процесс MorningCheckJob. Увага! Запускати тількі один раз!
-	  <button onclick="startMorningCheckJob()">startMorningCheckJob()</button>
+	  <!-- button onclick="startMorningCheckJob()">startMorningCheckJob()</button-->
+
+	  <%= link_to start_morning_check_job_sessions_path  do %>	
+		  <button> start_morning_check_job_sessions_path  </button>
+		<% end %>
+
+
 	</pre>
 
 <% end %>

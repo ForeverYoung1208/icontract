@@ -48,8 +48,8 @@ App.actionsChannel = App.cable.subscriptions.create "ActionsChannel",
   checkEvents: (data)->
     @perform 'check_events', data
 
-  startMorningCheckJob: (data)->
-    @perform 'start_morning_check_job', data
+  # startMorningCheckJob: (data)->
+  #   @perform 'start_morning_check_job', data
 
   clearResque: (data)->
     @perform 'clear_resque', data
