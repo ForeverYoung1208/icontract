@@ -41,20 +41,17 @@ class SessionsController < ApplicationController
 
 
 
+
   def start_morning_check_job
-    res = MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later        
-    data = {
-      'title': "Information:",
-      'body': "MorningCheckJob started: #{res}"
-    }
+    # res = MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later        
+    res = MorningCheckJob.perform_later
 
     # works, but sends to all
     # ActionCable.server.broadcast("notification_channel", data)
 
-
 #    NotificationChannel.broadcast_to(@current_user.id, data)
 
-    redirect_to sessions_path notice: data['body']
+    redirect_to sessions_path notice: "MorningCheckJob started: #{res}"
 
   end
 
