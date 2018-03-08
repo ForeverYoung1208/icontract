@@ -34,11 +34,17 @@ rails create database
 rails migrate
 rails seed
 
-3) start rails / passenger server and resque worker:
+3.1) start rails passenger server:
 - check Passengerfile.json
 - check config/local_env.yml
 rvmsudo passenger start
+
+3.2) start resque worker:
 RAILS_ENV=production PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* rake resque:work
+
+3.3) start resque-scheduler :
+
+RAILS_ENV=production BACKGROUND=yes rails resque:scheduler
 
 4) in the app, login as admin and start minitoring process:
 	at sessions/index page press 
@@ -46,13 +52,18 @@ RAILS_ENV=production PIDFILE=./resque.pid BACKGROUND=yes QUEUE=* rake resque:wor
 	  <button onclick="startMorningCheckJob()">startMorningCheckJob()</button>
 	</pre>
 
+4.1) you can control jobs at path:
+www.icontract-path/jobs
+
 
 5) when need, clean redis database:
 redis-cli
 FLUSHALL
+or
+FLUSHDB
 
 6)if need, check active workers:
 resque list
 
-7)if need, check activejob /jobs
+
 

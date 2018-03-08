@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
 
   def start_morning_check_job
     # res = MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day).perform_later        
-    res = MorningCheckJob.perform_later
+    res = MorningCheckJob.set(wait: 5.seconds).perform_later
 
     # works, but sends to all
     # ActionCable.server.broadcast("notification_channel", data)

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   # mount ActionCable.server => '/cable'
   require 'resque/server'
+  require 'resque-scheduler'
+  require 'resque/scheduler/server'  
   mount Resque::Server, at: '/jobs'  
 
   
