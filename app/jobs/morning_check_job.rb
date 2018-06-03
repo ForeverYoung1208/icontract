@@ -14,7 +14,7 @@ class MorningCheckJob < ApplicationJob
 		logger.debug "^^^^^^^^^^^^Active Job finish"
 
 		# MorningCheckJob.set(wait: 10.seconds).perform_later
-		MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day+1.hour).perform_later
+		MorningCheckJob.set(wait_until: Date.tomorrow.beginning_of_day+8.hour).perform_later
 
 
   end

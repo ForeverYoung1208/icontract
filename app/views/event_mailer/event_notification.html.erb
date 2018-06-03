@@ -1,7 +1,7 @@
 Нагадування для користувача <%= @event.user.name %>:
 <hr/>
 На дату <%= @event.on_date %> в системі icontract зареєстровано подію з id= <%= @event.id %>,
-яку створено нагадуванням з id= <%= @event.reminder_id%> до документу <%= "#{@reminderable.doctype}, 
+яку створено нагадуванням з id= <%= @event.reminder_id%> до документу <%= "#{@reminderable.extended_info} (#{@reminderable.doctype)}, 
 № #{@reminderable.number} від #{@reminderable.from_date}" %>
 <hr/>
 Текст нагадування:<br/>

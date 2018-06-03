@@ -13,9 +13,16 @@ class Reminderable < ApplicationRecord
     'Reminderable'
   end
 
+  def extended_info
+    'Undefined reminderable'
+  end
+
+
   def is_deleted
     return deleted_at != nil
   end
+
+
 
   def take_untake!(by_user)
     

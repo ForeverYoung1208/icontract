@@ -9,7 +9,7 @@ class Akt < Reminderable
   validates :number, presence: true
   
   def doctype 
-  	'Акт'
+  	'Додатковий документ до договору'
   end
 
   def extended_info
