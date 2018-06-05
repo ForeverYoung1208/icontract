@@ -1,12 +1,14 @@
 Нагадування для користувача <%= @event.user.name %>:
 <hr/>
 На дату <%= @event.on_date %> в системі icontract зареєстровано подію з id= <%= @event.id %>,
-яку створено нагадуванням з id= <%= @event.reminder_id%> до документу <%= "#{@reminderable.extended_info} (#{@reminderable.doctype)}, 
+яку створено нагадуванням з id= <%= @event.reminder_id%> до документу <%= "#{@reminderable.extended_info} (#{@reminderable.doctype}), 
 № #{@reminderable.number} від #{@reminderable.from_date}" %>
 <hr/>
 Текст нагадування:<br/>
 <%= @event.reminder.message %>
 <hr/>
-Будь-ласка, вчасно відпрацюйте та відзначте подію як відпрацьовану.
+Будь-ласка, вчасно відпрацюйте та відзначте подію як відпрацьовану: <%= 
+	link_to events_url, events_url
+%>.
 
 Не відповідайте на цей лист, його відправлено автоматично.

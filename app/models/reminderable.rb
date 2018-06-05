@@ -14,7 +14,7 @@ class Reminderable < ApplicationRecord
   end
 
   def extended_info
-    'Undefined reminderable'
+    'Undefined reminderable extended_info'
   end
 
 

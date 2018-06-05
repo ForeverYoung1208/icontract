@@ -98,8 +98,8 @@ config.serve_static_assets = true
   logger.debug ENV['ICONTRACT_PROTOCOL']
   logger.debug "config.force_ssl = #{config.force_ssl}"
   logger.debug "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-#########
 
+#########
 
 #####
   config.action_dispatch.trusted_proxies = ['127.0.0.1', 'localhost']
