@@ -31,7 +31,6 @@ Rails.application.configure do
 ###
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.default_url_options = { host: ENV['ICONTRACT_HOST']} if ENV['ICONTRACT_HOST']
 
 ###
 

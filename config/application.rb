@@ -12,7 +12,6 @@ module Icontract
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-  config.action_mailer.default_url_options = { host: '127.0.0.1:3000'}
 
 #######
 		config.before_configuration do
@@ -22,6 +21,13 @@ module Icontract
 		  end if File.exists?(env_file)
 		end
 ######		
+
+	  config.action_mailer.default_url_options ||={}
+	  ENV['ICONTRACT_HOST'] ? 
+	  	config.action_mailer.default_url_options[:host] = ENV['ICONTRACT_HOST']
+	  	:
+	  	config.action_mailer.default_url_options[:host] = '127.0.0.1:3000'
+
 
   end
 end
